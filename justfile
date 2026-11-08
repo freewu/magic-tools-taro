@@ -25,7 +25,7 @@ doctor:
 	@echo "node     : $(node -v 2>/dev/null || echo 未安装)"
 	@echo "npm      : $(npm -v 2>/dev/null || echo 未安装)"
 	@echo "git      : $(git --version)"
-	@echo "依赖     : $({{ if path_exists('node_modules/@tarojs/cli') { "echo 已安装" } else { "echo 未安装（执行 just install）" } }})"
+	@echo "依赖     : $(if [ -d node_modules/@tarojs/cli ]; then echo 已安装; else echo '未安装（执行 just install）'; fi)"
 	@echo ""
 	@git status --short --branch
 
