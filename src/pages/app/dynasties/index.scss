@@ -1,0 +1,64 @@
+@use '../../../styles/calc';
+
+.field-label {
+  width: 140rpx;
+}
+
+.input-box {
+  font-size: 30rpx;
+}
+
+.metric-row {
+  margin-top: 16rpx;
+}
+
+.accent {
+  color: #007aff;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f2f2f2;
+}
+
+.row-left {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.row-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.row-sub {
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 4rpx;
+}
+
+.row-right {
+  flex: 1;
+  margin-left: 20rpx;
+  font-size: 24rpx;
+  color: #909399;
+  text-align: right;
+}
+
+.tip-text {
+  margin-top: 16rpx;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  padding: 0 8rpx;
+  margin-bottom: 16rpx;
+}

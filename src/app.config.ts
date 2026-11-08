@@ -11,7 +11,9 @@ export default defineAppConfig({
     'pages/app/fuzzy-nickname/index',
     'pages/app/income-tax/index',
     'pages/app/mortgage/index',
-    'pages/app/compound-interest/index'
+    'pages/app/compound-interest/index',
+    'pages/app/ganzhi/index',
+    'pages/app/dynasties/index'
   ],
   window: {
     backgroundTextStyle: 'light',

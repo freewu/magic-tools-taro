@@ -19,8 +19,10 @@ export const appList: AppItem[] = [
   { name: '个税计算', icon: '💼', path: 'income-tax/index', query: '' },
   { name: '房贷计算', icon: '🏠', path: 'mortgage/index', query: '' },
   { name: '复利计算', icon: '📈', path: 'compound-interest/index', query: '' },
+  { name: '天干地支', icon: '🀄', path: 'ganzhi/index', query: '' },
+  { name: '历史朝代', icon: '🏛️', path: 'dynasties/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：天干地支 / 安全期 /
-  //        预产期 / 利率 / 朝代 / 退休年龄 / 退休金 / 抽奖转盘 / 血型 / 车牌 / 身份证 /
+  // 待迁移：安全期 /
+  //        预产期 / 利率 / 退休年龄 / 退休金 / 抽奖转盘 / 血型 / 车牌 / 身份证 /
   //        单位换算 8 件套 / 基础代谢 / 时薪 / 二维码
 ]
