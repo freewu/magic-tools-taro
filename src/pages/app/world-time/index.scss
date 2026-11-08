@@ -1,0 +1,229 @@
+/* ---------------- 头部 ---------------- */
+
+.head-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.head-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-toggle {
+  width: 64rpx;
+  height: 64rpx;
+  margin-left: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32rpx;
+}
+
+.add-toggle-hover {
+  background-color: #ebf2ff;
+}
+
+.add-toggle-text {
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.card-tip {
+  display: block;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 36rpx;
+}
+
+.empty-text {
+  display: block;
+  font-size: 26rpx;
+  color: #999999;
+  line-height: 40rpx;
+}
+
+.restore-btn {
+  align-self: flex-start;
+  display: inline-flex;
+  margin-top: 20rpx;
+  height: 72rpx;
+  padding: 0 28rpx;
+  background-color: #ebf2ff;
+  border-radius: 12rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.restore-btn-hover {
+  background-color: #dce9ff;
+}
+
+.restore-btn-text {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+/* ---------------- 添加城市 ---------------- */
+
+.pick {
+  display: block;
+  width: 100%;
+}
+
+.pick-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 80rpx;
+  margin-top: 16rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+}
+
+.pick-box-hover {
+  background-color: #eff3f8;
+}
+
+.pick-text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.pick-arrow {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.custom-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16rpx;
+  margin-bottom: 12rpx;
+}
+
+.custom-name {
+  flex: 1;
+  height: 80rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.custom-offset {
+  width: 220rpx;
+  height: 80rpx;
+  margin-left: 16rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.add-btn {
+  height: 80rpx;
+  margin-left: 16rpx;
+  padding: 0 28rpx;
+  background-color: #007aff;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.add-btn-hover {
+  background-color: #0062cc;
+}
+
+.add-btn-text {
+  font-size: 28rpx;
+  color: #ffffff;
+}
+
+/* ---------------- 时钟卡片 ---------------- */
+
+.city-card {
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  padding: 22rpx 28rpx;
+  margin-bottom: 20rpx;
+}
+
+.city-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.city-name-box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.city-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.city-code {
+  margin-left: 12rpx;
+  font-size: 22rpx;
+  color: #666666;
+}
+
+.city-del {
+  width: 60rpx;
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.city-del-hover {
+  background-color: #f2f3f5;
+  border-radius: 30rpx;
+}
+
+.city-del-text {
+  font-size: 28rpx;
+  color: #c0c4cc;
+}
+
+.city-body {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 8rpx;
+}
+
+.city-time {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.city-offset {
+  font-size: 22rpx;
+  color: #999999;
+}
+
+.city-date {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #999999;
+}

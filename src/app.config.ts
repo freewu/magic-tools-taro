@@ -5,7 +5,8 @@ export default defineAppConfig({
     'pages/settings/index',
     'pages/about/index',
     'pages/app/rmb-converter/index',
-    'pages/app/bmi/index'
+    'pages/app/bmi/index',
+    'pages/app/world-time/index'
   ],
   window: {
     backgroundTextStyle: 'light',
