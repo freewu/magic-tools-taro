@@ -1,0 +1,132 @@
+@use '../../../styles/calc';
+
+.card-title {
+  margin-bottom: 16rpx;
+}
+
+.input-area {
+  width: 100%;
+  height: 180rpx;
+  box-sizing: border-box;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.chips {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+}
+
+.chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 60rpx;
+  padding: 0 22rpx;
+  border-radius: 30rpx;
+  background-color: #f0f6ff;
+  margin-right: 16rpx;
+}
+
+.chip-hover {
+  background-color: #dce9ff;
+}
+
+.chip-text {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.field-label {
+  width: 96rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.segments {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+}
+
+.segment {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 72rpx;
+  border-radius: 12rpx;
+  margin-right: 16rpx;
+  background-color: #f7f8fa;
+}
+
+.segment-active {
+  background-color: #007aff;
+}
+
+.segment-hover {
+  opacity: 0.8;
+}
+
+.segment-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.segment-text-active {
+  color: #fff;
+}
+
+.qr-stage {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 0 24rpx;
+}
+
+.qr-frame {
+  position: relative;
+}
+
+.metric-row {
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.metric-value {
+  font-weight: bold;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 16rpx;
+}
+
+.tip-text {
+  display: block;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  padding: 0 8rpx;
+  margin-bottom: 16rpx;
+}

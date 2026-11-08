@@ -32,6 +32,7 @@ export const appList: AppItem[] = [
   { name: '抽奖转盘', icon: '🎰', path: 'lucky-wheel/index', query: '' },
   { name: '基础代谢', icon: '🔥', path: 'bmr/index', query: '' },
   { name: '时薪计算', icon: '⏱️', path: 'hourly/index', query: '' },
+  { name: '二维码生成', icon: '🔳', path: 'qrcode/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：单位换算 8 件套 / 二维码
+  // 待迁移：单位换算 8 件套
 ]

@@ -24,7 +24,8 @@ export default defineAppConfig({
     'pages/app/id-card/index',
     'pages/app/lucky-wheel/index',
     'pages/app/bmr/index',
-    'pages/app/hourly/index'
+    'pages/app/hourly/index',
+    'pages/app/qrcode/index'
   ],
   window: {
     backgroundTextStyle: 'light',
