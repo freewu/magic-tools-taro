@@ -8,7 +8,10 @@ export default defineAppConfig({
     'pages/app/bmi/index',
     'pages/app/world-time/index',
     'pages/app/holiday2027/index',
-    'pages/app/fuzzy-nickname/index'
+    'pages/app/fuzzy-nickname/index',
+    'pages/app/income-tax/index',
+    'pages/app/mortgage/index',
+    'pages/app/compound-interest/index'
   ],
   window: {
     backgroundTextStyle: 'light',

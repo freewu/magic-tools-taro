@@ -1,0 +1,93 @@
+/* 计算器类工具页共用的表单与结果样式（个税 / 房贷 / 复利 / 利率 …）
+ *
+ * 用法：页面 index.scss 里 `@import '../../../styles/calc';`
+ * 类名沿用源项目的命名，页面只需额外写各自的特殊区块。
+ */
+
+.field-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.field-label {
+  width: 180rpx;
+  flex-shrink: 0;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.input-box {
+  flex: 1;
+  height: 80rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+/* 选择器（picker）外框 */
+.pick-box {
+  height: 60rpx;
+  padding: 0 16rpx 0 24rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 10rpx;
+  background-color: #f5f6f7;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.pick-box-hover {
+  background-color: #eceef0;
+}
+
+.pick-text {
+  font-size: 28rpx;
+  color: #333333;
+}
+
+.pick-arrow {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #909399;
+}
+
+/* 结果行：左标签右数值 */
+.metric-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.metric-label {
+  flex-shrink: 0;
+  margin-right: 16rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+.metric-value {
+  flex: 1;
+  text-align: right;
+  font-size: 28rpx;
+  color: #333333;
+}
+
+/* 强调数值（月供、收益等） */
+.metric-accent {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #fa5151;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 36rpx;
+}

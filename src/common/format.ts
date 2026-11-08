@@ -126,6 +126,30 @@ export function trimNumber(value: number): string {
   return trimZeros(value.toFixed(10))
 }
 
+/** 输入框文本 → 数字（空串与非数字都当 0） */
+export function toNumber(raw: string): number {
+  if (raw === '') {
+    return 0
+  }
+  const n = parseFloat(raw)
+  if (isNaN(n)) {
+    return 0
+  }
+  return n
+}
+
+/** 仅保留数字（正整数输入框，如年限、期数） */
+export function sanitizeInt(raw: string): string {
+  let out = ''
+  for (let i = 0; i < raw.length; i++) {
+    const c = raw.substring(i, i + 1)
+    if (c >= '0' && c <= '9') {
+      out += c
+    }
+  }
+  return out
+}
+
 /** 仅保留数字与一个小数点（不允许以小数点开头），用于数字输入框的过滤 */
 export function sanitizeDecimal(raw: string): string {
   let out = ''

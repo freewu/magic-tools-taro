@@ -1,0 +1,7 @@
+@use '../../../styles/calc';
+
+/* 金额输入 + 单位选择器：输入框与选择器同一行 */
+.pick-wrap {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
