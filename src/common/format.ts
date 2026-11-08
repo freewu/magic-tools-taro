@@ -125,3 +125,19 @@ export function trimNumber(value: number): string {
   }
   return trimZeros(value.toFixed(10))
 }
+
+/** 仅保留数字与一个小数点（不允许以小数点开头），用于数字输入框的过滤 */
+export function sanitizeDecimal(raw: string): string {
+  let out = ''
+  let hasDot = false
+  for (let i = 0; i < raw.length; i++) {
+    const c = raw.substring(i, i + 1)
+    if (c >= '0' && c <= '9') {
+      out += c
+    } else if (c === '.' && !hasDot && out.length > 0) {
+      hasDot = true
+      out += c
+    }
+  }
+  return out
+}

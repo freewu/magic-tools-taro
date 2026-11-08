@@ -3,7 +3,9 @@ export default defineAppConfig({
     'pages/appstore/index',
     'pages/ad/index',
     'pages/settings/index',
-    'pages/about/index'
+    'pages/about/index',
+    'pages/app/rmb-converter/index',
+    'pages/app/bmi/index'
   ],
   window: {
     backgroundTextStyle: 'light',
