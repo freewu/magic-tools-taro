@@ -1,0 +1,41 @@
+.log-item {
+  margin-top: 20rpx;
+}
+
+.log-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.log-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.log-date {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.log-line {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-top: 8rpx;
+  padding-left: 8rpx;
+}
+
+.log-dot {
+  font-size: 24rpx;
+  color: #bbbbbb;
+  margin-right: 12rpx;
+}
+
+.log-text {
+  font-size: 26rpx;
+  color: #666666;
+  line-height: 38rpx;
+}

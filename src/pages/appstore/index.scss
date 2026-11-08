@@ -1,0 +1,104 @@
+.page {
+  padding-bottom: 40rpx;
+}
+
+/* 顶部统计小字 */
+.summary-row {
+  display: flex;
+  flex-direction: row;
+  padding: 16rpx 20rpx 0;
+}
+
+.summary-text {
+  font-size: 22rpx;
+  line-height: 30rpx;
+  color: #999999;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 12rpx 0 20rpx;
+  justify-content: flex-start;
+}
+
+.app-item {
+  width: 226rpx;
+  height: 196rpx;
+  margin: 10rpx;
+  background-color: #ffffff;
+  border-width: 1rpx;
+  border-style: solid;
+  border-radius: 16rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.pin-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 4rpx 8rpx 0 0;
+}
+
+.pin-btn {
+  width: 44rpx;
+  height: 44rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pin-btn-hover {
+  opacity: 0.5;
+}
+
+.pin-icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.app-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-body-hover {
+  opacity: 0.7;
+}
+
+.app-icon {
+  width: 76rpx;
+  height: 76rpx;
+  border-radius: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-icon-text {
+  font-size: 42rpx;
+  color: #333333;
+  text-align: center;
+  line-height: 1;
+}
+
+.app-name {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  line-height: 34rpx;
+  color: #333333;
+  text-align: center;
+}
+
+.footer-tip {
+  display: block;
+  text-align: center;
+  margin-top: 40rpx;
+  font-size: 24rpx;
+  color: #bbbbbb;
+}
