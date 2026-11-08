@@ -23,7 +23,10 @@ export const appList: AppItem[] = [
   { name: '历史朝代', icon: '🏛️', path: 'dynasties/index', query: '' },
   { name: '安全期', icon: '🌸', path: 'safe-period/index', query: '' },
   { name: '预产期', icon: '🤰', path: 'due-date/index', query: '' },
+  { name: '存款利率', icon: '💹', path: 'rate-calc/index', query: '' },
+  { name: '退休年龄', icon: '🕰️', path: 'retirement-age/index', query: '' },
+  { name: '退休金估算', icon: '🧾', path: 'pension/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：利率 / 退休年龄 / 退休金 / 抽奖转盘 / 血型 / 车牌 / 身份证 /
+  // 待迁移：抽奖转盘 / 血型 / 车牌 / 身份证 /
   //        单位换算 8 件套 / 基础代谢 / 时薪 / 二维码
 ]

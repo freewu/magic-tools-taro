@@ -1,0 +1,26 @@
+@use '../../../styles/calc';
+
+.field-label {
+  width: 140rpx;
+}
+
+.pick-wrap {
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.metric-row {
+  margin-top: 16rpx;
+}
+
+.accent {
+  color: #007aff;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  padding: 0 8rpx;
+  margin-bottom: 16rpx;
+}

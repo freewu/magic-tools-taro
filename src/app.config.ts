@@ -15,7 +15,10 @@ export default defineAppConfig({
     'pages/app/ganzhi/index',
     'pages/app/dynasties/index',
     'pages/app/safe-period/index',
-    'pages/app/due-date/index'
+    'pages/app/due-date/index',
+    'pages/app/rate-calc/index',
+    'pages/app/retirement-age/index',
+    'pages/app/pension/index'
   ],
   window: {
     backgroundTextStyle: 'light',

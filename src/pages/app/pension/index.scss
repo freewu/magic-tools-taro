@@ -1,0 +1,34 @@
+@use '../../../styles/calc';
+
+.field-label {
+  width: 200rpx;
+}
+
+.input-box {
+  font-size: 28rpx;
+}
+
+.pick-wrap {
+  margin-left: 0;
+  flex-shrink: 0;
+}
+
+.pick-box {
+  margin-top: 4rpx;
+}
+
+.metric-row {
+  margin-top: 16rpx;
+}
+
+.accent {
+  color: #007aff;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  padding: 0 8rpx;
+  margin-bottom: 16rpx;
+}
