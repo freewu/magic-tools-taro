@@ -1,0 +1,11 @@
+{
+  "miniprogramRoot": "dist/lark/",
+  "projectname": "magic-tools-taro",
+  "description": "一个常用工具应用合集（Taro 版）",
+  "appid": "",
+  "setting": {
+    "urlCheck": false,
+    "es6": false,
+    "minified": false
+  }
+}

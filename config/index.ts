@@ -4,6 +4,9 @@ import path from 'node:path'
 import devConfig from './dev'
 import prodConfig from './prod'
 
+// 各端产物按平台分目录（dist/weapp、dist/alipay …），一个仓库就能同时预览多个平台
+const platform = process.env.TARO_ENV || 'weapp'
+
 const config: UserConfigExport = {
   projectName: 'magic-tools-taro',
   date: '2025-1-1',
@@ -15,8 +18,9 @@ const config: UserConfigExport = {
     828: 1.81 / 2
   },
   sourceRoot: 'src',
-  outputRoot: 'dist',
-  plugins: [],
+  outputRoot: `dist/${platform}`,
+  // 飞书小程序没有内置平台插件，用社区版 @tarojs/plugin-platform-lark 注册 lark 平台
+  plugins: ['@tarojs/plugin-platform-lark'],
   defineConstants: {},
   alias: {
     '@': path.resolve(__dirname, '..', 'src')

@@ -1,5 +1,5 @@
 {
-  "miniprogramRoot": "dist/",
+  "miniprogramRoot": "dist/weapp/",
   "projectname": "magic-tools-taro",
   "description": "一个常用工具应用合集（Taro 版）",
   "appid": "touristappid",

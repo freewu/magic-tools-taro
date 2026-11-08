@@ -14,7 +14,7 @@
 
 ## 项目概况
 
-- magic-tools-taro：Taro 4 + React 18 + TypeScript，SCSS 写样式，可编译到微信小程序 / H5 等平台。
+- magic-tools-taro：Taro 4 + React 18 + TypeScript，SCSS 写样式，可编译到微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书小程序以及 H5（产物在 `dist/<平台>/`）。
 - 源项目为 uni-app x 版 magic-tools-lite（`.uvue` / `.uts`），迁移目标是行为一致、结构对应。
 - 关键约定：
   - 页面目录 `src/pages/<模块>/`：`index.tsx`（组件）+ `index.config.ts`（页面标题等）+ `index.scss`（样式）；

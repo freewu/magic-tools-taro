@@ -1,6 +1,6 @@
 # magic-tools-taro
 
-一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集，同一套代码可编译到 **微信小程序 / H5 / React Native** 等平台。
+一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集，同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序** 与 **H5**。
 
 > 本项目由 uni-app x 版（`.uvue` / `.uts`）**magic-tools-lite** 迁移重构而来，业务逻辑与交互保持一致，界面用 React 组件 + SCSS 重写。
 
@@ -51,6 +51,8 @@
 │       ├── settings        # 设置页（tab：BMI 默认单位 / 单位换算偏好）
 │       ├── about           # 关于页（tab：应用说明 + 更新记录，data.ts 为日志数据）
 │       └── app             # 工具页（每个工具独立目录：index.tsx + index.config.ts + lib.ts + data.ts）
+├── project.config.json     # 微信开发者工具项目配置（miniprogramRoot 指向 dist/weapp/）
+├── project.lark.json       # 飞书开发者工具项目配置（miniprogramRoot 指向 dist/lark/）
 ├── justfile                # 统一管理开发 / 构建 / 自检 / 提交
 └── types/global.d.ts       # 全局类型声明
 ```
@@ -67,11 +69,18 @@ just doctor          # 检查 node / npm / just / git / 依赖状态
 just install         # 安装依赖（有 lock 文件时优先 npm ci）
 
 just dev-h5          # H5 开发（http://localhost:10086）
-just dev-weapp       # 微信小程序开发（产物 dist/，用微信开发者工具打开）
+just dev-weapp       # 微信小程序开发
+just dev-swan        # 百度小程序开发
+just dev-alipay      # 支付宝小程序开发
+just dev-tt          # 字节跳动（抖音）小程序开发
+just dev-qq          # QQ 小程序开发
+just dev-jd          # 京东小程序开发
+just dev-lark        # 飞书小程序开发
 
 just build-h5        # 构建 H5
 just build-weapp     # 构建微信小程序
-just build           # 两个平台一起构建
+just build-mini      # 构建全部 7 个小程序平台
+just build           # 构建 H5 + 全部小程序平台
 
 just typecheck       # TypeScript 类型检查
 just check           # 结构自检（页面路由 / tabBar 图标 / 静态资源引用）
@@ -79,7 +88,22 @@ just clean           # 清理构建产物
 just commit "提交信息"  # git add -A + commit + push
 ```
 
-> 微信小程序预览：`just dev-weapp` 后，用微信开发者工具打开项目根目录（`project.config.json` 已把 `miniprogramRoot` 指向 `dist/`）。
+各端产物按平台分目录，互不覆盖：
+
+| 平台 | `just` 命令 | 产物目录 | 打开方式 |
+| --- | --- | --- | --- |
+| H5 | `just dev-h5` / `just build-h5` | `dist/h5/` | 浏览器打开 `dist/h5/index.html`，开发时是 http://localhost:10086 |
+| 微信小程序 | `just dev-weapp` / `just build-weapp` | `dist/weapp/` | 微信开发者工具打开项目根目录（`project.config.json` 已指向 `dist/weapp/`） |
+| 京东小程序 | `just dev-jd` / `just build-jd` | `dist/jd/` | 京东小程序开发者工具打开 `dist/jd/` |
+| 百度小程序 | `just dev-swan` / `just build-swan` | `dist/swan/` | 百度开发者工具打开 `dist/swan/` |
+| 支付宝小程序 | `just dev-alipay` / `just build-alipay` | `dist/alipay/` | 支付宝小程序开发者工具打开 `dist/alipay/` |
+| 字节跳动（抖音） | `just dev-tt` / `just build-tt` | `dist/tt/` | 抖音开发者工具打开 `dist/tt/` |
+| QQ 小程序 | `just dev-qq` / `just build-qq` | `dist/qq/` | QQ 小程序开发者工具打开 `dist/qq/` |
+| 飞书小程序 | `just dev-lark` / `just build-lark` | `dist/lark/` | 飞书开发者工具打开项目根目录（`project.lark.json` 已指向 `dist/lark/`） |
+
+> 快手小程序：Taro 4 官方与社区都没有对应的平台插件（`@tarojs/plugin-platform-ks` 不存在），因此暂不支持构建；若确有需要，只能基于字节跳动（tt）产物自行适配，或在其它框架里单独维护。
+
+> 飞书小程序使用的 `@tarojs/plugin-platform-lark` 是社区插件（peerDependencies 仍标注 Taro 3），因此仓库里加了 `.npmrc` 的 `legacy-peer-deps=true`，并请把 `project.lark.json` 里的 `appid` 换成自己的飞书小程序 AppID。
 
 ## 迁移约定（uni-app x → Taro）
 
@@ -89,6 +113,7 @@ just commit "提交信息"  # git add -A + commit + push
 - 存储与交互 API：`uni.getStorageSync` → `Taro.getStorageSync`、`uni.navigateTo` / `switchTab` → `Taro.navigateTo` / `switchTab`，以此类推
 - 样式：`.uvue` 的 flex 默认值在 Taro 中不存在，横向布局需显式 `display: flex; flex-direction: row`；单位继续沿用 `rpx`
 - 工具页统一用 `page-with-menu` 外壳 + `<AppMenu />` 底部菜单
+- 产物按平台分目录（`dist/<平台>/`），由 `config/index.ts` 读取 `TARO_ENV` 决定；新增平台只需装对应 `@tarojs/plugin-platform-*` 并加 `build-<平台>` 脚本与 just 配方
 
 ## License
 

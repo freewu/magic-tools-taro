@@ -31,31 +31,107 @@ doctor:
 
 # ---------------------------------------------------------------- 开发 / 构建
 
-# H5 开发（http://localhost:10086）
+# 支持的平台：h5 / weapp（微信）/ swan（百度）/ alipay（支付宝）/ tt（字节跳动）/
+# qq（QQ）/ jd（京东）/ lark（飞书）。快手小程序没有 Taro 平台插件，暂不支持。
+
+# 开发 H5（http://localhost:10086）（产物 dist/h5/）
 [group('开发 / 构建')]
 dev-h5:
 	npm run dev:h5
 
-# 微信小程序开发（产物 dist/，用微信开发者工具打开）
+# 开发 微信小程序（产物 dist/weapp/）
 [group('开发 / 构建')]
 dev-weapp:
 	npm run dev:weapp
 
-# 构建 H5（产物 dist/）
+# 开发 百度小程序（产物 dist/swan/）
+[group('开发 / 构建')]
+dev-swan:
+	npm run dev:swan
+
+# 开发 支付宝小程序（产物 dist/alipay/）
+[group('开发 / 构建')]
+dev-alipay:
+	npm run dev:alipay
+
+# 开发 字节跳动 / 抖音小程序（产物 dist/tt/）
+[group('开发 / 构建')]
+dev-tt:
+	npm run dev:tt
+
+# 开发 QQ 小程序（产物 dist/qq/）
+[group('开发 / 构建')]
+dev-qq:
+	npm run dev:qq
+
+# 开发 京东小程序（产物 dist/jd/）
+[group('开发 / 构建')]
+dev-jd:
+	npm run dev:jd
+
+# 开发 飞书小程序（产物 dist/lark/）
+[group('开发 / 构建')]
+dev-lark:
+	npm run dev:lark
+
+# 构建 H5（http://localhost:10086）（产物 dist/h5/）
 [group('开发 / 构建')]
 build-h5:
 	npm run build:h5
 
-# 构建微信小程序（产物 dist/）
+# 构建 微信小程序（产物 dist/weapp/）
 [group('开发 / 构建')]
 build-weapp:
 	npm run build:weapp
 
-# 两个平台一起构建
+# 构建 百度小程序（产物 dist/swan/）
+[group('开发 / 构建')]
+build-swan:
+	npm run build:swan
+
+# 构建 支付宝小程序（产物 dist/alipay/）
+[group('开发 / 构建')]
+build-alipay:
+	npm run build:alipay
+
+# 构建 字节跳动 / 抖音小程序（产物 dist/tt/）
+[group('开发 / 构建')]
+build-tt:
+	npm run build:tt
+
+# 构建 QQ 小程序（产物 dist/qq/）
+[group('开发 / 构建')]
+build-qq:
+	npm run build:qq
+
+# 构建 京东小程序（产物 dist/jd/）
+[group('开发 / 构建')]
+build-jd:
+	npm run build:jd
+
+# 构建 飞书小程序（产物 dist/lark/）
+[group('开发 / 构建')]
+build-lark:
+	npm run build:lark
+
+# 构建全部平台（H5 + 7 个小程序平台，逐个串行构建）
 [group('开发 / 构建')]
 build:
 	npm run build:h5
-	npm run build:weapp
+	@for p in weapp swan alipay tt qq jd lark; do \
+		echo "▶ 构建 $p"; \
+		npm run build:$p || exit 1; \
+	done
+	@echo "全部平台构建完成，产物在 dist/<平台>/"
+
+# 构建全部小程序平台（不含 H5）
+[group('开发 / 构建')]
+build-mini:
+	@for p in weapp swan alipay tt qq jd lark; do \
+		echo "▶ 构建 $p"; \
+		npm run build:$p || exit 1; \
+	done
+	@echo "全部小程序平台构建完成，产物在 dist/<平台>/"
 
 # TypeScript 类型检查（不产出文件）
 [group('开发 / 构建')]
