@@ -33,6 +33,13 @@ export const appList: AppItem[] = [
   { name: '基础代谢', icon: '🔥', path: 'bmr/index', query: '' },
   { name: '时薪计算', icon: '⏱️', path: 'hourly/index', query: '' },
   { name: '二维码生成', icon: '🔳', path: 'qrcode/index', query: '' },
+  { name: '长度换算', icon: '📏', path: 'convert/index', query: 'id=distance' },
+  { name: '面积换算', icon: '📐', path: 'convert/index', query: 'id=area' },
+  { name: '容量换算', icon: '🥛', path: 'convert/index', query: 'id=volume' },
+  { name: '重量换算', icon: '🏋️', path: 'convert/index', query: 'id=weight' },
+  { name: '温度换算', icon: '🌡️', path: 'convert/index', query: 'id=temperature' },
+  { name: '热量换算', icon: '🔥', path: 'convert/index', query: 'id=energy' },
+  { name: '压力换算', icon: '⚙️', path: 'convert/index', query: 'id=pressure' },
+  { name: '速度换算', icon: '🏎️', path: 'convert/index', query: 'id=speed' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：单位换算 8 件套
 ]

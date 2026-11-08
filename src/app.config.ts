@@ -25,7 +25,8 @@ export default defineAppConfig({
     'pages/app/lucky-wheel/index',
     'pages/app/bmr/index',
     'pages/app/hourly/index',
-    'pages/app/qrcode/index'
+    'pages/app/qrcode/index',
+    'pages/app/convert/index'
   ],
   window: {
     backgroundTextStyle: 'light',

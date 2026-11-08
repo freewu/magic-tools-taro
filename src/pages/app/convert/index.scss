@@ -1,0 +1,234 @@
+@use '../../../styles/calc';
+
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-action {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+.chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 16rpx;
+}
+
+.chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f4f8;
+  border: 1rpx solid #f2f4f8;
+  border-radius: 999rpx;
+  padding: 10rpx 20rpx;
+  margin: 0 12rpx 12rpx 0;
+}
+
+.chip-hover {
+  opacity: 0.7;
+}
+
+.chip-text {
+  font-size: 24rpx;
+  color: #555;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.field-label {
+  width: 96rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.input-box {
+  flex: 1;
+  height: 76rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.unit-suffix {
+  font-size: 28rpx;
+  color: #888;
+  margin-left: 16rpx;
+}
+
+/* 体系 / 单位双列：样式参考 BMI 计算的输入双列 */
+.pick-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.pick-cell {
+  flex: 1;
+}
+
+.pick-cell-gap {
+  margin-left: 20rpx;
+}
+
+.pick-label {
+  display: block;
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.pick-field {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 84rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 8rpx;
+}
+
+/* picker 撑满灰色底框，选中项就占满整行 */
+.pick-fill {
+  flex: 1;
+}
+
+.pick-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 68rpx;
+  padding: 0 16rpx;
+  background-color: #ebf2ff;
+  border-radius: 10rpx;
+}
+
+.pick-chip-hover {
+  background-color: #dce9ff;
+}
+
+.pick-chip-text {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+.pick-chip-arrow {
+  font-size: 18rpx;
+  color: #007aff;
+  margin-left: 6rpx;
+}
+
+.unit-note {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 36rpx;
+  margin-top: 16rpx;
+}
+
+.result-head {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-top: 4rpx;
+}
+
+.result-value {
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.result-unit {
+  font-size: 26rpx;
+  color: #888;
+  margin-left: 12rpx;
+}
+
+.tabs {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20rpx;
+}
+
+.tab {
+  padding: 10rpx 24rpx;
+  margin-right: 16rpx;
+  background-color: #f2f4f8;
+  border-radius: 999rpx;
+}
+
+.tab-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tab-text-active {
+  color: #007aff;
+}
+
+.result-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 18rpx 12rpx;
+  margin-top: 8rpx;
+  border-radius: 12rpx;
+  background-color: #fafbfc;
+}
+
+.result-hover {
+  background-color: #eff3f8;
+}
+
+.row-label {
+  width: 160rpx;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.row-value {
+  flex: 1;
+  font-size: 30rpx;
+  font-weight: bold;
+  text-align: right;
+  color: #333;
+}
+
+.row-active {
+  color: #007aff;
+}
+
+.row-symbol {
+  width: 110rpx;
+  font-size: 24rpx;
+  color: #999;
+  text-align: right;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.tip-text {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 36rpx;
+  margin-top: 16rpx;
+}
