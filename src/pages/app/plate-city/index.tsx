@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { plateProvinces } from './data'
 import {
   indexOfLetter,
@@ -49,6 +50,7 @@ export default function PlateCity() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='车牌归属地' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>输入车牌</Text>

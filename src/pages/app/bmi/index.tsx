@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatFixed, sanitizeDecimal } from '../../../common/format'
 import {
   lengthUnitShortTexts,
@@ -155,6 +156,7 @@ export default function Bmi() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='BMI 计算' />
       <View className='container'>
         {/* 输入：身高 / 体重并排，右侧单位可切换 */}
         <View className='card'>

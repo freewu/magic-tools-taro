@@ -5,6 +5,7 @@ import Taro, { useDidHide, useDidShow } from '@tarojs/taro'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { CITY_CATALOG, type CityOption } from './cities'
 import {
   appendCity,
@@ -137,6 +138,7 @@ export default function WorldTime() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='世界时间' />
       <View className='container'>
         <View className='card'>
           <View className='head-row'>

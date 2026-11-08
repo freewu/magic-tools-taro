@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { TYPE_NAMES, calcChildren } from './lib'
 
 import './index.scss'
@@ -16,6 +17,7 @@ export default function BloodType() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='血型遗传' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>父母血型</Text>

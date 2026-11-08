@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { calcSavingsInterest } from './lib'
 
@@ -25,6 +26,7 @@ export default function RateCalc() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='存款利率' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>存款信息</Text>

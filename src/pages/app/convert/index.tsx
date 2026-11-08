@@ -8,6 +8,7 @@ import Taro, { useDidShow } from '@tarojs/taro'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatNumber, sanitizeSigned, trimNumber } from '../../../common/format'
 import { type MeasureCatalog, type MeasureUnit, systemLabelOf } from './catalog'
 import { CONVERT_CATALOGS, catalogById } from './catalogs'
@@ -245,6 +246,7 @@ export default function Convert() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title={`${catalog.name}换算`} />
       <View className='container'>
         {/* 常见参照物：点一下直接代入 */}
         {prefs.showSamples && samples.length > 0 && (

@@ -5,6 +5,7 @@ import Taro from '@tarojs/taro'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { sanitizeDecimal } from '../../../common/format'
 import { convertCurrency } from './lib'
 
@@ -47,6 +48,7 @@ export default function RmbConverter() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='人民币大写' />
       <View className='container'>
         {/* 输入区 */}
         <View className='card'>

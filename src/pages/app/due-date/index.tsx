@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { parseDateKey, todayKey, todayParts } from '../../../common/date'
 import { calcDueDate } from './lib'
 
@@ -22,6 +23,7 @@ export default function DueDate() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='预产期' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>末次月经（LMP）</Text>

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatFixed, sanitizeDecimal, sanitizeInt } from '../../../common/format'
 import {
   BMR_ACTIVITIES,
@@ -57,6 +58,7 @@ export default function Bmr() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='基础代谢' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>身体信息</Text>

@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Text, Textarea, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { QR_EC_LEVELS, QR_MAX_VERSION, buildQr, qrMaxBytes } from './lib'
 import type { QrBuild, QrRun } from './lib'
 
@@ -100,6 +101,7 @@ export default function Qrcode() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='二维码生成' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>二维码内容</Text>

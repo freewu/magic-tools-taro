@@ -1,6 +1,8 @@
 import Taro from '@tarojs/taro'
 import { Text, View } from '@tarojs/components'
 
+import NavBar from '../../components/nav-bar'
+
 import './index.scss'
 
 const buttonNames = ['主要按钮', '成功按钮', '信息按钮', '警告按钮', '危险按钮']
@@ -13,6 +15,7 @@ export default function Ad() {
 
   return (
     <View className='page'>
+      <NavBar title='广告' back={false} />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>广告</Text>

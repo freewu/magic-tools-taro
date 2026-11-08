@@ -43,8 +43,8 @@
 │   ├── app.scss            # 全局样式（页面外壳 / 卡片 / 表单行）
 │   ├── index.html          # H5 模板
 │   ├── common              # 公共模块（format.ts：数字 / 金额格式化；date.ts：1900 起整数天数的日期计算）
-│   ├── components          # 公共组件（app-menu：工具页底部菜单，复制 tabBar 四项）
-│   ├── static              # 图片资源（tabBar 图标 8 张 + 置顶图钉 2 张）
+│   ├── components          # 公共组件（app-menu：工具页底部菜单；nav-bar：H5 顶部标题 + 返回）
+│   ├── static              # 图片资源（tabBar 图标 8 张 + 置顶图钉 2 张；构建时由 copy 复制到 dist/<平台>/static）
 │   └── pages
 │       ├── appstore        # 应用商店（tab 首页，支持置顶 / 取消置顶，lib.ts 存取置顶状态）
 │       ├── ad              # 广告页（tab，占位）

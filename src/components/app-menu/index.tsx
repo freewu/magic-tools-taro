@@ -3,6 +3,11 @@
 import Taro from '@tarojs/taro'
 import { Image, Text, View } from '@tarojs/components'
 
+import aboutIcon from '../../static/about-deactive.png'
+import adIcon from '../../static/ad-deactive.png'
+import appIcon from '../../static/app-deactive.png'
+import settingIcon from '../../static/setting-deactive.png'
+
 import './index.scss'
 
 type MenuItem = {
@@ -12,10 +17,10 @@ type MenuItem = {
 }
 
 const menuItems: MenuItem[] = [
-  { label: '应用', icon: '/static/app-deactive.png', url: '/pages/appstore/index' },
-  { label: '广告', icon: '/static/ad-deactive.png', url: '/pages/ad/index' },
-  { label: '设置', icon: '/static/setting-deactive.png', url: '/pages/settings/index' },
-  { label: '关于', icon: '/static/about-deactive.png', url: '/pages/about/index' }
+  { label: '应用', icon: appIcon, url: '/pages/appstore/index' },
+  { label: '广告', icon: adIcon, url: '/pages/ad/index' },
+  { label: '设置', icon: settingIcon, url: '/pages/settings/index' },
+  { label: '关于', icon: aboutIcon, url: '/pages/about/index' }
 ]
 
 export default function AppMenu() {

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { dynasties } from './data'
 import { fmtRange, matchYear, sanitizeYear } from './lib'
 
@@ -17,6 +18,7 @@ export default function Dynasties() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='历史朝代' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>年份查询</Text>

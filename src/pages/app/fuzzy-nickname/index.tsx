@@ -5,6 +5,7 @@ import Taro, { useDidHide } from '@tarojs/taro'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { effectNames, strengthShortTexts } from './data'
 import { fuzzyDraftText, fuzzyNickname, loadFuzzyDraft, saveFuzzyDraft, type FuzzyDraft } from './lib'
 
@@ -92,6 +93,7 @@ export default function FuzzyNickname() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='模糊昵称' />
       <View className='container'>
         {/* 昵称输入 */}
         <View className='card'>

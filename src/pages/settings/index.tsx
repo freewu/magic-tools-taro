@@ -20,6 +20,8 @@ import {
   setBlockUnit
 } from '../app/convert/blocks'
 
+import NavBar from '../../components/nav-bar'
+
 import './index.scss'
 
 export default function Settings() {
@@ -66,6 +68,7 @@ export default function Settings() {
 
   return (
     <View className='page'>
+      <NavBar title='设置' back={false} />
       <View className='container'>
         {/* BMI 计算默认单位 */}
         <View className='card'>

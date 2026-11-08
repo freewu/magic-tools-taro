@@ -5,6 +5,7 @@ import Taro from '@tarojs/taro'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatFixed, sanitizeDecimal, trimNumber } from '../../../common/format'
 import {
   HOURLY_HISTORY_LIMIT,
@@ -119,6 +120,7 @@ export default function Hourly() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='时薪计算' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>工资信息</Text>

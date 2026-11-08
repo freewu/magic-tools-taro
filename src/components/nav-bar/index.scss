@@ -1,0 +1,50 @@
+/* 顶部导航栏（仅 H5 渲染）：固定高度 88rpx，与内容区同底色 */
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: calc(88rpx + env(safe-area-inset-top));
+  padding-top: env(safe-area-inset-top);
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-bottom: 1rpx solid #e5e5e5;
+}
+
+.nav-placeholder {
+  height: calc(88rpx + env(safe-area-inset-top));
+}
+
+.nav-side {
+  width: 96rpx;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 返回箭头用两条边框旋转而成，避免依赖字体图标 */
+.nav-back {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 8rpx;
+  border-left: 4rpx solid #333333;
+  border-bottom: 4rpx solid #333333;
+  transform: rotate(45deg);
+}
+
+.nav-title {
+  flex: 1;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

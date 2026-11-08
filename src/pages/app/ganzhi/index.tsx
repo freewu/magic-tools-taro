@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import {
   dayGanzhi,
   parseDate,
@@ -39,6 +40,7 @@ export default function Ganzhi() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='天干地支' />
       <View className='container'>
         {/* 日期 */}
         <View className='card'>

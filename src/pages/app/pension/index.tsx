@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { AGE_NAMES, AGE_OPTIONS, calcPension } from './lib'
 
@@ -33,6 +34,7 @@ export default function Pension() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='退休金估算' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>参保信息</Text>

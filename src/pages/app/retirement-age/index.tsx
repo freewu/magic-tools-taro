@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { sanitizeInt } from '../../../common/format'
 import { GROUP_NAMES, MONTH_NAMES, calcRetirement } from './lib'
 
@@ -20,6 +21,7 @@ export default function RetirementAge() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='退休年龄' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>出生信息</Text>

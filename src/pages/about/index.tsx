@@ -2,11 +2,14 @@ import { Text, View } from '@tarojs/components'
 
 import { updateLogs } from './data'
 
+import NavBar from '../../components/nav-bar'
+
 import './index.scss'
 
 export default function About() {
   return (
     <View className='page'>
+      <NavBar title='关于' back={false} />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>应用说明</Text>

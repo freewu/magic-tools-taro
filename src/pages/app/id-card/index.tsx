@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { pad2, todayParts } from '../../../common/date'
 import { parseIdCard } from './lib'
 
@@ -20,6 +21,7 @@ export default function IdCard() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='身份证解析' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>身份证号码</Text>

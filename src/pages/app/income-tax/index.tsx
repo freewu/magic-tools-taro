@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { calcIncomeTax } from './lib'
 
@@ -20,6 +21,7 @@ export default function IncomeTax() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='个税计算' />
       <View className='container'>
         {/* 输入区 */}
         <View className='card'>

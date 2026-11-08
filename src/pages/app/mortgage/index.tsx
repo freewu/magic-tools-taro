@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, sanitizeInt, toNumber } from '../../../common/format'
 import { calcMortgageEI, calcMortgageEP } from './lib'
 
@@ -45,6 +46,7 @@ export default function Mortgage() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='房贷计算' />
       <View className='container'>
         {/* 输入区 */}
         <View className='card'>

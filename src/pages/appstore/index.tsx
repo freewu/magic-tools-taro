@@ -5,7 +5,11 @@ import Taro from '@tarojs/taro'
 import { Image, Text, View } from '@tarojs/components'
 
 import { type AppItem } from '../app/index'
+import pinBlue from '../../static/pin-blue.png'
+import pinGray from '../../static/pin-gray.png'
 import { arrangeApps, loadPinnedNames, togglePin } from './lib'
+
+import NavBar from '../../components/nav-bar'
 
 import './index.scss'
 
@@ -37,7 +41,7 @@ export default function AppStore() {
 
   /** 置顶图钉：未置顶灰色、已置顶主题蓝 */
   const pinIcon = (name: string): string => {
-    return isPinned(name) ? '/static/pin-blue.png' : '/static/pin-gray.png'
+    return isPinned(name) ? pinBlue : pinGray
   }
 
   const onTogglePin = (name: string) => {
@@ -56,6 +60,7 @@ export default function AppStore() {
 
   return (
     <View className='page'>
+      <NavBar title='应用' back={false} />
       {/* 顶部统计：应用总数（有置顶时附带置顶数量） */}
       <View className='summary-row'>
         <Text className='summary-text'>{summaryText()}</Text>

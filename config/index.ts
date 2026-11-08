@@ -26,7 +26,9 @@ const config: UserConfigExport = {
     '@': path.resolve(__dirname, '..', 'src')
   },
   copy: {
-    patterns: [],
+    // 小程序构建会自动复制 src/static，H5 不会（tabBar 图标、示例图都在这里），
+    // 统一显式复制一份到当前平台的产物目录，避免 H5 下 /static/*.png 404
+    patterns: [{ from: 'src/static', to: `dist/${platform}/static` }],
     options: {}
   },
   framework: 'react',

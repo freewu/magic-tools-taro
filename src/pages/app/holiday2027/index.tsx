@@ -4,6 +4,7 @@ import { useMemo, useState } from 'react'
 import { Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { HOLIDAY_YEAR, holidaySource, holidays, type HolidayPlan } from './data'
 import {
   WEEK_LABELS,
@@ -92,6 +93,7 @@ export default function Holiday2027() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='2027 放假' />
       <View className='container'>
         {/* 节日详情：放在月历上方 */}
         {view.plan != null ? (

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { addDays, formatDate, parseDateKey, todayParts } from '../../../common/date'
 import { sanitizeInt } from '../../../common/format'
 import { calcSafePeriod } from './lib'
@@ -31,6 +32,7 @@ export default function SafePeriod() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='安全期' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>周期信息</Text>

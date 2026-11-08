@@ -5,6 +5,7 @@ import Taro from '@tarojs/taro'
 import { Text, Textarea, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { DEFAULT_PRIZES, parsePrizes, pickPrize } from './lib'
 
 import './index.scss'
@@ -70,6 +71,7 @@ export default function LuckyWheel() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='抽奖转盘' />
       <View className='container'>
         <View className='card'>
           <Text className='card-title'>转盘设置</Text>

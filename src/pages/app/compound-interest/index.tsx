@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Input, Picker, Text, View } from '@tarojs/components'
 
 import AppMenu from '../../../components/app-menu'
+import NavBar from '../../../components/nav-bar'
 import { formatFixed, formatMoney, sanitizeDecimal, sanitizeInt, toNumber } from '../../../common/format'
 import { calcCompound } from './lib'
 
@@ -30,6 +31,7 @@ export default function CompoundInterest() {
 
   return (
     <View className='page-with-menu'>
+      <NavBar title='复利计算' />
       <View className='container'>
         {/* 输入区 */}
         <View className='card'>
