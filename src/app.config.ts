@@ -21,7 +21,10 @@ export default defineAppConfig({
     'pages/app/pension/index',
     'pages/app/blood-type/index',
     'pages/app/plate-city/index',
-    'pages/app/id-card/index'
+    'pages/app/id-card/index',
+    'pages/app/lucky-wheel/index',
+    'pages/app/bmr/index',
+    'pages/app/hourly/index'
   ],
   window: {
     backgroundTextStyle: 'light',

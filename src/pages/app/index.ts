@@ -29,7 +29,9 @@ export const appList: AppItem[] = [
   { name: '血型遗传', icon: '🩸', path: 'blood-type/index', query: '' },
   { name: '车牌归属地', icon: '🚗', path: 'plate-city/index', query: '' },
   { name: '身份证解析', icon: '🪪', path: 'id-card/index', query: '' },
+  { name: '抽奖转盘', icon: '🎰', path: 'lucky-wheel/index', query: '' },
+  { name: '基础代谢', icon: '🔥', path: 'bmr/index', query: '' },
+  { name: '时薪计算', icon: '⏱️', path: 'hourly/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：抽奖转盘 /
-  //        单位换算 8 件套 / 基础代谢 / 时薪 / 二维码
+  // 待迁移：单位换算 8 件套 / 二维码
 ]

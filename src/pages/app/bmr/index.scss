@@ -1,0 +1,145 @@
+@use '../../../styles/calc';
+
+.card-title {
+  margin-bottom: 8rpx;
+}
+
+.field-label {
+  width: 96rpx;
+  color: #666;
+}
+
+.input-box {
+  flex: 1;
+  height: 76rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.unit-suffix {
+  font-size: 26rpx;
+  color: #888;
+  margin-left: 16rpx;
+}
+
+.segments {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.segment {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 76rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  margin-right: 16rpx;
+  /* 选中态只换边框颜色，这里先占位避免尺寸跳动 */
+  border: 2rpx solid transparent;
+}
+
+.segment-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.segment-hover {
+  background-color: #eef3f9;
+}
+
+.segment-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.segment-text-active {
+  color: #007aff;
+}
+
+.pick-box {
+  flex: 1;
+}
+
+.pick-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 76rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  padding: 0 20rpx;
+}
+
+.pick-box-hover {
+  background-color: #eef3f9;
+}
+
+.pick-text {
+  font-size: 26rpx;
+  color: #333;
+}
+
+.pick-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.metric-row {
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.metric-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.metric-accent {
+  color: #007aff;
+}
+
+.tdee-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx 0;
+}
+
+.tdee-label {
+  flex: 1;
+  font-size: 26rpx;
+  color: #666;
+}
+
+.tdee-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.tdee-active {
+  color: #007aff;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.hint-text {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  line-height: 36rpx;
+  margin-top: 16rpx;
+}
