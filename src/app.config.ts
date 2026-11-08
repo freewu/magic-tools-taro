@@ -18,7 +18,10 @@ export default defineAppConfig({
     'pages/app/due-date/index',
     'pages/app/rate-calc/index',
     'pages/app/retirement-age/index',
-    'pages/app/pension/index'
+    'pages/app/pension/index',
+    'pages/app/blood-type/index',
+    'pages/app/plate-city/index',
+    'pages/app/id-card/index'
   ],
   window: {
     backgroundTextStyle: 'light',

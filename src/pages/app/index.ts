@@ -26,7 +26,10 @@ export const appList: AppItem[] = [
   { name: '存款利率', icon: '💹', path: 'rate-calc/index', query: '' },
   { name: '退休年龄', icon: '🕰️', path: 'retirement-age/index', query: '' },
   { name: '退休金估算', icon: '🧾', path: 'pension/index', query: '' },
+  { name: '血型遗传', icon: '🩸', path: 'blood-type/index', query: '' },
+  { name: '车牌归属地', icon: '🚗', path: 'plate-city/index', query: '' },
+  { name: '身份证解析', icon: '🪪', path: 'id-card/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：抽奖转盘 / 血型 / 车牌 / 身份证 /
+  // 待迁移：抽奖转盘 /
   //        单位换算 8 件套 / 基础代谢 / 时薪 / 二维码
 ]

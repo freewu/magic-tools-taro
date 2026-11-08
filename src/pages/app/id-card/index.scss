@@ -1,0 +1,29 @@
+@use '../../../styles/calc';
+
+.card-title {
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.metric-row {
+  margin-top: 16rpx;
+}
+
+.ok {
+  color: #12b76a;
+}
+
+.warn {
+  color: #f04438;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 16rpx;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  padding: 0 8rpx;
+  margin-bottom: 16rpx;
+}
