@@ -1,0 +1,127 @@
+.name-input {
+  flex: 1;
+  height: 80rpx;
+  font-size: 32rpx;
+  color: #333333;
+}
+
+.clear-btn {
+  margin-left: 16rpx;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24rpx;
+}
+
+.clear-btn-hover {
+  background-color: #f2f3f5;
+}
+
+.clear-text {
+  font-size: 40rpx;
+  line-height: 48rpx;
+  color: #909399;
+}
+
+/* 效果 / 强度 同一行切换 */
+.switch-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 4rpx;
+}
+
+.switch-label {
+  width: 52rpx;
+  font-size: 24rpx;
+  color: #909399;
+}
+
+.switch-label-gap {
+  margin-left: 16rpx;
+}
+
+.seg-chip {
+  height: 56rpx;
+  padding: 0 14rpx;
+  margin-left: 8rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 28rpx;
+  background-color: #f5f6f7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.seg-chip-hover {
+  opacity: 0.85;
+}
+
+.seg-chip-on {
+  border-color: #007aff;
+  background-color: #007aff;
+}
+
+.chip-text {
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.chip-text-on {
+  color: #ffffff;
+}
+
+.hint-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 12rpx;
+}
+
+.hint-label {
+  margin-right: 16rpx;
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.hint-value {
+  font-size: 24rpx;
+  color: #333333;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 36rpx;
+}
+
+.page-tip {
+  margin-top: 8rpx;
+  margin-bottom: 16rpx;
+}
+
+.result-box {
+  min-height: 120rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f5f6f7;
+  border-radius: 12rpx;
+  padding: 20rpx;
+}
+
+.result-box-hover {
+  background-color: #eceef0;
+}
+
+.result-text {
+  font-size: 36rpx;
+  color: #333333;
+  line-height: 56rpx;
+}

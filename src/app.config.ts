@@ -7,7 +7,8 @@ export default defineAppConfig({
     'pages/app/rmb-converter/index',
     'pages/app/bmi/index',
     'pages/app/world-time/index',
-    'pages/app/holiday2027/index'
+    'pages/app/holiday2027/index',
+    'pages/app/fuzzy-nickname/index'
   ],
   window: {
     backgroundTextStyle: 'light',
