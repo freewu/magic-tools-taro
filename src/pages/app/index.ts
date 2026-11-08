@@ -21,8 +21,9 @@ export const appList: AppItem[] = [
   { name: '复利计算', icon: '📈', path: 'compound-interest/index', query: '' },
   { name: '天干地支', icon: '🀄', path: 'ganzhi/index', query: '' },
   { name: '历史朝代', icon: '🏛️', path: 'dynasties/index', query: '' },
+  { name: '安全期', icon: '🌸', path: 'safe-period/index', query: '' },
+  { name: '预产期', icon: '🤰', path: 'due-date/index', query: '' },
   { name: '世界时间', icon: '🌍', path: 'world-time/index', query: '' }
-  // 待迁移：安全期 /
-  //        预产期 / 利率 / 退休年龄 / 退休金 / 抽奖转盘 / 血型 / 车牌 / 身份证 /
+  // 待迁移：利率 / 退休年龄 / 退休金 / 抽奖转盘 / 血型 / 车牌 / 身份证 /
   //        单位换算 8 件套 / 基础代谢 / 时薪 / 二维码
 ]

@@ -13,7 +13,9 @@ export default defineAppConfig({
     'pages/app/mortgage/index',
     'pages/app/compound-interest/index',
     'pages/app/ganzhi/index',
-    'pages/app/dynasties/index'
+    'pages/app/dynasties/index',
+    'pages/app/safe-period/index',
+    'pages/app/due-date/index'
   ],
   window: {
     backgroundTextStyle: 'light',
