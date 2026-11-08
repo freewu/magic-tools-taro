@@ -30,7 +30,7 @@
 - 时薪计算（双休 / 大小周 / 996 / 995，时薪 / 日薪 / 月工时 + 历史记录对比）
 - 二维码生成（纯本地字节模式编码，四档纠错与自动掩码；内置网址 / 邮箱 / WIFI 示例）
 
-> 迁移进度：结构骨架与四个 tab 页已完成，工具页正在按批次迁移，详见 `src/pages/app/index.ts` 中的登记列表。
+> 迁移进度：uni-app x 版的 22 个工具页与 4 个 tab 页已全部迁移完成，登记列表见 `src/pages/app/index.ts`。
 
 ## 项目结构
 
@@ -42,7 +42,7 @@
 │   ├── app.config.ts       # 页面路由与 tabBar 配置
 │   ├── app.scss            # 全局样式（页面外壳 / 卡片 / 表单行）
 │   ├── index.html          # H5 模板
-│   ├── common              # 公共模块（format.ts：数字 / 金额格式化）
+│   ├── common              # 公共模块（format.ts：数字 / 金额格式化；date.ts：1900 起整数天数的日期计算）
 │   ├── components          # 公共组件（app-menu：工具页底部菜单，复制 tabBar 四项）
 │   ├── static              # 图片资源（tabBar 图标 8 张 + 置顶图钉 2 张）
 │   └── pages
