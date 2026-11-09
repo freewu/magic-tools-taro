@@ -2,6 +2,65 @@
   padding-bottom: 40rpx;
 }
 
+/* 搜索框：圆角白底，左侧放大镜、右侧一键清空 */
+.search-row {
+  display: flex;
+  flex-direction: row;
+  padding: 16rpx 20rpx 0;
+}
+
+.search-box {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 72rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 36rpx;
+  border: 1rpx solid #e5e5e5;
+}
+
+.search-icon {
+  font-size: 26rpx;
+  line-height: 1;
+  margin-right: 12rpx;
+}
+
+.search-input {
+  flex: 1;
+  height: 72rpx;
+  font-size: 26rpx;
+  line-height: 72rpx;
+  color: #333333;
+}
+
+.search-placeholder {
+  color: #b8bcc2;
+  font-size: 26rpx;
+}
+
+.search-clear {
+  padding-left: 16rpx;
+  font-size: 26rpx;
+  line-height: 1;
+  color: #b8bcc2;
+}
+
+/* 搜索无结果 */
+.empty-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 60rpx 0;
+}
+
+.empty-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
 /* 顶部统计小字 */
 .summary-row {
   display: flex;

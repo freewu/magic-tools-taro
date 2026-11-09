@@ -62,6 +62,30 @@ export function arrangeApps(pinnedNames: string[]): AppItem[] {
   return out
 }
 
+/** 搜索：按空格拆分关键词，每个关键词都要命中「名称 + 简介」（忽略大小写） */
+export function filterApps(apps: AppItem[], keyword: string): AppItem[] {
+  const text = keyword.trim().toLowerCase()
+  if (text === '') {
+    return apps
+  }
+  const words = text.split(/\s+/)
+  const out: AppItem[] = []
+  for (let i = 0; i < apps.length; i++) {
+    const haystack = `${apps[i].name} ${apps[i].desc}`.toLowerCase()
+    let hit = true
+    for (let w = 0; w < words.length; w++) {
+      if (words[w] !== '' && haystack.indexOf(words[w]) < 0) {
+        hit = false
+        break
+      }
+    }
+    if (hit) {
+      out.push(apps[i])
+    }
+  }
+  return out
+}
+
 /** 切换置顶状态并立即保存：取消置顶 / 置于最前 */
 export function togglePin(pinnedNames: string[], name: string): string[] {
   const out: string[] = []

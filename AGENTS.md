@@ -19,7 +19,7 @@
 - 关键约定：
   - 页面目录 `src/pages/<模块>/`：`index.tsx`（组件）+ `index.config.ts`（页面标题等）+ `index.scss`（样式）；
   - 业务逻辑与类型放同目录 `lib.ts`，纯数据放 `data.ts`，页面组件只负责渲染与事件；
-  - 新工具页需同时更新：`src/app.config.ts` 的 `pages`、`src/pages/app/index.ts` 的应用登记；
+  - 新工具页需同时更新：`src/app.config.ts` 的 `pages`、`src/pages/app/index.ts` 的应用登记（`name` / `icon` / `desc` / `path` / `query` 都要填，`desc` 会参与首页搜索匹配）；
   - 工具页外壳用 `page-with-menu`，顶部渲染 `<NavBar title='页面标题' />`（仅 H5 生效，小程序用系统导航栏）、底部渲染 `<AppMenu />`；tab 页用 `<NavBar title='…' back={false} />`；
   - 图片一律用 `import icon from '…png'` 引入交给打包器处理路径，不要写死 `'/static/xxx.png'`（H5 子路径/文件名哈希会 404）；
   - 尺寸单位统一 `rpx`（设计稿宽度 750）。

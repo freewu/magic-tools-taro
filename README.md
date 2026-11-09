@@ -46,7 +46,7 @@
 │   ├── components          # 公共组件（app-menu：工具页底部菜单；nav-bar：H5 顶部标题 + 返回）
 │   ├── static              # 图片资源（tabBar 图标 8 张 + 置顶图钉 2 张；构建时由 copy 复制到 dist/<平台>/static）
 │   └── pages
-│       ├── appstore        # 应用商店（tab 首页，支持置顶 / 取消置顶，lib.ts 存取置顶状态）
+│       ├── appstore        # 应用商店（tab 首页：搜索名称/简介、置顶 / 取消置顶，lib.ts 承担过滤与置顶存取）
 │       ├── ad              # 广告页（tab，占位）
 │       ├── settings        # 设置页（tab：BMI 默认单位 / 单位换算偏好）
 │       ├── about           # 关于页（tab：应用说明 + 更新记录，data.ts 为日志数据）
