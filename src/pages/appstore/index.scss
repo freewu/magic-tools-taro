@@ -36,6 +36,15 @@
   color: #333333;
 }
 
+/* H5 端 Taro 的 Input 是 taro-input-core 再包一层内部 input（内部自带 1.47059em 行高），
+   只设 height/line-height 会让文字贴着上沿，用 flex 让内部 input 垂直居中。
+   小程序端 .search-input 就是 input 本身，靠上面的 line-height 居中，所以这条限定在 .taro_page 下 */
+.taro_page .search-input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .search-placeholder {
   color: #b8bcc2;
   font-size: 26rpx;
