@@ -115,16 +115,52 @@ build-jd:
 build-lark:
 	npm run build:lark
 
-# 开发 Android（RN 方案）：启动 Metro 开发服务（端口 8081；宿主工程 taro-native-shell 见 README）
+# 开发 Android（RN 方案）：启动 Metro 开发服务（端口 8081；安装到设备用 just android-dev）
 [group('开发 / 构建')]
 dev-rn:
 	npm run dev:rn
 
-# 构建 Android（RN 方案）：产出 dist/rn/index.android.bundle + drawable-*（只打包 JS，不出 APK）
+# 构建 Android（RN 方案）：产出 dist/rn/index.android.bundle + drawable-*（只打 JS，不出 APK）
 [group('开发 / 构建')]
 build-rn:
 	npm run build:rn
 	@ls -lh dist/rn/index.android.bundle 2>/dev/null || true
+
+# ---------------------------------------------------------------- Android 真机 / 模拟器
+# 本仓库的 android/ 就是 RN 原生宿主工程（移植自 taro-native-shell 0.73 分支），
+# 所以打包到设备只需要一条命令：JS bundle（taro build --type rn）+ Gradle + adb install。
+# 前置：JDK 17 + Android SDK；缺什么先跑 just android-doctor。
+# 说明：WSL 里会用 cmd.exe 调用 Windows 侧的 Gradle / adb / emulator，Windows 与 Linux/macOS 也能直接用。
+
+# 打包 release APK 并安装到已连接的真机 / 模拟器，然后启动
+[group('Android 真机 / 模拟器')]
+android:
+	node scripts/android.mjs run
+
+# 只打 release APK（不安装；产物 android/app/build/outputs/apk/release/）
+[group('Android 真机 / 模拟器')]
+android-apk:
+	node scripts/android.mjs apk
+
+# 打 debug APK 并启动（JS 走 Metro 热更新：先在另一个终端跑 just dev-rn）
+[group('Android 真机 / 模拟器')]
+android-dev:
+	node scripts/android.mjs dev
+
+# 列出已连接的真机 / 模拟器（含型号）
+[group('Android 真机 / 模拟器')]
+android-devices:
+	node scripts/android.mjs devices
+
+# 启动模拟器（不带参数时列出可用 AVD）
+[group('Android 真机 / 模拟器')]
+android-emulator avd='':
+	node scripts/android.mjs emulator {{ avd }}
+
+# 检查 Android 打包环境（JDK / SDK / NDK / adb / 已连接设备）
+[group('Android 真机 / 模拟器')]
+android-doctor:
+	node scripts/android.mjs doctor
 
 # 构建全部平台（H5 + 7 个小程序平台 + Android RN，逐个串行构建）
 [group('开发 / 构建')]
@@ -163,7 +199,8 @@ check:
 [group('维护')]
 clean:
 	rm -rf dist .temp .swc
-	@echo "已清理 dist / .temp / .swc"
+	rm -rf android/.gradle android/build android/app/build android/.cxx android/local.properties android/.gradle-run.bat
+	@echo "已清理 dist / .temp / .swc 与 android 构建产物"
 
 # 提交并推送（add -A + commit + push）
 [group('维护')]

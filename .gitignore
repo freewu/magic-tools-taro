@@ -9,3 +9,17 @@ dist/
 .env.*.local
 .idea/
 .vscode/
+
+# Android（React Native）宿主工程的本地产物
+android/local.properties
+android/.gradle/
+android/.gradle-run.bat
+android/.cxx/
+android/build/
+android/app/build/
+android/app/src/main/assets/index.android.bundle
+android/app/src/main/res/drawable-hdpi/
+android/app/src/main/res/drawable-mdpi/
+android/app/src/main/res/drawable-xhdpi/
+android/app/src/main/res/drawable-xxhdpi/
+android/app/src/main/res/drawable-xxxhdpi/

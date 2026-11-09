@@ -37,6 +37,12 @@
 ```
 ├── config/                 # Taro 构建配置（index / dev / prod / postcss-rpx：RN 端 rpx → px 插件）
 ├── scripts/check.mjs       # 结构自检（路由 / 图标 / 静态资源）
+├── scripts/android.mjs     # Android 打包 / 安装（定位 JDK+SDK、同步 bundle、Gradle、adb 装到真机或模拟器）
+├── android/                # Android（RN）原生宿主工程（移植自 taro-native-shell 0.73），由 just android 驱动
+│   ├── app/                #   AndroidManifest / MainActivity / 图标 / debug.keystore
+│   ├── build.gradle        #   Gradle 根配置（SDK / NDK 版本、阿里云镜像）
+│   ├── settings.gradle     #   依赖仓库（PREFER_SETTINGS）+ autolinking + Expo modules
+│   └── gradlew / gradlew.bat
 ├── src
 │   ├── app.ts              # 应用入口组件
 │   ├── app.config.ts       # 页面路由与 tabBar 配置
@@ -80,6 +86,13 @@ just dev-jd          # 京东小程序开发
 just dev-lark        # 飞书小程序开发
 just dev-rn          # Android（RN）开发：启动 Metro（8081）
 
+just android          # Android：打包 release APK + 装到已连接的真机 / 模拟器 + 启动
+just android-apk      # Android：只打 APK（android/app/build/outputs/apk/release/）
+just android-dev      # Android：装 debug 包，JS 走 Metro 热更新（先跑 just dev-rn）
+just android-devices  # Android：列出已连接的真机 / 模拟器
+just android-emulator # Android：启动模拟器（不带参数则列出可用 AVD）
+just android-doctor   # Android：检查 JDK / SDK / adb / 设备
+
 just build-h5        # 构建 H5
 just build-weapp     # 构建微信小程序
 just build-rn        # 构建 Android（RN）：dist/rn/index.android.bundle
@@ -104,7 +117,7 @@ just commit "提交信息"  # git add -A + commit + push
 | 字节跳动（抖音） | `just dev-tt` / `just build-tt` | `dist/tt/` | 抖音开发者工具打开 `dist/tt/` |
 | QQ 小程序 | `just dev-qq` / `just build-qq` | `dist/qq/` | QQ 小程序开发者工具打开 `dist/qq/` |
 | 飞书小程序 | `just dev-lark` / `just build-lark` | `dist/lark/` | 飞书开发者工具打开项目根目录（`project.lark.json` 已指向 `dist/lark/`） |
-| Android（RN） | `just dev-rn` / `just build-rn` | `dist/rn/` | `index.android.bundle` + `drawable-*`，交给 RN 宿主工程（见下节） |
+| Android（RN） | `just dev-rn` / `just build-rn` | `dist/rn/` | JS bundle + 图片资源；要装到设备用 `just android`（见下节） |
 
 > 快手小程序：Taro 4 官方与社区都没有对应的平台插件（`@tarojs/plugin-platform-ks` 不存在），因此暂不支持构建；若确有需要，只能基于字节跳动（tt）产物自行适配，或在其它框架里单独维护。
 
@@ -112,22 +125,38 @@ just commit "提交信息"  # git add -A + commit + push
 
 ## Android（React Native）端
 
-Taro 的 RN 方案**只负责把业务代码打成 JS bundle**，原生壳（android / ios 工程）由 RN 宿主工程提供，所以「编译 Android」在本仓库就是一条 `just build-rn`：
+Taro 的 RN 方案只把业务代码打成 JS bundle，原生壳由本仓库的 `android/` 提供（移植自 [taro-native-shell](https://github.com/NervJS/taro-native-shell) 的 `0.73.0` 分支，对齐 RN 0.73 / Expo 50）。所以打包到设备是一条命令：
 
 ```shell
-just build-rn        # 产出 dist/rn/index.android.bundle（约 2.3 MB）+ dist/rn/drawable-* 图片资源 + .map
-just dev-rn          # 启动 Metro 开发服务（端口 8081），配合宿主工程实时刷新
+just android          # 打 release APK → 装到已连接的真机 / 模拟器 → 启动
+just android-apk      # 只要 APK（android/app/build/outputs/apk/release/app-release.apk）
+just android-dev      # 装 debug 包，JS 走 Metro 热更新（另开终端 just dev-rn）
+just android-devices  # 看设备列表
+just android-emulator # 启动模拟器（不带参数则列出可用 AVD）
+just android-doctor   # 检查 JDK / SDK / adb / 设备
 ```
 
-- 本仓库不需要 JDK / Android SDK 就能跑通以上两条命令（只做 JS 打包，不出 APK）。
-- 要在真机 / 模拟器上运行，需要额外准备 RN 宿主工程 [taro-native-shell](https://github.com/NervJS/taro-native-shell)（或自建 RN 0.73 + Expo 50 工程），在宿主工程里安装到设备：
-  - 开发：先在**真实终端**里 `just dev-rn`（Metro 监听 8081），再在宿主工程执行 `npm run android` / `npx react-native run-android`；
-  - 离线包：把 `dist/rn/index.android.bundle` 放进宿主工程 `android/app/src/main/assets/`，`drawable-*` 目录一起放进 `android/app/src/main/res/`，走 release 打包。
-- 出 APK 才是真正的原生构建，需要 JDK 17 + Android SDK（`ANDROID_HOME`）+ Gradle，在宿主工程里执行 `cd android && ./gradlew assembleRelease`，与 Taro 命令行无关。
+`just android` 背后是 `scripts/android.mjs`，按顺序做这几件事：
+
+1. `taro build --type rn` 产出 `dist/rn/index.android.bundle`（想复用它就设 `SKIP_BUNDLE=1`）；
+2. 把 bundle 复制到 `android/app/src/main/assets/`，`dist/rn/drawable-*` 复制到 `android/app/src/main/res/`；
+3. 生成 `android/local.properties`（写入 SDK 路径），按已连接设备的 ABI 调 `gradlew assembleRelease`；
+4. `adb install -r -g` 装包，再 `am start` 拉起。
+
+前置条件只有 **JDK 17** 和 **Android SDK**（模拟器再要 AVD，真机要开 USB 调试），其余版本都在仓库里对齐好了：
+
+- JDK / SDK 路径按 `JAVA_HOME` / `ANDROID_HOME` 找；没设时会去常见位置猜（`~/jdks/jdk-17*`、`C:\Program Files\Java\jdk-17*`、`Android Studio\jbr`、`%LOCALAPPDATA%\Android\Sdk`），可用 `just android-doctor` 确认。
+- 在 WSL 里执行 `just` 时，Gradle / adb / emulator 走 Windows 侧（WSL 里没有 Windows 版 JDK 与 SDK 工具），路径由脚本自动换算；Windows 与 Linux / macOS 也能直接用。
+- Gradle 发行版默认走腾讯云镜像（`android/gradle/wrapper/gradle-wrapper.properties`），依赖仓库在 `android/settings.gradle` 里把阿里云镜像排在最前——`hermes-android` 等 aar 的官方源 `repo.reactnative.dev` 在国内经常超时。
+- `android/app/build.gradle` 里 `debuggableVariants` 包含 `release`，即 Gradle **不会**自己打 JS bundle，完全用 Taro 产出的那份；release 用的是仓库内的 `debug.keystore`（与 RN 模板一致），正式发版请换成自己的签名。
+
+已知限制与注意点：
+
+- RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算；`calc()`、`gap` 这类 CSS 计算在 RN 上不生效（会打 `Unknown value: calc(...)` 警告），需要给 RN 换等价的 flex 写法。
+- `react-native-screens` 固定在 `3.29.0`：更高的版本用到了 RN 0.74+ 才有的 `BaseReactPackage`，会让 `compileReleaseKotlin` 失败。
+- NDK 默认按 RN 0.73 的 `25.1.8937393` 走，本机已装别的版本时可 `RN_NDK_VERSION=<版本> just android` 避免再下一次几百 MB。
+- `just dev-rn` 会在启动时调用 `process.stdin.setRawMode`，如果输出被重定向 / 在非交互终端里执行（IDE 任务、管道、CI），会报 `process.stdin.setRawMode is not a function`；此时改在真实终端执行，或直接用 `npx react-native start`（效果相同，仅少了 Taro 的二维码预览）。
 - Taro 首次执行 `taro build --type rn` 时可能会自动往 `package.json` 里补 RN 依赖；本项目已显式声明（`react-native` / `expo` / `@tarojs/rn-*` 等），不会再触发自动安装。
-- 已知限制：
-  - RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算，与小程序端渲染尺寸一致；
-  - `just dev-rn` 会在启动时调用 `process.stdin.setRawMode`，如果输出被重定向 / 在非交互终端里执行（IDE 任务、管道、CI），会报 `process.stdin.setRawMode is not a function`；此时改在真实终端执行，或直接用 `npx react-native start`（效果相同，仅少了 Taro 的二维码预览）。
 
 ## 迁移约定（uni-app x → Taro）
 

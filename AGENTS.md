@@ -24,6 +24,8 @@
   - 图片一律用 `import icon from '…png'` 引入交给打包器处理路径，不要写死 `'/static/xxx.png'`（H5 子路径/文件名哈希会 404）；
   - 尺寸单位统一 `rpx`（设计稿宽度 750）。
   - RN（Android）端的样式只认 `px` / `%`，`rpx` 由 `config/postcss-rpx.js` 在 Metro 打包时按 `1rpx = 0.5px` 换算；新增样式仍写 `rpx`，不要为 RN 单独写一套。
-  - RN 相关依赖版本必须与 RN 0.73 / Expo 50 对齐：`react-native-gesture-handler` 固定在 2.14.1（更高版本的 codegen 会让 RN 0.73 打包失败），`stylelint` 固定在 16.9.0（`stylelint-taro-rn` 依赖它内部的 `declarationValueIndex.cjs`）；升级 RN 时这些要一起动。
-  - RN 端只需要 `just build-rn`（产出 `dist/rn/index.android.bundle`），出 APK 属于宿主工程（taro-native-shell + JDK 17 + Android SDK）的事，不在本仓库范围内。
+  - RN 相关依赖版本必须与 RN 0.73 / Expo 50 对齐：`react-native-gesture-handler` 固定在 2.14.1（更高版本的 codegen 会让 RN 0.73 打包失败），`react-native-screens` 固定在 3.29.0（3.30+ 用了 RN 0.74 的 `BaseReactPackage`，`compileReleaseKotlin` 会失败），`stylelint` 固定在 16.9.0（`stylelint-taro-rn` 依赖它内部的 `declarationValueIndex.cjs`）；升级 RN 时这些要一起动。
+  - RN 端的原生宿主工程就在本仓库 `android/`（移植自 taro-native-shell 0.73 分支），`just android` 一条命令就能打 release APK 并装到已连接的真机 / 模拟器；`just android-dev` 装 debug 包走 Metro 热更新（先 `just dev-rn`），`just android-doctor` 检查 JDK 17 / Android SDK / adb。脚本是 `scripts/android.mjs`：它负责同步 `dist/rn` 的 bundle 与 `drawable-*` 到 `android/app/src/main`、生成 `local.properties`、按设备 ABI 调 Gradle、再 `adb install` + `am start`。
+  - 在 WSL 里跑 `just` 时，Gradle / adb / emulator 走 Windows 侧工具链（JDK、Android SDK、`adb.exe` 都是 Windows 版），路径换算与环境变量覆盖都在 `scripts/android.mjs` 里处理，不要在 justfile 里写死 Windows 路径。
+  - 原生侧改动（`android/`）后先验证 `just android`，别只验证 `just build-rn`（后者只打 JS）。
 - 本机 git 身份：bluefrog &lt;bluefrog.wu@gmail.com&gt;（已在仓库内配置）。

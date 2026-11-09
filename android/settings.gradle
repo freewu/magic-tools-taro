@@ -1,0 +1,23 @@
+rootProject.name = 'magic-tools-taro'
+
+// 依赖仓库统一在 settings 里声明（PREFER_SETTINGS：工程级 allprojects 里的仓库会被忽略），
+// 一是为了把阿里云镜像排在前面——RN 的 hermes-android 等 aar 官方源在
+// repo.reactnative.dev，国内直连经常超时；二是顺序可预期，构建结果稳定。
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_SETTINGS)
+    repositories {
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url "${rootDir}/../node_modules/expo-camera/android/maven" }
+        google()
+        mavenCentral()
+    }
+}
+
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
+includeBuild(file('../node_modules/@react-native/gradle-plugin').toPath().toRealPath().toAbsolutePath().toString())
+
+apply from: new File(["node", "--print", "require.resolve('expo/package.json')"].execute(null, rootDir).text.trim(), "../scripts/autolinking.gradle")
+useExpoModules()
