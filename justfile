@@ -32,7 +32,8 @@ doctor:
 # ---------------------------------------------------------------- 开发 / 构建
 
 # 支持的平台：h5 / weapp（微信）/ swan（百度）/ alipay（支付宝）/ tt（字节跳动）/
-# qq（QQ）/ jd（京东）/ lark（飞书）。快手小程序没有 Taro 平台插件，暂不支持。
+# qq（QQ）/ jd（京东）/ lark（飞书）/ rn（React Native → Android）。
+# 快手小程序没有 Taro 平台插件，暂不支持。
 
 # 开发 H5（http://localhost:10086）（产物 dist/h5/）
 [group('开发 / 构建')]
@@ -114,7 +115,18 @@ build-jd:
 build-lark:
 	npm run build:lark
 
-# 构建全部平台（H5 + 7 个小程序平台，逐个串行构建）
+# 开发 Android（RN 方案）：启动 Metro 开发服务（端口 8081；宿主工程 taro-native-shell 见 README）
+[group('开发 / 构建')]
+dev-rn:
+	npm run dev:rn
+
+# 构建 Android（RN 方案）：产出 dist/rn/index.android.bundle + drawable-*（只打包 JS，不出 APK）
+[group('开发 / 构建')]
+build-rn:
+	npm run build:rn
+	@ls -lh dist/rn/index.android.bundle 2>/dev/null || true
+
+# 构建全部平台（H5 + 7 个小程序平台 + Android RN，逐个串行构建）
 [group('开发 / 构建')]
 build:
 	npm run build:h5
@@ -122,6 +134,8 @@ build:
 		echo "▶ 构建 $p"; \
 		npm run build:$p || exit 1; \
 	done
+	echo "▶ 构建 rn"
+	npm run build:rn
 	@echo "全部平台构建完成，产物在 dist/<平台>/"
 
 # 构建全部小程序平台（不含 H5）

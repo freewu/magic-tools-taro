@@ -1,6 +1,6 @@
 # magic-tools-taro
 
-一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集，同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序** 与 **H5**。
+一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集，同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序**、**H5** 与 **Android（React Native）**。
 
 > 本项目由 uni-app x 版（`.uvue` / `.uts`）**magic-tools-lite** 迁移重构而来，业务逻辑与交互保持一致，界面用 React 组件 + SCSS 重写。
 
@@ -35,7 +35,7 @@
 ## 项目结构
 
 ```
-├── config/                 # Taro 构建配置（index / dev / prod）
+├── config/                 # Taro 构建配置（index / dev / prod / postcss-rpx：RN 端 rpx → px 插件）
 ├── scripts/check.mjs       # 结构自检（路由 / 图标 / 静态资源）
 ├── src
 │   ├── app.ts              # 应用入口组件
@@ -53,6 +53,8 @@
 │       └── app             # 工具页（每个工具独立目录：index.tsx + index.config.ts + lib.ts + data.ts）
 ├── project.config.json     # 微信开发者工具项目配置（miniprogramRoot 指向 dist/weapp/）
 ├── project.lark.json       # 飞书开发者工具项目配置（miniprogramRoot 指向 dist/lark/）
+├── index.js                # RN 端入口（Taro 生成，指向 @tarojs/rn-supporter/entry-file.js）
+├── metro.config.js         # RN 端 Metro 配置（Taro 生成，合并 @tarojs/rn-supporter 的解析规则）
 ├── justfile                # 统一管理开发 / 构建 / 自检 / 提交
 └── types/global.d.ts       # 全局类型声明
 ```
@@ -76,11 +78,13 @@ just dev-tt          # 字节跳动（抖音）小程序开发
 just dev-qq          # QQ 小程序开发
 just dev-jd          # 京东小程序开发
 just dev-lark        # 飞书小程序开发
+just dev-rn          # Android（RN）开发：启动 Metro（8081）
 
 just build-h5        # 构建 H5
 just build-weapp     # 构建微信小程序
+just build-rn        # 构建 Android（RN）：dist/rn/index.android.bundle
 just build-mini      # 构建全部 7 个小程序平台
-just build           # 构建 H5 + 全部小程序平台
+just build           # 构建 H5 + 全部小程序平台 + Android（RN）
 
 just typecheck       # TypeScript 类型检查
 just check           # 结构自检（页面路由 / tabBar 图标 / 静态资源引用）
@@ -100,10 +104,30 @@ just commit "提交信息"  # git add -A + commit + push
 | 字节跳动（抖音） | `just dev-tt` / `just build-tt` | `dist/tt/` | 抖音开发者工具打开 `dist/tt/` |
 | QQ 小程序 | `just dev-qq` / `just build-qq` | `dist/qq/` | QQ 小程序开发者工具打开 `dist/qq/` |
 | 飞书小程序 | `just dev-lark` / `just build-lark` | `dist/lark/` | 飞书开发者工具打开项目根目录（`project.lark.json` 已指向 `dist/lark/`） |
+| Android（RN） | `just dev-rn` / `just build-rn` | `dist/rn/` | `index.android.bundle` + `drawable-*`，交给 RN 宿主工程（见下节） |
 
 > 快手小程序：Taro 4 官方与社区都没有对应的平台插件（`@tarojs/plugin-platform-ks` 不存在），因此暂不支持构建；若确有需要，只能基于字节跳动（tt）产物自行适配，或在其它框架里单独维护。
 
 > 飞书小程序使用的 `@tarojs/plugin-platform-lark` 是社区插件（peerDependencies 仍标注 Taro 3），因此仓库里加了 `.npmrc` 的 `legacy-peer-deps=true`，并请把 `project.lark.json` 里的 `appid` 换成自己的飞书小程序 AppID。
+
+## Android（React Native）端
+
+Taro 的 RN 方案**只负责把业务代码打成 JS bundle**，原生壳（android / ios 工程）由 RN 宿主工程提供，所以「编译 Android」在本仓库就是一条 `just build-rn`：
+
+```shell
+just build-rn        # 产出 dist/rn/index.android.bundle（约 2.3 MB）+ dist/rn/drawable-* 图片资源 + .map
+just dev-rn          # 启动 Metro 开发服务（端口 8081），配合宿主工程实时刷新
+```
+
+- 本仓库不需要 JDK / Android SDK 就能跑通以上两条命令（只做 JS 打包，不出 APK）。
+- 要在真机 / 模拟器上运行，需要额外准备 RN 宿主工程 [taro-native-shell](https://github.com/NervJS/taro-native-shell)（或自建 RN 0.73 + Expo 50 工程），在宿主工程里安装到设备：
+  - 开发：先在**真实终端**里 `just dev-rn`（Metro 监听 8081），再在宿主工程执行 `npm run android` / `npx react-native run-android`；
+  - 离线包：把 `dist/rn/index.android.bundle` 放进宿主工程 `android/app/src/main/assets/`，`drawable-*` 目录一起放进 `android/app/src/main/res/`，走 release 打包。
+- 出 APK 才是真正的原生构建，需要 JDK 17 + Android SDK（`ANDROID_HOME`）+ Gradle，在宿主工程里执行 `cd android && ./gradlew assembleRelease`，与 Taro 命令行无关。
+- Taro 首次执行 `taro build --type rn` 时可能会自动往 `package.json` 里补 RN 依赖；本项目已显式声明（`react-native` / `expo` / `@tarojs/rn-*` 等），不会再触发自动安装。
+- 已知限制：
+  - RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算，与小程序端渲染尺寸一致；
+  - `just dev-rn` 会在启动时调用 `process.stdin.setRawMode`，如果输出被重定向 / 在非交互终端里执行（IDE 任务、管道、CI），会报 `process.stdin.setRawMode is not a function`；此时改在真实终端执行，或直接用 `npx react-native start`（效果相同，仅少了 Taro 的二维码预览）。
 
 ## 迁移约定（uni-app x → Taro）
 
@@ -113,7 +137,7 @@ just commit "提交信息"  # git add -A + commit + push
 - 存储与交互 API：`uni.getStorageSync` → `Taro.getStorageSync`、`uni.navigateTo` / `switchTab` → `Taro.navigateTo` / `switchTab`，以此类推
 - 样式：`.uvue` 的 flex 默认值在 Taro 中不存在，横向布局需显式 `display: flex; flex-direction: row`；单位继续沿用 `rpx`
 - 工具页统一用 `page-with-menu` 外壳 + `<AppMenu />` 底部菜单
-- 产物按平台分目录（`dist/<平台>/`），由 `config/index.ts` 读取 `TARO_ENV` 决定；新增平台只需装对应 `@tarojs/plugin-platform-*` 并加 `build-<平台>` 脚本与 just 配方
+- 产物按平台分目录（`dist/<平台>/`），由 `config/index.ts` 读取 `TARO_ENV` 决定；新增平台只需装对应 `@tarojs/plugin-platform-*` 并加 `build-<平台>` 脚本与 just 配方（RN 端没有 platform 插件，走 Taro 内置的 `rn` preset + Metro）
 
 ## License
 

@@ -14,7 +14,7 @@
 
 ## 项目概况
 
-- magic-tools-taro：Taro 4 + React 18 + TypeScript，SCSS 写样式，可编译到微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书小程序以及 H5（产物在 `dist/<平台>/`）。
+- magic-tools-taro：Taro 4 + React 18 + TypeScript，SCSS 写样式，可编译到微信 / 京东 / 百度 / 支付宝 / 字节跳动 / QQ / 飞书小程序、H5 与 Android（React Native，产物在 `dist/<平台>/`）。
 - 源项目为 uni-app x 版 magic-tools-lite（`.uvue` / `.uts`），迁移目标是行为一致、结构对应。
 - 关键约定：
   - 页面目录 `src/pages/<模块>/`：`index.tsx`（组件）+ `index.config.ts`（页面标题等）+ `index.scss`（样式）；
@@ -23,4 +23,7 @@
   - 工具页外壳用 `page-with-menu`，顶部渲染 `<NavBar title='页面标题' />`（仅 H5 生效，小程序用系统导航栏）、底部渲染 `<AppMenu />`；tab 页用 `<NavBar title='…' back={false} />`；
   - 图片一律用 `import icon from '…png'` 引入交给打包器处理路径，不要写死 `'/static/xxx.png'`（H5 子路径/文件名哈希会 404）；
   - 尺寸单位统一 `rpx`（设计稿宽度 750）。
+  - RN（Android）端的样式只认 `px` / `%`，`rpx` 由 `config/postcss-rpx.js` 在 Metro 打包时按 `1rpx = 0.5px` 换算；新增样式仍写 `rpx`，不要为 RN 单独写一套。
+  - RN 相关依赖版本必须与 RN 0.73 / Expo 50 对齐：`react-native-gesture-handler` 固定在 2.14.1（更高版本的 codegen 会让 RN 0.73 打包失败），`stylelint` 固定在 16.9.0（`stylelint-taro-rn` 依赖它内部的 `declarationValueIndex.cjs`）；升级 RN 时这些要一起动。
+  - RN 端只需要 `just build-rn`（产出 `dist/rn/index.android.bundle`），出 APK 属于宿主工程（taro-native-shell + JDK 17 + Android SDK）的事，不在本仓库范围内。
 - 本机 git 身份：bluefrog &lt;bluefrog.wu@gmail.com&gt;（已在仓库内配置）。

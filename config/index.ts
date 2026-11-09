@@ -31,6 +31,22 @@ const config: UserConfigExport = {
     patterns: [{ from: 'src/static', to: `dist/${platform}/static` }],
     options: {}
   },
+  // React Native（Android）端：taro build --type rn 会用 metro 打出 js bundle，
+  // 再交给 taro-native-shell 的 android 工程安装运行
+  rn: {
+    // RN 端样式只认 px/%，见 config/postcss-rpx.js 的说明
+    postcss: {
+      './config/postcss-rpx.js': {
+        enable: true,
+        config: {}
+      }
+    },
+    output: {
+      android: 'dist/rn/index.android.bundle',
+      androidSourcemapOutput: 'dist/rn/index.android.bundle.map',
+      androidAssetsDest: 'dist/rn'
+    }
+  },
   framework: 'react',
   compiler: 'webpack5',
   cache: {
