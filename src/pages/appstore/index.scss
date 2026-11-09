@@ -24,7 +24,11 @@
 }
 
 .app-item {
-  width: 226rpx;
+  /* 一行固定 3 个：宽度随容器动态计算，减去两侧各 10rpx 外边距共 60rpx，
+     再多留 3rpx 余量避免小数取整后挤到下一行。
+     注意别写成 calc((100% - 62rpx) / 3)：小程序端会编译出 calc(62rpx/3)，
+     这种除法写法老版本 WebView 不支持 */
+  width: calc(33.3333% - 21rpx);
   height: 196rpx;
   margin: 10rpx;
   background-color: #ffffff;
