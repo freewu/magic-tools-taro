@@ -36,13 +36,3 @@
   line-height: 26rpx;
   color: #7a7e83;
 }
-
-/* RN 端：RN 不支持 position: fixed，改成贴在页面底部的普通 flex 子节点 */
-.app-menu-rn {
-  display: flex;
-  flex-direction: row;
-  height: 100rpx;
-  box-sizing: border-box;
-  background-color: #f8f8f8;
-  border-top: 1rpx solid #e5e5e5;
-}
