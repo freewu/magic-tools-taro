@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Text, Textarea, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { QR_EC_LEVELS, QR_MAX_VERSION, buildQr, qrMaxBytes } from './lib'
 import type { QrBuild, QrRun } from './lib'
@@ -100,7 +100,7 @@ export default function Qrcode() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='二维码生成' />
       <View className='container'>
         <View className='card'>
@@ -185,7 +185,6 @@ export default function Qrcode() {
           字节）；纯文本即可离线计算，内容不会上传。请用手机相机或扫码工具识别。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

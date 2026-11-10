@@ -1,9 +1,10 @@
 // 基础代谢：按 Mifflin-St Jeor 公式估算 BMR 与各活动水平下的 TDEE
 
 import { useEffect, useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatFixed, sanitizeDecimal, sanitizeInt } from '../../../common/format'
 import {
@@ -57,7 +58,7 @@ export default function Bmr() {
   )
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='基础代谢' />
       <View className='container'>
         <View className='card'>
@@ -169,7 +170,6 @@ export default function Bmr() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

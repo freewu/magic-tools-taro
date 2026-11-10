@@ -22,6 +22,18 @@ page,
   background-color: #f8f8f8;
 }
 
+/* 工具页外壳（RN）：RN 不支持 position: fixed，改成「内容区 flex: 1 + 底部导航」的纵向布局 */
+.page-with-menu-rn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+}
+
+.page-with-menu-body {
+  flex: 1;
+}
+
 .container {
   padding: 24rpx;
 }

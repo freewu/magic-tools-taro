@@ -1,9 +1,10 @@
 // 退休金：按计发基数 / 缴费指数 / 缴费年限 / 个人账户估算月养老金
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { AGE_NAMES, AGE_OPTIONS, calcPension } from './lib'
@@ -33,7 +34,7 @@ export default function Pension() {
   const result = visible ? calcPension(base, idx, years, AGE_OPTIONS[ageIndex], account) : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='退休金估算' />
       <View className='container'>
         <View className='card'>
@@ -122,7 +123,6 @@ export default function Pension() {
           0.4~3 钳制计算。结果仅供参考。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

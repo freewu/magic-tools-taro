@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { pad2, todayParts } from '../../../common/date'
 import { parseIdCard } from './lib'
@@ -20,7 +20,7 @@ export default function IdCard() {
   const show = idInput.trim() !== ''
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='身份证解析' />
       <View className='container'>
         <View className='card'>
@@ -77,7 +77,6 @@ export default function IdCard() {
           位顺序码（奇男偶女），第 18 位为校验码。仅供格式参考，请勿在公开场合随意输入他人证件。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

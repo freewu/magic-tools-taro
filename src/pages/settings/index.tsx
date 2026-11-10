@@ -1,8 +1,9 @@
 // 设置页：BMI 默认单位 + 单位换算偏好
 
 import { useState } from 'react'
-import { Picker, Switch, Text, View } from '@tarojs/components'
+import { Switch, Text, View } from '@tarojs/components'
 
+import Picker from '../../components/picker'
 import {
   lengthUnitTexts,
   lengthUnitValues,

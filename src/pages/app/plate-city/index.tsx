@@ -1,9 +1,10 @@
 // 车牌归属地：输入车牌或选择省份 + 字母，查车辆登记地
 
 import { useMemo, useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { plateProvinces } from './data'
 import {
@@ -49,7 +50,7 @@ export default function PlateCity() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='车牌归属地' />
       <View className='container'>
         <View className='card'>
@@ -158,7 +159,6 @@ export default function PlateCity() {
           收录 92 式号牌编排，按各地交管现行规则整理；直辖市字母只表示发牌顺序，不区分城区。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

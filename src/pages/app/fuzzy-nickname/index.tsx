@@ -4,7 +4,7 @@ import { useRef, useState } from 'react'
 import Taro, { useDidHide } from '@tarojs/taro'
 import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { effectNames, strengthShortTexts } from './data'
 import { fuzzyDraftText, fuzzyNickname, loadFuzzyDraft, saveFuzzyDraft, type FuzzyDraft } from './lib'
@@ -92,7 +92,7 @@ export default function FuzzyNickname() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='模糊昵称' />
       <View className='container'>
         {/* 昵称输入 */}
@@ -172,7 +172,6 @@ export default function FuzzyNickname() {
           昵称、效果与强度会自动记住；把昵称留空后下次进入会回到默认昵称 bluefrog。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

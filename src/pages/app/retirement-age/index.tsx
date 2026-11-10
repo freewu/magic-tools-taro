@@ -1,9 +1,10 @@
 // 退休年龄：按出生年月与身份测算渐进式延迟后的法定退休年龄
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { sanitizeInt } from '../../../common/format'
 import { GROUP_NAMES, MONTH_NAMES, calcRetirement } from './lib'
@@ -20,7 +21,7 @@ export default function RetirementAge() {
   const result = visible ? calcRetirement(year, monthIndex + 1, groupIndex) : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='退休年龄' />
       <View className='container'>
         <View className='card'>
@@ -99,7 +100,6 @@ export default function RetirementAge() {
           岁档同规则至 58；女 50 岁档每 2 个月延迟 1 个月至 55。灵活就业、特殊工种及提前退休另有规定，结果仅供参考。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

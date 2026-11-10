@@ -158,6 +158,8 @@ just android-doctor   # 检查 JDK / SDK / adb / 设备
 已知限制与注意点：
 
 - **改了 `app.config.ts` 的 `pages` / `tabBar` 后要清 Metro 缓存**：RN 端的入口（页面列表、tabBar 配置）是 Metro 把 `@tarojs/rn-supporter/entry-file.js` 转出来的，而这份生成代码会被 Metro 缓存——只改 app.config.ts 重打 bundle 会拿到旧的 tabBar / 页面列表（改了 `src/pages/**` 的普通页面代码不受影响）。用 `just build-rn-clean`（= `taro build --type rn --reset-cache`），或者 `SKIP_BUNDLE=1` 之外先手动清一次缓存。
+- **RN 端不支持 `position: fixed`**：Yoga 只有 relative / absolute，写 `fixed` 会被当成 relative 排进正常布局流（底部导航看起来「卡在页面中间」）。所以工具页外壳统一用 `src/components/page-with-menu`：小程序 / H5 版是一层容器 + `AppMenu` 自带的 `position: fixed`；RN 版（`index.rn.tsx`）改成「内容区 `ScrollView`（`flex: 1`）+ 底部菜单兄弟节点」。对应页面在 RN 端的 `index.config.ts` 里写了 `disableScroll: isRN`，否则 Taro 会给整页再套一层 ScrollView，里面的 `flex: 1` 撑不起高度。新增工具页请直接用 `<PageWithMenu>`，别再自己拼 `page-with-menu` + `<AppMenu />`。
+- **RN 端的 `Picker` 需要两层额外处理**（否则点开没反应）：Taro RN 的 Picker 底层是 `@ant-design/react-native` 的 Picker，弹层走 antd 的 Portal，没有 `Provider` 包裹时 `PortalConsumer` 直接抛错、弹层渲染成 `null`；同时 antd 是通过 `cloneElement` 给子元素注入 `onPress` 来展开弹层的，而 Taro RN 的 `View` 只认 `onClick`。因此：① `src/app.tsx` 用 `src/common/antd-provider` 包住 children（RN 版真正渲染 antd `Provider`，其它端透传）；② 页面里的选择器统一 `import Picker from '…/components/picker'`（内部把 `onPress` 转成 `onClick`，其它 props 原样透传）。业务代码不要直接从 `@tarojs/components` 引 `Picker`。
 - **广告（`pages/ad`）入口当前隐藏**：页面和 `src/pages/ad` 代码都保留，只是从 `src/app.config.ts` 的 tabBar 和 `src/components/app-menu` 的菜单里注释掉了；恢复时把两处注释打开再 `just build-rn-clean` 即可。
 - **RN 端没有同步本地存储**：`@tarojs/taro-rn` 的 `Taro.getStorageSync` / `setStorageSync` 是空实现——调用会 `console.error` 并**返回一个 Error 对象**（不抛错），所以 `getStorageSync(key).split(...)` 这类代码会直接把页面干崩，写入则是静默无效。因此**业务代码一律走 `src/common/storage.ts`** 的 `readStorage` / `writeStorage`：小程序 / H5 用同步 API，RN 用 AsyncStorage 的异步 API，并在 `src/app.ts` 里先 `hydrateStorage()` 把已存的键值读进内存再渲染页面。新增需要持久化的功能请用这两个函数，不要再直接调 `Taro.*StorageSync`。
 
@@ -174,7 +176,7 @@ just android-doctor   # 检查 JDK / SDK / adb / 设备
 - 事件与属性对照：`@click` → `onClick`、`hover-class` → `hoverClass`、`:value` → `value`、`v-for` → `map`
 - 存储与交互 API：`uni.getStorageSync` → `Taro.getStorageSync`、`uni.navigateTo` / `switchTab` → `Taro.navigateTo` / `switchTab`，以此类推
 - 样式：`.uvue` 的 flex 默认值在 Taro 中不存在，横向布局需显式 `display: flex; flex-direction: row`；单位继续沿用 `rpx`
-- 工具页统一用 `page-with-menu` 外壳 + `<AppMenu />` 底部菜单
+- 工具页统一用 `page-with-menu` 外壳 + `<AppMenu />` 底部菜单（已封装成 `src/components/page-with-menu`，页面里直接写 `<PageWithMenu>…</PageWithMenu>`）
 - 产物按平台分目录（`dist/<平台>/`），由 `config/index.ts` 读取 `TARO_ENV` 决定；新增平台只需装对应 `@tarojs/plugin-platform-*` 并加 `build-<平台>` 脚本与 just 配方（RN 端没有 platform 插件，走 Taro 内置的 `rn` preset + Metro）
 
 ## License

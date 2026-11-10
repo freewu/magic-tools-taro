@@ -1,9 +1,10 @@
 // 浮动利率存款利息（单利）+ 存期单位选择
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { calcSavingsInterest } from './lib'
@@ -25,7 +26,7 @@ export default function RateCalc() {
   const result = visible ? calcSavingsInterest(principal, rate, period, unitIndex) : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='存款利率' />
       <View className='container'>
         <View className='card'>
@@ -97,7 +98,6 @@ export default function RateCalc() {
           天」惯例估算，仅供参考。利率请以银行挂牌为准。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

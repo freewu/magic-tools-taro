@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { dynasties } from './data'
 import { fmtRange, matchYear, sanitizeYear } from './lib'
@@ -17,7 +17,7 @@ export default function Dynasties() {
   const match = matchYear(yearInput, CURRENT_YEAR)
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='历史朝代' />
       <View className='container'>
         <View className='card'>
@@ -75,7 +75,6 @@ export default function Dynasties() {
           年份对照采用常用历史分期近似（含并立政权区间），都城为主要建都地；详细纪年请以权威年表为准。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

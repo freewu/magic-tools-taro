@@ -1,9 +1,10 @@
 // BMI 计算：身高 / 体重输入（单位可切换）+ 分级刻度条 + 建议
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatFixed, sanitizeDecimal } from '../../../common/format'
 import {
@@ -155,7 +156,7 @@ export default function Bmi() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='BMI 计算' />
       <View className='container'>
         {/* 输入：身高 / 体重并排，右侧单位可切换 */}
@@ -304,7 +305,6 @@ export default function Bmi() {
           )}
         </View>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

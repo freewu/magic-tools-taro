@@ -1,6 +1,7 @@
 import { useEffect, useState, type PropsWithChildren } from 'react'
 import { useLaunch } from '@tarojs/taro'
 
+import AntdProvider from './common/antd-provider'
 import { hydrateStorage } from './common/storage'
 
 import './app.scss'
@@ -30,7 +31,8 @@ function App({ children }: PropsWithChildren<any>) {
     return null
   }
 
-  return children
+  // RN 端需要 antd 的 Provider（内部挂 Portal.Host），否则 Picker 的弹层渲染不出来
+  return <AntdProvider>{children}</AntdProvider>
 }
 
 export default App

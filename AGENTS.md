@@ -20,7 +20,8 @@
   - 页面目录 `src/pages/<模块>/`：`index.tsx`（组件）+ `index.config.ts`（页面标题等）+ `index.scss`（样式）；
   - 业务逻辑与类型放同目录 `lib.ts`，纯数据放 `data.ts`，页面组件只负责渲染与事件；
   - 新工具页需同时更新：`src/app.config.ts` 的 `pages`、`src/pages/app/index.ts` 的应用登记（`name` / `icon` / `desc` / `path` / `query` 都要填，`desc` 会参与首页搜索匹配）；
-  - 工具页外壳用 `page-with-menu`，顶部渲染 `<NavBar title='页面标题' />`（仅 H5 生效，小程序用系统导航栏）、底部渲染 `<AppMenu />`；tab 页用 `<NavBar title='…' back={false} />`；
+  - 工具页外壳用 `src/components/page-with-menu`（页面里写 `<PageWithMenu>…</PageWithMenu>`），顶部渲染 `<NavBar title='页面标题' />`（仅 H5 生效，小程序用系统导航栏）；底部菜单由 `PageWithMenu` 自带，页面里不需要再写 `<AppMenu />`；tab 页用 `<NavBar title='…' back={false} />`；
+  - 选择器统一从 `src/components/picker` 引入（`import Picker from '…/components/picker'`），不要直接用 `@tarojs/components` 的 `Picker`；RN 端选择器能弹出依赖 `src/common/antd-provider` 这层 antd Provider（已在 `src/app.tsx` 挂好）。
   - 图片一律用 `import icon from '…png'` 引入交给打包器处理路径，不要写死 `'/static/xxx.png'`（H5 子路径/文件名哈希会 404）；
   - 尺寸单位统一 `rpx`（设计稿宽度 750）。
   - RN（Android）端的样式只认 `px` / `%`，`rpx` 由 `config/postcss-rpx.js` 在 Metro 打包时按 `1rpx = 0.5px` 换算；新增样式仍写 `rpx`，不要为 RN 单独写一套。

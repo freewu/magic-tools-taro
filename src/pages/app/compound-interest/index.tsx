@@ -1,9 +1,10 @@
 // 复利计算：支持按期追加投入（普通年金）
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatFixed, formatMoney, sanitizeDecimal, sanitizeInt, toNumber } from '../../../common/format'
 import { calcCompound } from './lib'
@@ -30,7 +31,7 @@ export default function CompoundInterest() {
     : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='复利计算' />
       <View className='container'>
         {/* 输入区 */}
@@ -131,7 +132,6 @@ export default function CompoundInterest() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

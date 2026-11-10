@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, toNumber } from '../../../common/format'
 import { calcIncomeTax } from './lib'
@@ -20,7 +20,7 @@ export default function IncomeTax() {
   const result = resultVisible ? calcIncomeTax(salary, toNumber(insuranceInput), toNumber(extraInput)) : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='个税计算' />
       <View className='container'>
         {/* 输入区 */}
@@ -108,7 +108,6 @@ export default function IncomeTax() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

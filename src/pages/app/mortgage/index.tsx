@@ -1,9 +1,10 @@
 // 房贷计算：等额本息 / 等额本金
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatMoney, sanitizeDecimal, sanitizeInt, toNumber } from '../../../common/format'
 import { calcMortgageEI, calcMortgageEP } from './lib'
@@ -45,7 +46,7 @@ export default function Mortgage() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='房贷计算' />
       <View className='container'>
         {/* 输入区 */}
@@ -137,7 +138,6 @@ export default function Mortgage() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

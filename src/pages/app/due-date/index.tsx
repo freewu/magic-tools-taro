@@ -1,9 +1,10 @@
 // 预产期：按末次月经 + 280 天推算，附当前孕周、距预产期与星座
 
 import { useState } from 'react'
-import { Picker, Text, View } from '@tarojs/components'
+import { Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { parseDateKey, todayKey, todayParts } from '../../../common/date'
 import { calcDueDate } from './lib'
@@ -22,7 +23,7 @@ export default function DueDate() {
   const remainingText = result.remaining >= 0 ? `${result.remaining} 天` : `已过 ${-result.remaining} 天`
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='预产期' />
       <View className='container'>
         <View className='card'>
@@ -73,7 +74,6 @@ export default function DueDate() {
           超核对，应以医生评估为准。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

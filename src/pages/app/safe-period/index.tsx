@@ -1,9 +1,10 @@
 // 安全期：按末次月经与周期长度推算排卵日、危险期与安全期
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { addDays, formatDate, parseDateKey, todayParts } from '../../../common/date'
 import { sanitizeInt } from '../../../common/format'
@@ -31,7 +32,7 @@ export default function SafePeriod() {
   const result = valid ? calcSafePeriod(ly, lm, ld, cycle, periodLen, ty, tm, td) : null
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='安全期' />
       <View className='container'>
         <View className='card'>
@@ -100,7 +101,6 @@ export default function SafePeriod() {
           按「下次月经前 14 天排卵、排卵前 5 天 + 排卵后 4 天为易孕期」的日历法估算；安全期并不绝对安全，不适用于避孕决策，身体异常请咨询医生。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

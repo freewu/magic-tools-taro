@@ -5,9 +5,10 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import Taro, { useDidShow } from '@tarojs/taro'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { formatNumber, sanitizeSigned, trimNumber } from '../../../common/format'
 import { type MeasureCatalog, type MeasureUnit, systemLabelOf } from './catalog'
@@ -245,7 +246,7 @@ export default function Convert() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title={`${catalog.name}换算`} />
       <View className='container'>
         {/* 常见参照物：点一下直接代入 */}
@@ -361,7 +362,6 @@ export default function Convert() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

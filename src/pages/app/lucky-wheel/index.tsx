@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { Text, Textarea, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
 import { DEFAULT_PRIZES, parsePrizes, pickPrize } from './lib'
 
@@ -70,7 +70,7 @@ export default function LuckyWheel() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='抽奖转盘' />
       <View className='container'>
         <View className='card'>
@@ -104,7 +104,6 @@ export default function LuckyWheel() {
           </View>
         </View>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

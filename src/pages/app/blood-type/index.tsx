@@ -1,9 +1,10 @@
 // 血型遗传：按父母 ABO 表型估算子女各血型概率
 
 import { useState } from 'react'
-import { Picker, Text, View } from '@tarojs/components'
+import { Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { TYPE_NAMES, calcChildren } from './lib'
 
@@ -16,7 +17,7 @@ export default function BloodType() {
   const children = calcChildren(fatherIdx, motherIdx)
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='血型遗传' />
       <View className='container'>
         <View className='card'>
@@ -66,7 +67,6 @@ export default function BloodType() {
           按 ABO 血型孟德尔遗传估算（采用中国人群大致基因频率），仅为参考；若遇亲子血型不符的疑问请以医院正规血型鉴定及医学咨询为准。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

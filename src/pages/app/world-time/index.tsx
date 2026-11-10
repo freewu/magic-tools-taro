@@ -2,9 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Taro, { useDidHide, useDidShow } from '@tarojs/taro'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import { CITY_CATALOG, type CityOption } from './cities'
 import {
@@ -137,7 +138,7 @@ export default function WorldTime() {
   }
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='世界时间' />
       <View className='container'>
         <View className='card'>
@@ -225,7 +226,6 @@ export default function WorldTime() {
           </View>
         )}
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }

@@ -1,9 +1,10 @@
 // 天干地支：查某一天的日干支，或按年份查干支纪年与生肖
 
 import { useState } from 'react'
-import { Input, Picker, Text, View } from '@tarojs/components'
+import { Input, Text, View } from '@tarojs/components'
 
-import AppMenu from '../../../components/app-menu'
+import PageWithMenu from '../../../components/page-with-menu'
+import Picker from '../../../components/picker'
 import NavBar from '../../../components/nav-bar'
 import {
   dayGanzhi,
@@ -39,7 +40,7 @@ export default function Ganzhi() {
     : []
 
   return (
-    <View className='page-with-menu'>
+    <PageWithMenu>
       <NavBar title='天干地支' />
       <View className='container'>
         {/* 日期 */}
@@ -91,8 +92,7 @@ export default function Ganzhi() {
           日干支按公历逐日连续计算，可直接用于择日；年干支与生肖的「换年」实际在立春前后（年份输入按公历元旦粗略划分，春节前出生需自行核对农历）。
         </Text>
       </View>
-      <AppMenu />
-    </View>
+    </PageWithMenu>
   )
 }
 
