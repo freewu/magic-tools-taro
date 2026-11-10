@@ -23,3 +23,6 @@ android/app/src/main/res/drawable-mdpi/
 android/app/src/main/res/drawable-xhdpi/
 android/app/src/main/res/drawable-xxhdpi/
 android/app/src/main/res/drawable-xxxhdpi/
+
+# 本地临时文件（adb 抓取的 UI 层级 / 截图等）
+.tmp-*
