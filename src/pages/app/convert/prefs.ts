@@ -4,8 +4,10 @@
 // 这样「面积换算」设成英制不会影响「长度换算」。
 // 存成一串文本（开关;表id|体系|单位|体系;...），读不到或字段非法时逐项回落：
 // 没有记录的单位表就用它自己的默认值，行为与未设置时完全一致。
+//
+// 读写统一走 common/storage（RN 端没有同步存储 API，那边由内存缓存兜住）。
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 const CONVERT_PREFS_KEY = 'convert-prefs'
 
@@ -64,11 +66,7 @@ export function encodePrefs(prefs: ConvertPrefs): string {
 
 export function loadPrefs(): ConvertPrefs {
 	const prefs = defaultPrefs()
-	const raw = Taro.getStorageSync(CONVERT_PREFS_KEY)
-	if (raw == null) {
-		return prefs
-	}
-	const text = raw as string
+	const text = readStorage(CONVERT_PREFS_KEY)
 	if (text == '') {
 		return prefs
 	}
@@ -94,5 +92,5 @@ export function loadPrefs(): ConvertPrefs {
 }
 
 export function savePrefs(prefs: ConvertPrefs) {
-	Taro.setStorageSync(CONVERT_PREFS_KEY, encodePrefs(prefs))
+	writeStorage(CONVERT_PREFS_KEY, encodePrefs(prefs))
 }

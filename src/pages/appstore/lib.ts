@@ -1,6 +1,6 @@
 // 应用置顶（收藏）状态的本地存取与排序
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../common/storage'
 
 import { appList, type AppItem } from '../app/index'
 
@@ -19,8 +19,8 @@ function findAppByName(name: string): AppItem | null {
 /** 读取置顶列表：忽略已下线的应用与重复项 */
 export function loadPinnedNames(): string[] {
   const names: string[] = []
-  const value = Taro.getStorageSync(PINNED_APPS_KEY)
-  if (value == null || typeof value !== 'string' || value === '') {
+  const value = readStorage(PINNED_APPS_KEY)
+  if (value === '') {
     return names
   }
   const lines = value.split('\n')
@@ -42,7 +42,7 @@ export function loadPinnedNames(): string[] {
 
 /** 写入置顶列表 */
 export function savePinnedNames(names: string[]): void {
-  Taro.setStorageSync(PINNED_APPS_KEY, names.join('\n'))
+  writeStorage(PINNED_APPS_KEY, names.join('\n'))
 }
 
 /** 展示顺序：置顶的应用在前（按置顶顺序），其余保持列表原顺序 */

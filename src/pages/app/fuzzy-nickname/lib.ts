@@ -5,7 +5,7 @@
 // 例：bluefrog + 模糊 1 层 -> b҈l҈u҈e҈f҈r҈o҈g҈
 // 说明：组合符是否可见取决于展示端字体，本工具只负责在原文中插入字符。
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 import { DEFAULT_EFFECT, DEFAULT_NICKNAME, DEFAULT_STRENGTH, effectNames, strengthTexts } from './data'
 
@@ -103,11 +103,7 @@ export function loadFuzzyDraft(): FuzzyDraft {
     effect: DEFAULT_EFFECT,
     strength: DEFAULT_STRENGTH
   }
-  const raw = Taro.getStorageSync(DRAFT_KEY)
-  if (raw == null) {
-    return draft
-  }
-  const text = String(raw)
+  const text = readStorage(DRAFT_KEY)
   if (text === '') {
     return draft
   }
@@ -132,5 +128,5 @@ export function loadFuzzyDraft(): FuzzyDraft {
 
 /** 保存上次输入 */
 export function saveFuzzyDraft(draft: FuzzyDraft): void {
-  Taro.setStorageSync(DRAFT_KEY, fuzzyDraftText(draft))
+  writeStorage(DRAFT_KEY, fuzzyDraftText(draft))
 }

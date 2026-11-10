@@ -4,7 +4,7 @@
 //   男：10 × 体重(kg) + 6.25 × 身高(cm) − 5 × 年龄 + 5
 //   女：10 × 体重(kg) + 6.25 × 身高(cm) − 5 × 年龄 − 161
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 export type GenderOption = {
   code: string
@@ -186,11 +186,11 @@ function isValidNumberText(text: string): boolean {
 /** 读取上次输入：缺失或字段非法时逐项回落到默认值 */
 export function loadBmrDraft(): BmrDraft {
   const draft = defaultBmrDraft()
-  const raw = Taro.getStorageSync(BMR_DRAFT_KEY)
-  if (raw == null || raw === '') {
+  const raw = readStorage(BMR_DRAFT_KEY)
+  if (raw === '') {
     return draft
   }
-  const parts = String(raw).split(',')
+  const parts = raw.split(',')
   if (parts.length < 5) {
     return draft
   }
@@ -214,7 +214,7 @@ export function loadBmrDraft(): BmrDraft {
 
 /** 存成逗号串：性别,年龄,身高,体重,活动 */
 export function saveBmrDraft(draft: BmrDraft): void {
-  Taro.setStorageSync(
+  writeStorage(
     BMR_DRAFT_KEY,
     [draft.genderCode, draft.ageText, draft.heightText, draft.weightText, draft.activityCode].join(',')
   )

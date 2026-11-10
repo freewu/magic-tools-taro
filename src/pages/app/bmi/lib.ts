@@ -1,6 +1,6 @@
 // BMI 计算的业务逻辑、默认单位与上次输入（草稿）的存取
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 import { formatFixed } from '../../../common/format'
 import { lengthUnitValues, weightUnitValues } from './data'
@@ -135,13 +135,13 @@ export function fromMeters(m: number, unit: string): number {
 
 /** 设置默认身高单位 */
 export function setDefaultLengthUnit(unit: string): void {
-  Taro.setStorageSync(LENGTH_UNIT_KEY, unit)
+  writeStorage(LENGTH_UNIT_KEY, unit)
 }
 
 /** 获取默认身高单位 */
 export function getDefaultLengthUnit(): string {
-  const value = Taro.getStorageSync(LENGTH_UNIT_KEY)
-  if (value == null || typeof value !== 'string' || value === '') {
+  const value = readStorage(LENGTH_UNIT_KEY)
+  if (value === '') {
     return 'cm'
   }
   return value
@@ -149,13 +149,13 @@ export function getDefaultLengthUnit(): string {
 
 /** 设置默认体重单位 */
 export function setDefaultWeightUnit(unit: string): void {
-  Taro.setStorageSync(WEIGHT_UNIT_KEY, unit)
+  writeStorage(WEIGHT_UNIT_KEY, unit)
 }
 
 /** 获取默认体重单位 */
 export function getDefaultWeightUnit(): string {
-  const value = Taro.getStorageSync(WEIGHT_UNIT_KEY)
-  if (value == null || typeof value !== 'string' || value === '') {
+  const value = readStorage(WEIGHT_UNIT_KEY)
+  if (value === '') {
     return 'kg'
   }
   return value
@@ -195,8 +195,8 @@ export function loadBmiDraft(): BmiDraft {
     lengthUnit,
     weightUnit
   }
-  const raw = Taro.getStorageSync(DRAFT_KEY)
-  if (raw == null || typeof raw !== 'string' || raw === '') {
+  const raw = readStorage(DRAFT_KEY)
+  if (raw === '') {
     return draft
   }
   const parts = raw.split('\n')
@@ -223,7 +223,7 @@ export function loadBmiDraft(): BmiDraft {
 
 /** 保存上次输入 */
 export function saveBmiDraft(draft: BmiDraft): void {
-  Taro.setStorageSync(DRAFT_KEY, bmiDraftText(draft))
+  writeStorage(DRAFT_KEY, bmiDraftText(draft))
 }
 
 // ---------------------------------------------------------------- 单位换算

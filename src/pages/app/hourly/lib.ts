@@ -1,6 +1,6 @@
 // 时薪计算：月薪 ÷（月工作天数 × 每日工作时长）
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 /** 月计薪天数（双休）：人社部口径 21.75 天 */
 export const BASE_WORK_DAYS = 21.75
@@ -88,11 +88,11 @@ function isPositive(value: number): boolean {
 /** 读取上次输入：缺失或字段越界时逐项回落到默认值 */
 export function loadHourlyDraft(): HourlyDraft {
   const draft = defaultHourlyDraft()
-  const raw = Taro.getStorageSync(HOURLY_DRAFT_KEY)
-  if (raw == null || raw === '') {
+  const raw = readStorage(HOURLY_DRAFT_KEY)
+  if (raw === '') {
     return draft
   }
-  const parts = String(raw).split(',')
+  const parts = raw.split(',')
   if (parts.length < 3) {
     return draft
   }
@@ -110,7 +110,7 @@ export function loadHourlyDraft(): HourlyDraft {
 }
 
 export function saveHourlyDraft(draft: HourlyDraft): void {
-  Taro.setStorageSync(HOURLY_DRAFT_KEY, [draft.salaryText, draft.scheduleCode, draft.hoursText].join(','))
+  writeStorage(HOURLY_DRAFT_KEY, [draft.salaryText, draft.scheduleCode, draft.hoursText].join(','))
 }
 
 // ---------------------------------------------------------------- 计算
@@ -218,11 +218,11 @@ export function decodeRecord(raw: string): HourlyRecord | null {
 /** 读取历史记录（按保存时间倒序，最多 HOURLY_HISTORY_LIMIT 条） */
 export function loadHourlyHistory(): HourlyRecord[] {
   const out: HourlyRecord[] = []
-  const raw = Taro.getStorageSync(HOURLY_HISTORY_KEY)
-  if (raw == null || raw === '') {
+  const raw = readStorage(HOURLY_HISTORY_KEY)
+  if (raw === '') {
     return out
   }
-  const lines = String(raw).split('\n')
+  const lines = raw.split('\n')
   for (let i = 0; i < lines.length; i++) {
     const record = decodeRecord(lines[i])
     if (record != null) {
@@ -239,7 +239,7 @@ export function saveHourlyHistory(records: HourlyRecord[]): void {
   for (let i = 0; i < limit; i++) {
     lines.push(encodeRecord(records[i]))
   }
-  Taro.setStorageSync(HOURLY_HISTORY_KEY, lines.join('\n'))
+  writeStorage(HOURLY_HISTORY_KEY, lines.join('\n'))
 }
 
 function pad2(value: number): string {

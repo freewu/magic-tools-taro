@@ -1,6 +1,6 @@
 // 世界时钟：城市列表的本地存取、默认城市与时间格式化
 
-import Taro from '@tarojs/taro'
+import { readStorage, writeStorage } from '../../../common/storage'
 
 import type { CityOption } from './cities'
 
@@ -59,8 +59,8 @@ function parseCityLine(line: string): CityClock | null {
 
 /** 读取城市列表：没存过时返回默认城市；存过空列表（用户全删了）就返回空 */
 export function loadCities(): CityClock[] {
-  const value = Taro.getStorageSync(CITIES_KEY)
-  if (value == null || typeof value !== 'string' || value === '') {
+  const value = readStorage(CITIES_KEY)
+  if (value === '') {
     return defaultCities()
   }
   const lines = value.split('\n')
@@ -89,7 +89,7 @@ export function saveCities(cities: CityClock[]): void {
     const city = cities[i]
     lines.push(`${city.name}|${city.code}|${city.offset}`)
   }
-  Taro.setStorageSync(CITIES_KEY, lines.join('\n'))
+  writeStorage(CITIES_KEY, lines.join('\n'))
 }
 
 /** 列表里是否已有同名城市 */
