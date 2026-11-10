@@ -8,6 +8,15 @@ export type UpdateLogItem = {
 
 export const updateLogs: UpdateLogItem[] = [
   {
+    date: '2026.11.10',
+    title: '修复',
+    content: [
+      'Android 端进入设置页闪退',
+      'Android 端设置项重启后不生效（本地存储改为异步 API + 启动预热）',
+      '更换应用图标与名称（Magic 工具箱）'
+    ]
+  },
+  {
     date: '2026.11.06',
     title: '新增',
     content: [

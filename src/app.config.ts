@@ -31,7 +31,7 @@ export default defineAppConfig({
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#007AFF',
-    navigationBarTitleText: 'MagicToolsLite',
+    navigationBarTitleText: 'Magic 工具箱',
     navigationBarTextStyle: 'white',
     backgroundColor: '#F8F8F8'
   },
@@ -47,12 +47,14 @@ export default defineAppConfig({
         selectedIconPath: 'static/app-active.png',
         text: '应用'
       },
-      {
-        pagePath: 'pages/ad/index',
-        iconPath: 'static/ad-deactive.png',
-        selectedIconPath: 'static/ad-active.png',
-        text: '广告'
-      },
+      // 广告入口暂时隐藏：页面仍然注册在 pages 里（src/pages/ad 保留，随时可恢复），
+      // 只是不在 tabBar 出现；需要重新上线时把下面这段取消注释即可。
+      // {
+      //   pagePath: 'pages/ad/index',
+      //   iconPath: 'static/ad-deactive.png',
+      //   selectedIconPath: 'static/ad-active.png',
+      //   text: '广告'
+      // },
       {
         pagePath: 'pages/settings/index',
         iconPath: 'static/setting-deactive.png',

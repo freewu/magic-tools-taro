@@ -126,6 +126,13 @@ build-rn:
 	npm run build:rn
 	@ls -lh dist/rn/index.android.bundle 2>/dev/null || true
 
+# 清 Metro 缓存重打 RN bundle：改了 app.config.ts 的 pages / tabBar 后必须用这个
+# （Metro 会缓存由 entry-file.js 生成的入口，页面列表和 tabBar 是写在那份生成代码里的）
+[group('开发 / 构建')]
+build-rn-clean:
+	npx taro build --type rn --reset-cache
+	@ls -lh dist/rn/index.android.bundle 2>/dev/null || true
+
 # ---------------------------------------------------------------- Android 真机 / 模拟器
 # 本仓库的 android/ 就是 RN 原生宿主工程（移植自 taro-native-shell 0.73 分支），
 # 所以打包到设备只需要一条命令：JS bundle（taro build --type rn）+ Gradle + adb install。
@@ -161,6 +168,13 @@ android-emulator avd='':
 [group('Android 真机 / 模拟器')]
 android-doctor:
 	node scripts/android.mjs doctor
+
+# 从 assets/logo.jpg 重新生成 Android 启动图标（需要 Python3 + Pillow）
+[group('Android 真机 / 模拟器')]
+android-icon:
+	python3 scripts/android-icon.py
+	@cp android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png src/static/logo.png
+	@echo "  H5 图标同步到 src/static/logo.png"
 
 # 构建全部平台（H5 + 7 个小程序平台 + Android RN，逐个串行构建）
 [group('开发 / 构建')]

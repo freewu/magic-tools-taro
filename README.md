@@ -1,6 +1,6 @@
 # magic-tools-taro
 
-一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集，同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序**、**H5** 与 **Android（React Native）**。
+一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集（应用名：**Magic 工具箱**），同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序**、**H5** 与 **Android（React Native）**。
 
 > 本项目由 uni-app x 版（`.uvue` / `.uts`）**magic-tools-lite** 迁移重构而来，业务逻辑与交互保持一致，界面用 React 组件 + SCSS 重写。
 
@@ -36,8 +36,10 @@
 
 ```
 ├── config/                 # Taro 构建配置（index / dev / prod / postcss-rpx：RN 端 rpx → px 插件）
+├── assets/logo.jpg         # 应用图标源图（1280×1280），图标由 scripts/android-icon.py 生成
 ├── scripts/check.mjs       # 结构自检（路由 / 图标 / 静态资源）
 ├── scripts/android.mjs     # Android 打包 / 安装（定位 JDK+SDK、同步 bundle、Gradle、adb 装到真机或模拟器）
+├── scripts/android-icon.py # 从 assets/logo.jpg 生成 mipmap-* 下的 ic_launcher（含圆形图标）
 ├── android/                # Android（RN）原生宿主工程（移植自 taro-native-shell 0.73），由 just android 驱动
 │   ├── app/                #   AndroidManifest / MainActivity / 图标 / debug.keystore
 │   ├── build.gradle        #   Gradle 根配置（SDK / NDK 版本、阿里云镜像）
@@ -48,7 +50,8 @@
 │   ├── app.config.ts       # 页面路由与 tabBar 配置
 │   ├── app.scss            # 全局样式（页面外壳 / 卡片 / 表单行）
 │   ├── index.html          # H5 模板
-│   ├── common              # 公共模块（format.ts：数字 / 金额格式化；date.ts：1900 起整数天数的日期计算）
+│   ├── common              # 公共模块（format.ts：数字 / 金额格式化；date.ts：1900 起整数天数的日期计算；
+│   │                       #   storage.ts：本地存储统一入口，RN 端用异步 API + 启动预热的内存缓存）
 │   ├── components          # 公共组件（app-menu：工具页底部菜单；nav-bar：H5 顶部标题 + 返回）
 │   ├── static              # 图片资源（tabBar 图标 8 张 + 置顶图钉 2 张；构建时由 copy 复制到 dist/<平台>/static）
 │   └── pages
@@ -92,10 +95,12 @@ just android-dev      # Android：装 debug 包，JS 走 Metro 热更新（先�
 just android-devices  # Android：列出已连接的真机 / 模拟器
 just android-emulator # Android：启动模拟器（不带参数则列出可用 AVD）
 just android-doctor   # Android：检查 JDK / SDK / adb / 设备
+just android-icon     # Android：从 assets/logo.jpg 重新生成启动图标（需 Python3 + Pillow）
 
 just build-h5        # 构建 H5
 just build-weapp     # 构建微信小程序
 just build-rn        # 构建 Android（RN）：dist/rn/index.android.bundle
+just build-rn-clean  # 清 Metro 缓存重打 RN bundle（改了 app.config.ts 的 pages / tabBar 后用）
 just build-mini      # 构建全部 7 个小程序平台
 just build           # 构建 H5 + 全部小程序平台 + Android（RN）
 
@@ -151,6 +156,10 @@ just android-doctor   # 检查 JDK / SDK / adb / 设备
 - `android/app/build.gradle` 里 `debuggableVariants` 包含 `release`，即 Gradle **不会**自己打 JS bundle，完全用 Taro 产出的那份；release 用的是仓库内的 `debug.keystore`（与 RN 模板一致），正式发版请换成自己的签名。
 
 已知限制与注意点：
+
+- **改了 `app.config.ts` 的 `pages` / `tabBar` 后要清 Metro 缓存**：RN 端的入口（页面列表、tabBar 配置）是 Metro 把 `@tarojs/rn-supporter/entry-file.js` 转出来的，而这份生成代码会被 Metro 缓存——只改 app.config.ts 重打 bundle 会拿到旧的 tabBar / 页面列表（改了 `src/pages/**` 的普通页面代码不受影响）。用 `just build-rn-clean`（= `taro build --type rn --reset-cache`），或者 `SKIP_BUNDLE=1` 之外先手动清一次缓存。
+- **广告（`pages/ad`）入口当前隐藏**：页面和 `src/pages/ad` 代码都保留，只是从 `src/app.config.ts` 的 tabBar 和 `src/components/app-menu` 的菜单里注释掉了；恢复时把两处注释打开再 `just build-rn-clean` 即可。
+- **RN 端没有同步本地存储**：`@tarojs/taro-rn` 的 `Taro.getStorageSync` / `setStorageSync` 是空实现——调用会 `console.error` 并**返回一个 Error 对象**（不抛错），所以 `getStorageSync(key).split(...)` 这类代码会直接把页面干崩，写入则是静默无效。因此**业务代码一律走 `src/common/storage.ts`** 的 `readStorage` / `writeStorage`：小程序 / H5 用同步 API，RN 用 AsyncStorage 的异步 API，并在 `src/app.ts` 里先 `hydrateStorage()` 把已存的键值读进内存再渲染页面。新增需要持久化的功能请用这两个函数，不要再直接调 `Taro.*StorageSync`。
 
 - RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算；顺带两条限制：`calc()` 在 RN 上会被整条丢弃（logcat 里报 `Unknown value: calc(...)`，应用商店的 3 列网格因此改用百分比 `width: 30.8%; margin: 10rpx 1.2%`），`display: block` 之类的 Web 专有取值也会被忽略（报 `invalid value for display: block`，不影响布局）。新增样式尽量用 flex + 百分比表达。
 - `react-native-screens` 固定在 `3.29.0`：更高的版本用到了 RN 0.74+ 才有的 `BaseReactPackage`，会让 `compileReleaseKotlin` 失败。

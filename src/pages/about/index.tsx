@@ -14,8 +14,7 @@ export default function About() {
         <View className='card'>
           <Text className='card-title'>应用说明</Text>
           <Text className='card-text'>
-            Magic Tools Lite 是一个常用工具应用合集，目前包含人民币大写、BMI 计算、世界时间、2027
-            放假查询等小工具。
+            Magic 工具箱 是一个常用工具应用合集，目前包含人民币大写、BMI 计算、世界时间、2027 放假查询等小工具。
           </Text>
           <Text className='card-text'>本应用由 Taro + React 构建，可运行在小程序、H5 以及 React Native 平台。</Text>
           <Text className='card-text'>有想法或发现 bug，欢迎联系作者 freewu@github 反馈。</Text>
