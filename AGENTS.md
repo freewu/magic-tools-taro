@@ -28,4 +28,5 @@
   - RN 端的原生宿主工程就在本仓库 `android/`（移植自 taro-native-shell 0.73 分支），`just android` 一条命令就能打 release APK 并装到已连接的真机 / 模拟器；`just android-dev` 装 debug 包走 Metro 热更新（先 `just dev-rn`），`just android-doctor` 检查 JDK 17 / Android SDK / adb。脚本是 `scripts/android.mjs`：它负责同步 `dist/rn` 的 bundle 与 `drawable-*` 到 `android/app/src/main`、生成 `local.properties`、按设备 ABI 调 Gradle、再 `adb install` + `am start`。
   - 在 WSL 里跑 `just` 时，Gradle / adb / emulator 走 Windows 侧工具链（JDK、Android SDK、`adb.exe` 都是 Windows 版），路径换算与环境变量覆盖都在 `scripts/android.mjs` 里处理，不要在 justfile 里写死 Windows 路径。
   - 原生侧改动（`android/`）后先验证 `just android`，别只验证 `just build-rn`（后者只打 JS）。
+  - RN 端不支持 `calc()` / `gap` / `display: block` 这类 Web 专有写法（Yoga 会丢掉整条声明或忽略取值），涉及列宽、间距的样式用 `%` + flex 表达：应用商店的 3 列网格就是 `width: 30.8%; margin: 10rpx 1.2%`。
 - 本机 git 身份：bluefrog &lt;bluefrog.wu@gmail.com&gt;（已在仓库内配置）。

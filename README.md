@@ -152,7 +152,7 @@ just android-doctor   # 检查 JDK / SDK / adb / 设备
 
 已知限制与注意点：
 
-- RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算；`calc()`、`gap` 这类 CSS 计算在 RN 上不生效（会打 `Unknown value: calc(...)` 警告），需要给 RN 换等价的 flex 写法。
+- RN 端样式只认 `px` / `%` / 无单位数字，本项目源码统一用 `rpx`，由 `config/postcss-rpx.js`（RN 专用 postcss 插件）在打包时按 `1rpx = 0.5px` 换算；顺带两条限制：`calc()` 在 RN 上会被整条丢弃（logcat 里报 `Unknown value: calc(...)`，应用商店的 3 列网格因此改用百分比 `width: 30.8%; margin: 10rpx 1.2%`），`display: block` 之类的 Web 专有取值也会被忽略（报 `invalid value for display: block`，不影响布局）。新增样式尽量用 flex + 百分比表达。
 - `react-native-screens` 固定在 `3.29.0`：更高的版本用到了 RN 0.74+ 才有的 `BaseReactPackage`，会让 `compileReleaseKotlin` 失败。
 - NDK 默认按 RN 0.73 的 `25.1.8937393` 走，本机已装别的版本时可 `RN_NDK_VERSION=<版本> just android` 避免再下一次几百 MB。
 - `just dev-rn` 会在启动时调用 `process.stdin.setRawMode`，如果输出被重定向 / 在非交互终端里执行（IDE 任务、管道、CI），会报 `process.stdin.setRawMode is not a function`；此时改在真实终端执行，或直接用 `npx react-native start`（效果相同，仅少了 Taro 的二维码预览）。
