@@ -197,6 +197,25 @@ function toolCard(app, categoryName) {
         </article>`
 }
 
+// 三个 tab 页（官网与 README 共用）
+const MAIN_PAGES = [
+  {
+    slug: 'appstore',
+    title: '应用商店',
+    text: '全部工具按网格排列，支持名称 / 简介搜索与置顶收藏，置顶的工具会固定在最前面。'
+  },
+  {
+    slug: 'settings',
+    title: '设置',
+    text: 'BMI 默认单位、单位换算的默认体系与结果体系、常见参照物开关，改一次全站生效。'
+  },
+  {
+    slug: 'about',
+    title: '关于',
+    text: '应用说明与更新记录，每个版本新增、修复了什么一目了然。'
+  }
+]
+
 function buildHtml() {
   const { apps, groups } = buildTools()
   const convertCount = apps.filter((app) => app.path.startsWith('convert/')).length
@@ -216,25 +235,8 @@ function buildHtml() {
     )
     .join('\n')
 
-  const mainPages = [
-    {
-      slug: 'appstore',
-      title: '应用商店',
-      text: '全部工具按网格排列，支持名称 / 简介搜索与置顶收藏，置顶的工具会固定在最前面。'
-    },
-    {
-      slug: 'settings',
-      title: '设置',
-      text: 'BMI 默认单位、单位换算的默认体系与结果体系、常见参照物开关，改一次全站生效。'
-    },
-    {
-      slug: 'about',
-      title: '关于',
-      text: '应用说明与更新记录，每个版本新增、修复了什么一目了然。'
-    }
-  ]
-    .map(
-      (page) => `
+  const mainPages = MAIN_PAGES.map(
+    (page) => `
           <figure class="page-card">
             <div class="phone">
               <div class="phone-notch"></div>
@@ -423,6 +425,41 @@ function buildHtml() {
 `
 }
 
+/** README 里「界面截图」区块（GitHub 只支持部分 HTML，用 table + img[width] 最稳） */
+function buildReadmeShots() {
+  const { groups } = buildTools()
+
+  const table = (items, width, perRow = 4) => {
+    const rows = []
+    for (let i = 0; i < items.length; i += perRow) {
+      const row = items.slice(i, i + perRow)
+      const cells = row.map(
+        (item) =>
+          `<td align="center" width="${Math.floor(100 / perRow)}%"><img src="docs/screenshots/${item.slug}.jpg" width="${width}" alt="${item.name}" /><br /><sub>${item.name}</sub></td>`
+      )
+      // 最后一行不满时补空单元格，保证每列宽度一致、图片左对齐
+      while (cells.length < perRow) cells.push(`<td width="${Math.floor(100 / perRow)}%"></td>`)
+      rows.push(`  <tr>${cells.join('')}</tr>`)
+    }
+    return ['<table>', ...rows, '</table>'].join('\n')
+  }
+
+  const total = groups.reduce((sum, group) => sum + group.items.length, 0)
+  const parts = [
+    '**主要页面**（应用商店 / 设置 / 关于）',
+    '',
+    table(MAIN_PAGES.map((page) => ({ slug: page.slug, name: page.title })), 168, 3),
+    '',
+    `**全部工具（${total} 个，按分类）**`
+  ]
+
+  for (const group of groups) {
+    parts.push('', `<sub><strong>${group.name}</strong> · ${group.intro}</sub>`, '', table(group.items, 128))
+  }
+
+  return parts.join('\n')
+}
+
 // ---------------------------------------------------------------- 输出
 
 fs.mkdirSync(path.join(docsDir, 'assets'), { recursive: true })
@@ -436,6 +473,24 @@ if (fs.existsSync(logoSrc)) {
 
 const html = buildHtml()
 fs.writeFileSync(path.join(docsDir, 'index.html'), html)
+
+// README 的截图区块：两个标记之间的内容每次重写，其余部分手写保留
+const README_START = '<!-- screenshots:start -->'
+const README_END = '<!-- screenshots:end -->'
+const readmePath = path.join(root, 'README.md')
+if (fs.existsSync(readmePath)) {
+  const readme = fs.readFileSync(readmePath, 'utf8')
+  const start = readme.indexOf(README_START)
+  const end = readme.indexOf(README_END)
+  if (start >= 0 && end > start) {
+    const next =
+      readme.slice(0, start + README_START.length) + '\n\n' + buildReadmeShots() + '\n\n' + readme.slice(end)
+    fs.writeFileSync(readmePath, next)
+    console.log('README 截图已更新（README.md 里两个 screenshots 标记之间）')
+  } else {
+    console.warn('README.md 里没找到 screenshots 标记，跳过 README 截图更新')
+  }
+}
 
 const { apps } = buildTools()
 const missing = apps.filter((app) => !shotExists(app.slug))

@@ -2,7 +2,68 @@
 
 一个基于 **Taro 4 + React 18 + TypeScript** 重构的常用工具应用合集（应用名：**Magic 工具箱**），同一套代码可编译到 **微信 / 京东 / 百度 / 支付宝 / 字节跳动（抖音）/ QQ / 飞书小程序**、**H5** 与 **Android（React Native）**。
 
-> 本项目由 uni-app x 版（`.uvue` / `.uts`）**magic-tools-lite** 迁移重构而来，业务逻辑与交互保持一致，界面用 React 组件 + SCSS 重写。
+> > 本项目由 uni-app x 版（`.uvue` / `.uts`）**magic-tools-lite** 迁移重构而来，业务逻辑与交互保持一致，界面用 React 组件 + SCSS 重写。
+
+## 界面截图
+
+> 三个 tab 页 + 每个工具的截图（H5 产物，390×844 @ 2x）。本区块由 `scripts/website.mjs` 生成，新增工具后跑 `just website` 会自动补上，请勿手改两个标记之间的内容。
+
+<!-- screenshots:start -->
+
+**主要页面**（应用商店 / 设置 / 关于）
+
+<table>
+  <tr><td align="center" width="33%"><img src="docs/screenshots/appstore.jpg" width="168" alt="应用商店" /><br /><sub>应用商店</sub></td><td align="center" width="33%"><img src="docs/screenshots/settings.jpg" width="168" alt="设置" /><br /><sub>设置</sub></td><td align="center" width="33%"><img src="docs/screenshots/about.jpg" width="168" alt="关于" /><br /><sub>关于</sub></td></tr>
+</table>
+
+**全部工具（30 个，按分类）**
+
+<sub><strong>财务计算</strong> · 工资、房贷、存款、退休金，输入数字直接出结果</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/rmb-converter.jpg" width="128" alt="人民币大写" /><br /><sub>人民币大写</sub></td><td align="center" width="25%"><img src="docs/screenshots/income-tax.jpg" width="128" alt="个税计算" /><br /><sub>个税计算</sub></td><td align="center" width="25%"><img src="docs/screenshots/mortgage.jpg" width="128" alt="房贷计算" /><br /><sub>房贷计算</sub></td><td align="center" width="25%"><img src="docs/screenshots/compound-interest.jpg" width="128" alt="复利计算" /><br /><sub>复利计算</sub></td></tr>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/rate-calc.jpg" width="128" alt="存款利率" /><br /><sub>存款利率</sub></td><td align="center" width="25%"><img src="docs/screenshots/retirement-age.jpg" width="128" alt="退休年龄" /><br /><sub>退休年龄</sub></td><td align="center" width="25%"><img src="docs/screenshots/pension.jpg" width="128" alt="退休金估算" /><br /><sub>退休金估算</sub></td><td align="center" width="25%"><img src="docs/screenshots/hourly.jpg" width="128" alt="时薪计算" /><br /><sub>时薪计算</sub></td></tr>
+</table>
+
+<sub><strong>健康与身体</strong> · 体重、代谢、生理周期与遗传概率，日常自查够用</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/bmi.jpg" width="128" alt="BMI 计算" /><br /><sub>BMI 计算</sub></td><td align="center" width="25%"><img src="docs/screenshots/bmr.jpg" width="128" alt="基础代谢" /><br /><sub>基础代谢</sub></td><td align="center" width="25%"><img src="docs/screenshots/safe-period.jpg" width="128" alt="安全期" /><br /><sub>安全期</sub></td><td align="center" width="25%"><img src="docs/screenshots/due-date.jpg" width="128" alt="预产期" /><br /><sub>预产期</sub></td></tr>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/blood-type.jpg" width="128" alt="血型遗传" /><br /><sub>血型遗传</sub></td><td width="25%"></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
+<sub><strong>时间与历法</strong> · 节假日、时区、干支、朝代，年月日相关一次查完</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/holiday2027.jpg" width="128" alt="2027 放假" /><br /><sub>2027 放假</sub></td><td align="center" width="25%"><img src="docs/screenshots/world-time.jpg" width="128" alt="世界时间" /><br /><sub>世界时间</sub></td><td align="center" width="25%"><img src="docs/screenshots/ganzhi.jpg" width="128" alt="天干地支" /><br /><sub>天干地支</sub></td><td align="center" width="25%"><img src="docs/screenshots/dynasties.jpg" width="128" alt="历史朝代" /><br /><sub>历史朝代</sub></td></tr>
+</table>
+
+<sub><strong>单位换算</strong> · 8 类换算器：公制 / 英制 / 市制一键对比，结果点击即复制</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/convert-distance.jpg" width="128" alt="长度换算" /><br /><sub>长度换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-area.jpg" width="128" alt="面积换算" /><br /><sub>面积换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-volume.jpg" width="128" alt="容量换算" /><br /><sub>容量换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-weight.jpg" width="128" alt="重量换算" /><br /><sub>重量换算</sub></td></tr>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/convert-temperature.jpg" width="128" alt="温度换算" /><br /><sub>温度换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-energy.jpg" width="128" alt="热量换算" /><br /><sub>热量换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-pressure.jpg" width="128" alt="压力换算" /><br /><sub>压力换算</sub></td><td align="center" width="25%"><img src="docs/screenshots/convert-speed.jpg" width="128" alt="速度换算" /><br /><sub>速度换算</sub></td></tr>
+</table>
+
+<sub><strong>查询工具</strong> · 车牌归属地、身份证信息，号码规则本地校验</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/plate-city.jpg" width="128" alt="车牌归属地" /><br /><sub>车牌归属地</sub></td><td align="center" width="25%"><img src="docs/screenshots/id-card.jpg" width="128" alt="身份证解析" /><br /><sub>身份证解析</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
+<sub><strong>实用小工具</strong> · 二维码、世界时间这类随手要用的东西</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/qrcode.jpg" width="128" alt="二维码生成" /><br /><sub>二维码生成</sub></td><td width="25%"></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
+<sub><strong>趣味玩法</strong> · 昵称装饰与抽奖转盘，聚会和社交场景用得上</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/fuzzy-nickname.jpg" width="128" alt="模糊昵称" /><br /><sub>模糊昵称</sub></td><td align="center" width="25%"><img src="docs/screenshots/lucky-wheel.jpg" width="128" alt="抽奖转盘" /><br /><sub>抽奖转盘</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
+<!-- screenshots:end -->
 
 ## 功能
 
@@ -38,7 +99,8 @@
 - 页面由 `scripts/website.mjs` 生成：工具清单读取 `src/pages/app/index.ts` 的 `appList`，新增工具后重跑即可，不要直接改 `docs/index.html`；
 - 截图由 `scripts/website-shots.mjs` 用无头 Chrome 渲染 `dist/h5` 生成（CDP 截图，JPEG q82，390×844@2x），新增工具后执行 `just website-refresh` 重新构建 + 截图 + 生成页面；
 - 截图脚本需要本机有 Chrome / Edge（或用 `CHROME_PATH` 指定）；在 WSL 里执行会自动转交给 Windows 侧 node（WSL 起的服务 Windows 的浏览器访问不到）；
-- `docs/style.css` 与 `docs/main.js` 手写维护（样式 / 搜索 / 灯箱），生成脚本不会覆盖。
+- `docs/style.css` 与 `docs/main.js` 手写维护（样式 / 搜索 / 灯箱），生成脚本不会覆盖；
+- README 的「界面截图」区块也是同一个脚本生成的（`README.md` 里 `<!-- screenshots:start -->` 与 `<!-- screenshots:end -->` 之间），不要手改。
 
 ### 主题（深色 / 浅色）
 

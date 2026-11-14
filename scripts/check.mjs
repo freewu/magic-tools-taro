@@ -116,6 +116,24 @@ if (!fs.existsSync(path.join(root, 'docs', 'index.html'))) {
   warn('官网未生成：docs/index.html（just website 生成）')
 }
 
+// README 的截图区块（由 just website 生成）：漏掉的截图说明 README 没重新生成
+const readmePath = path.join(root, 'README.md')
+if (fs.existsSync(readmePath)) {
+  const readme = fs.readFileSync(readmePath, 'utf8')
+  const start = readme.indexOf('<!-- screenshots:start -->')
+  const end = readme.indexOf('<!-- screenshots:end -->')
+  if (start < 0 || end <= start) {
+    warn('README.md 缺少 screenshots 标记（<!-- screenshots:start/end -->）')
+  } else {
+    const block = readme.slice(start, end)
+    for (const slug of [...tabShots, ...shotSlugs]) {
+      if (!block.includes(`docs/screenshots/${slug}.jpg`)) {
+        warn(`README 截图区块缺少 ${slug}（just website 重新生成）`)
+      }
+    }
+  }
+}
+
 // ---------------------------------------------------------------- 结果
 
 console.log('')
