@@ -96,6 +96,26 @@ for (const file of walk(srcDir)) {
   }
 }
 
+// ---------------------------------------------------------------- 官网（docs/）
+
+console.log('检查官网截图：')
+const shotSlugOf = (appPath, query) => {
+  const base = appPath.replace(/\/index$/, '').replace(/\//g, '-')
+  const id = query ? new URLSearchParams(query).get('id') : ''
+  return id ? `${base}-${id}` : base
+}
+const shotSlugs = [...registry.matchAll(/path:\s*'([^']+)',\s*query:\s*'([^']*)'/g)].map((m) => shotSlugOf(m[1], m[2]))
+const shotDir = path.join(root, 'docs', 'screenshots')
+const tabShots = ['appstore', 'settings', 'about']
+for (const slug of [...tabShots, ...shotSlugs]) {
+  if (!fs.existsSync(path.join(shotDir, `${slug}.jpg`))) {
+    warn(`官网缺少截图：docs/screenshots/${slug}.jpg（just shots 生成）`)
+  }
+}
+if (!fs.existsSync(path.join(root, 'docs', 'index.html'))) {
+  warn('官网未生成：docs/index.html（just website 生成）')
+}
+
 // ---------------------------------------------------------------- 结果
 
 console.log('')

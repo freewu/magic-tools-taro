@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Magic 工具箱 · 30 个常用工具，一个应用全搞定</title>
+<meta name="description" content="人民币大小写、BMI、房贷 / 个税 / 复利、单位换算、二维码、世界时间……全部本地计算，不上传、不登录、断网也能用。" />
+<meta name="theme-color" content="#0a7cff" />
+<meta property="og:title" content="Magic 工具箱 · 30 个常用工具，一个应用全搞定" />
+<meta property="og:description" content="人民币大小写、BMI、房贷 / 个税 / 复利、单位换算、二维码、世界时间……全部本地计算，不上传、不登录、断网也能用。" />
+<meta property="og:image" content="screenshots/appstore.jpg" />
+<link rel="icon" type="image/png" href="assets/logo.png" />
+<link rel="apple-touch-icon" href="assets/logo.png" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<!-- 本文件由 scripts/website.mjs 生成，请改脚本或 src 里的数据，不要直接改这里 -->
+<header class="site-header">
+  <a class="brand" href="#top">
+    <img src="assets/logo.png" alt="Magic 工具箱 图标" width="36" height="36" />
+    <span>Magic 工具箱</span>
+  </a>
+  <nav class="site-nav">
+    <a href="#pages">主要页面</a>
+    <a href="#tools">全部工具</a>
+    <a href="#platforms">支持平台</a>
+    <a href="#features">技术特性</a>
+  </nav>
+  <a class="ghost-btn" href="https://github.com/freewu/magic-tools-taro" target="_blank" rel="noopener">GitHub</a>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Taro 4 · React 18 · TypeScript</p>
+      <h1>Magic 工具箱</h1>
+      <p class="hero-tagline">30 个常用工具，一个应用全搞定</p>
+      <p class="hero-desc">人民币大小写、BMI、房贷 / 个税 / 复利、单位换算、二维码、世界时间……全部本地计算，不上传、不登录、断网也能用。</p>
+      <div class="hero-actions">
+        <a class="primary-btn" href="#tools">查看 30 个工具</a>
+        <a class="ghost-btn" href="#pages">看界面截图</a>
+      </div>
+      <ul class="platform-badges">
+        <li>💬 微信小程序</li>
+        <li>🛒 京东小程序</li>
+        <li>🐾 百度智能小程序</li>
+        <li>🐜 支付宝小程序</li>
+        <li>🎵 抖音小程序</li>
+        <li>🐧 QQ 小程序</li>
+        <li>🦉 飞书小程序</li>
+        <li>🌐 H5 网页版</li>
+        <li>🤖 Android App</li>
+      </ul>
+    </div>
+    <div class="hero-visual">
+      <div class="phone phone-lg">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <img src="screenshots/appstore.jpg" alt="应用商店首页截图" width="390" height="844" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><strong>30</strong><span>个工具</span></div>
+    <div><strong>8</strong><span>类单位换算</span></div>
+    <div><strong>9</strong><span>个运行平台</span></div>
+    <div><strong>100%</strong><span>本地计算</span></div>
+  </section>
+
+  <section class="section" id="pages">
+    <header class="section-head">
+      <h2>主要页面</h2>
+      <p>首页、设置、关于三个 tab 页构成应用骨架，其余都是独立工具页。</p>
+    </header>
+    <div class="page-grid">
+          <figure class="page-card">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img src="screenshots/appstore.jpg" alt="应用商店页面截图" loading="lazy" width="390" height="844" />
+              </div>
+            </div>
+            <figcaption>
+              <h3>应用商店</h3>
+              <p>全部工具按网格排列，支持名称 / 简介搜索与置顶收藏，置顶的工具会固定在最前面。</p>
+            </figcaption>
+          </figure>
+          <figure class="page-card">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img src="screenshots/settings.jpg" alt="设置页面截图" loading="lazy" width="390" height="844" />
+              </div>
+            </div>
+            <figcaption>
+              <h3>设置</h3>
+              <p>BMI 默认单位、单位换算的默认体系与结果体系、常见参照物开关，改一次全站生效。</p>
+            </figcaption>
+          </figure>
+          <figure class="page-card">
+            <div class="phone">
+              <div class="phone-notch"></div>
+              <div class="phone-screen">
+                <img src="screenshots/about.jpg" alt="关于页面截图" loading="lazy" width="390" height="844" />
+              </div>
+            </div>
+            <figcaption>
+              <h3>关于</h3>
+              <p>应用说明与更新记录，每个版本新增、修复了什么一目了然。</p>
+            </figcaption>
+          </figure>
+    </div>
+  </section>
+
+  <section class="section" id="tools">
+    <header class="section-head">
+      <h2>全部工具</h2>
+      <p>按分类浏览，或直接搜索关键词（如「月供」「换算」「编号」）。</p>
+    </header>
+    <div class="tool-controls">
+      <div class="chips" id="chips">
+        <button class="chip is-active" type="button" data-filter="all">全部</button>
+        <button class="chip" type="button" data-filter="财务计算">财务计算</button>
+        <button class="chip" type="button" data-filter="健康与身体">健康与身体</button>
+        <button class="chip" type="button" data-filter="时间与历法">时间与历法</button>
+        <button class="chip" type="button" data-filter="单位换算">单位换算</button>
+        <button class="chip" type="button" data-filter="查询工具">查询工具</button>
+        <button class="chip" type="button" data-filter="实用小工具">实用小工具</button>
+        <button class="chip" type="button" data-filter="趣味玩法">趣味玩法</button>
+      </div>
+      <input id="search" class="search" type="search" placeholder="搜索工具名称或用途…" aria-label="搜索工具" />
+    </div>
+    <p class="search-empty" id="empty" hidden>没有匹配的工具，换个关键词试试。</p>
+    <div id="groups">
+      <section class="group" id="group-money" data-group="财务计算">
+        <header class="group-head">
+          <h3>财务计算</h3>
+          <p>工资、房贷、存款、退休金，输入数字直接出结果</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="财务计算" data-keywords="人民币大写 金额转中文大写，报销写支票用 财务计算" data-slug="rmb-converter" data-name="人民币大写" data-desc="金额转中文大写，报销写支票用">
+          <button class="tool-shot" type="button" aria-label="放大查看 人民币大写 截图">
+            <img src="screenshots/rmb-converter.jpg" alt="人民币大写 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">💴</span>
+              <h4 class="tool-name">人民币大写</h4>
+            </div>
+            <p class="tool-desc">金额转中文大写，报销写支票用</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="个税计算 工资个税与税后到手收入，含专项扣除 财务计算" data-slug="income-tax" data-name="个税计算" data-desc="工资个税与税后到手收入，含专项扣除">
+          <button class="tool-shot" type="button" aria-label="放大查看 个税计算 截图">
+            <img src="screenshots/income-tax.jpg" alt="个税计算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">💼</span>
+              <h4 class="tool-name">个税计算</h4>
+            </div>
+            <p class="tool-desc">工资个税与税后到手收入，含专项扣除</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="房贷计算 等额本息 / 等额本金月供、总利息对比 财务计算" data-slug="mortgage" data-name="房贷计算" data-desc="等额本息 / 等额本金月供、总利息对比">
+          <button class="tool-shot" type="button" aria-label="放大查看 房贷计算 截图">
+            <img src="screenshots/mortgage.jpg" alt="房贷计算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🏠</span>
+              <h4 class="tool-name">房贷计算</h4>
+            </div>
+            <p class="tool-desc">等额本息 / 等额本金月供、总利息对比</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="复利计算 本金按复利滚动的收益与增长曲线 财务计算" data-slug="compound-interest" data-name="复利计算" data-desc="本金按复利滚动的收益与增长曲线">
+          <button class="tool-shot" type="button" aria-label="放大查看 复利计算 截图">
+            <img src="screenshots/compound-interest.jpg" alt="复利计算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">📈</span>
+              <h4 class="tool-name">复利计算</h4>
+            </div>
+            <p class="tool-desc">本金按复利滚动的收益与增长曲线</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="存款利率 定期存款到期利息与本息合计 财务计算" data-slug="rate-calc" data-name="存款利率" data-desc="定期存款到期利息与本息合计">
+          <button class="tool-shot" type="button" aria-label="放大查看 存款利率 截图">
+            <img src="screenshots/rate-calc.jpg" alt="存款利率 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">💹</span>
+              <h4 class="tool-name">存款利率</h4>
+            </div>
+            <p class="tool-desc">定期存款到期利息与本息合计</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="退休年龄 渐进式延迟退休后的退休年月 财务计算" data-slug="retirement-age" data-name="退休年龄" data-desc="渐进式延迟退休后的退休年月">
+          <button class="tool-shot" type="button" aria-label="放大查看 退休年龄 截图">
+            <img src="screenshots/retirement-age.jpg" alt="退休年龄 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🕰️</span>
+              <h4 class="tool-name">退休年龄</h4>
+            </div>
+            <p class="tool-desc">渐进式延迟退休后的退休年月</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="退休金估算 基础养老金 + 个人账户，估算每月退休金 财务计算" data-slug="pension" data-name="退休金估算" data-desc="基础养老金 + 个人账户，估算每月退休金">
+          <button class="tool-shot" type="button" aria-label="放大查看 退休金估算 截图">
+            <img src="screenshots/pension.jpg" alt="退休金估算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🧾</span>
+              <h4 class="tool-name">退休金估算</h4>
+            </div>
+            <p class="tool-desc">基础养老金 + 个人账户，估算每月退休金</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="财务计算" data-keywords="时薪计算 月薪换算时薪、日薪，可保存历史对比 财务计算" data-slug="hourly" data-name="时薪计算" data-desc="月薪换算时薪、日薪，可保存历史对比">
+          <button class="tool-shot" type="button" aria-label="放大查看 时薪计算 截图">
+            <img src="screenshots/hourly.jpg" alt="时薪计算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">⏱️</span>
+              <h4 class="tool-name">时薪计算</h4>
+            </div>
+            <p class="tool-desc">月薪换算时薪、日薪，可保存历史对比</p>
+            <span class="tool-tag">财务计算</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-health" data-group="健康与身体">
+        <header class="group-head">
+          <h3>健康与身体</h3>
+          <p>体重、代谢、生理周期与遗传概率，日常自查够用</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="健康与身体" data-keywords="BMI 计算 按身高体重算身体质量指数与胖瘦等级 健康与身体" data-slug="bmi" data-name="BMI 计算" data-desc="按身高体重算身体质量指数与胖瘦等级">
+          <button class="tool-shot" type="button" aria-label="放大查看 BMI 计算 截图">
+            <img src="screenshots/bmi.jpg" alt="BMI 计算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">⚖️</span>
+              <h4 class="tool-name">BMI 计算</h4>
+            </div>
+            <p class="tool-desc">按身高体重算身体质量指数与胖瘦等级</p>
+            <span class="tool-tag">健康与身体</span>
+          </div>
+        </article>
+        <article class="tool" data-category="健康与身体" data-keywords="基础代谢 BMR 与不同运动量的每日热量消耗 健康与身体" data-slug="bmr" data-name="基础代谢" data-desc="BMR 与不同运动量的每日热量消耗">
+          <button class="tool-shot" type="button" aria-label="放大查看 基础代谢 截图">
+            <img src="screenshots/bmr.jpg" alt="基础代谢 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🔥</span>
+              <h4 class="tool-name">基础代谢</h4>
+            </div>
+            <p class="tool-desc">BMR 与不同运动量的每日热量消耗</p>
+            <span class="tool-tag">健康与身体</span>
+          </div>
+        </article>
+        <article class="tool" data-category="健康与身体" data-keywords="安全期 按月经周期推算排卵期、易孕期与安全期 健康与身体" data-slug="safe-period" data-name="安全期" data-desc="按月经周期推算排卵期、易孕期与安全期">
+          <button class="tool-shot" type="button" aria-label="放大查看 安全期 截图">
+            <img src="screenshots/safe-period.jpg" alt="安全期 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🌸</span>
+              <h4 class="tool-name">安全期</h4>
+            </div>
+            <p class="tool-desc">按月经周期推算排卵期、易孕期与安全期</p>
+            <span class="tool-tag">健康与身体</span>
+          </div>
+        </article>
+        <article class="tool" data-category="健康与身体" data-keywords="预产期 按末次月经推算预产期、孕周与星座 健康与身体" data-slug="due-date" data-name="预产期" data-desc="按末次月经推算预产期、孕周与星座">
+          <button class="tool-shot" type="button" aria-label="放大查看 预产期 截图">
+            <img src="screenshots/due-date.jpg" alt="预产期 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🤰</span>
+              <h4 class="tool-name">预产期</h4>
+            </div>
+            <p class="tool-desc">按末次月经推算预产期、孕周与星座</p>
+            <span class="tool-tag">健康与身体</span>
+          </div>
+        </article>
+        <article class="tool" data-category="健康与身体" data-keywords="血型遗传 父母血型推算孩子可能的血型概率 健康与身体" data-slug="blood-type" data-name="血型遗传" data-desc="父母血型推算孩子可能的血型概率">
+          <button class="tool-shot" type="button" aria-label="放大查看 血型遗传 截图">
+            <img src="screenshots/blood-type.jpg" alt="血型遗传 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🩸</span>
+              <h4 class="tool-name">血型遗传</h4>
+            </div>
+            <p class="tool-desc">父母血型推算孩子可能的血型概率</p>
+            <span class="tool-tag">健康与身体</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-time" data-group="时间与历法">
+        <header class="group-head">
+          <h3>时间与历法</h3>
+          <p>节假日、时区、干支、朝代，年月日相关一次查完</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="时间与历法" data-keywords="2027 放假 2027 年节假日与调休安排日历 时间与历法" data-slug="holiday2027" data-name="2027 放假" data-desc="2027 年节假日与调休安排日历">
+          <button class="tool-shot" type="button" aria-label="放大查看 2027 放假 截图">
+            <img src="screenshots/holiday2027.jpg" alt="2027 放假 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🗓️</span>
+              <h4 class="tool-name">2027 放假</h4>
+            </div>
+            <p class="tool-desc">2027 年节假日与调休安排日历</p>
+            <span class="tool-tag">时间与历法</span>
+          </div>
+        </article>
+        <article class="tool" data-category="时间与历法" data-keywords="世界时间 多城市时区对照，看各地当前时间 时间与历法" data-slug="world-time" data-name="世界时间" data-desc="多城市时区对照，看各地当前时间">
+          <button class="tool-shot" type="button" aria-label="放大查看 世界时间 截图">
+            <img src="screenshots/world-time.jpg" alt="世界时间 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🌍</span>
+              <h4 class="tool-name">世界时间</h4>
+            </div>
+            <p class="tool-desc">多城市时区对照，看各地当前时间</p>
+            <span class="tool-tag">时间与历法</span>
+          </div>
+        </article>
+        <article class="tool" data-category="时间与历法" data-keywords="天干地支 查出生年份的干支与生肖 时间与历法" data-slug="ganzhi" data-name="天干地支" data-desc="查出生年份的干支与生肖">
+          <button class="tool-shot" type="button" aria-label="放大查看 天干地支 截图">
+            <img src="screenshots/ganzhi.jpg" alt="天干地支 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🀄</span>
+              <h4 class="tool-name">天干地支</h4>
+            </div>
+            <p class="tool-desc">查出生年份的干支与生肖</p>
+            <span class="tool-tag">时间与历法</span>
+          </div>
+        </article>
+        <article class="tool" data-category="时间与历法" data-keywords="历史朝代 中国历史朝代起止年份与顺序速查 时间与历法" data-slug="dynasties" data-name="历史朝代" data-desc="中国历史朝代起止年份与顺序速查">
+          <button class="tool-shot" type="button" aria-label="放大查看 历史朝代 截图">
+            <img src="screenshots/dynasties.jpg" alt="历史朝代 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🏛️</span>
+              <h4 class="tool-name">历史朝代</h4>
+            </div>
+            <p class="tool-desc">中国历史朝代起止年份与顺序速查</p>
+            <span class="tool-tag">时间与历法</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-convert" data-group="单位换算">
+        <header class="group-head">
+          <h3>单位换算</h3>
+          <p>8 类换算器：公制 / 英制 / 市制一键对比，结果点击即复制</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="单位换算" data-keywords="长度换算 米、千米、英里、尺、寸等长度单位换算 单位换算" data-slug="convert-distance" data-name="长度换算" data-desc="米、千米、英里、尺、寸等长度单位换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 长度换算 截图">
+            <img src="screenshots/convert-distance.jpg" alt="长度换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">📏</span>
+              <h4 class="tool-name">长度换算</h4>
+            </div>
+            <p class="tool-desc">米、千米、英里、尺、寸等长度单位换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="面积换算 平方米、公顷、亩、平方英尺等面积换算 单位换算" data-slug="convert-area" data-name="面积换算" data-desc="平方米、公顷、亩、平方英尺等面积换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 面积换算 截图">
+            <img src="screenshots/convert-area.jpg" alt="面积换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">📐</span>
+              <h4 class="tool-name">面积换算</h4>
+            </div>
+            <p class="tool-desc">平方米、公顷、亩、平方英尺等面积换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="容量换算 升、毫升、加仑、品脱等容量换算 单位换算" data-slug="convert-volume" data-name="容量换算" data-desc="升、毫升、加仑、品脱等容量换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 容量换算 截图">
+            <img src="screenshots/convert-volume.jpg" alt="容量换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🥛</span>
+              <h4 class="tool-name">容量换算</h4>
+            </div>
+            <p class="tool-desc">升、毫升、加仑、品脱等容量换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="重量换算 千克、克、斤、磅、盎司等重量换算 单位换算" data-slug="convert-weight" data-name="重量换算" data-desc="千克、克、斤、磅、盎司等重量换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 重量换算 截图">
+            <img src="screenshots/convert-weight.jpg" alt="重量换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🏋️</span>
+              <h4 class="tool-name">重量换算</h4>
+            </div>
+            <p class="tool-desc">千克、克、斤、磅、盎司等重量换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="温度换算 摄氏、华氏、开尔文温度互转 单位换算" data-slug="convert-temperature" data-name="温度换算" data-desc="摄氏、华氏、开尔文温度互转">
+          <button class="tool-shot" type="button" aria-label="放大查看 温度换算 截图">
+            <img src="screenshots/convert-temperature.jpg" alt="温度换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🌡️</span>
+              <h4 class="tool-name">温度换算</h4>
+            </div>
+            <p class="tool-desc">摄氏、华氏、开尔文温度互转</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="热量换算 千焦、千卡（大卡、卡路里）与食物热量换算 单位换算" data-slug="convert-energy" data-name="热量换算" data-desc="千焦、千卡（大卡、卡路里）与食物热量换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 热量换算 截图">
+            <img src="screenshots/convert-energy.jpg" alt="热量换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🔥</span>
+              <h4 class="tool-name">热量换算</h4>
+            </div>
+            <p class="tool-desc">千焦、千卡（大卡、卡路里）与食物热量换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="压力换算 帕、千帕、巴、大气压、psi 换算 单位换算" data-slug="convert-pressure" data-name="压力换算" data-desc="帕、千帕、巴、大气压、psi 换算">
+          <button class="tool-shot" type="button" aria-label="放大查看 压力换算 截图">
+            <img src="screenshots/convert-pressure.jpg" alt="压力换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">⚙️</span>
+              <h4 class="tool-name">压力换算</h4>
+            </div>
+            <p class="tool-desc">帕、千帕、巴、大气压、psi 换算</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        <article class="tool" data-category="单位换算" data-keywords="速度换算 米每秒、千米每小时、英里每小时、节 单位换算" data-slug="convert-speed" data-name="速度换算" data-desc="米每秒、千米每小时、英里每小时、节">
+          <button class="tool-shot" type="button" aria-label="放大查看 速度换算 截图">
+            <img src="screenshots/convert-speed.jpg" alt="速度换算 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🏎️</span>
+              <h4 class="tool-name">速度换算</h4>
+            </div>
+            <p class="tool-desc">米每秒、千米每小时、英里每小时、节</p>
+            <span class="tool-tag">单位换算</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-lookup" data-group="查询工具">
+        <header class="group-head">
+          <h3>查询工具</h3>
+          <p>车牌归属地、身份证信息，号码规则本地校验</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="查询工具" data-keywords="车牌归属地 车牌号段查省份城市，支持新能源绿牌 查询工具" data-slug="plate-city" data-name="车牌归属地" data-desc="车牌号段查省份城市，支持新能源绿牌">
+          <button class="tool-shot" type="button" aria-label="放大查看 车牌归属地 截图">
+            <img src="screenshots/plate-city.jpg" alt="车牌归属地 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🚗</span>
+              <h4 class="tool-name">车牌归属地</h4>
+            </div>
+            <p class="tool-desc">车牌号段查省份城市，支持新能源绿牌</p>
+            <span class="tool-tag">查询工具</span>
+          </div>
+        </article>
+        <article class="tool" data-category="查询工具" data-keywords="身份证解析 身份证号查省份、生日、性别与校验位 查询工具" data-slug="id-card" data-name="身份证解析" data-desc="身份证号查省份、生日、性别与校验位">
+          <button class="tool-shot" type="button" aria-label="放大查看 身份证解析 截图">
+            <img src="screenshots/id-card.jpg" alt="身份证解析 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🪪</span>
+              <h4 class="tool-name">身份证解析</h4>
+            </div>
+            <p class="tool-desc">身份证号查省份、生日、性别与校验位</p>
+            <span class="tool-tag">查询工具</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-utility" data-group="实用小工具">
+        <header class="group-head">
+          <h3>实用小工具</h3>
+          <p>二维码、世界时间这类随手要用的东西</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="实用小工具" data-keywords="二维码生成 文本、网址、WiFi 生成二维码（QR），可调纠错等级 实用小工具" data-slug="qrcode" data-name="二维码生成" data-desc="文本、网址、WiFi 生成二维码（QR），可调纠错等级">
+          <button class="tool-shot" type="button" aria-label="放大查看 二维码生成 截图">
+            <img src="screenshots/qrcode.jpg" alt="二维码生成 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🔳</span>
+              <h4 class="tool-name">二维码生成</h4>
+            </div>
+            <p class="tool-desc">文本、网址、WiFi 生成二维码（QR），可调纠错等级</p>
+            <span class="tool-tag">实用小工具</span>
+          </div>
+        </article>
+        </div>
+      </section>
+
+      <section class="group" id="group-fun" data-group="趣味玩法">
+        <header class="group-head">
+          <h3>趣味玩法</h3>
+          <p>昵称装饰与抽奖转盘，聚会和社交场景用得上</p>
+        </header>
+        <div class="tool-grid">
+        <article class="tool" data-category="趣味玩法" data-keywords="模糊昵称 给名字加特殊符号，生成看不出原名的昵称 趣味玩法" data-slug="fuzzy-nickname" data-name="模糊昵称" data-desc="给名字加特殊符号，生成看不出原名的昵称">
+          <button class="tool-shot" type="button" aria-label="放大查看 模糊昵称 截图">
+            <img src="screenshots/fuzzy-nickname.jpg" alt="模糊昵称 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">✨</span>
+              <h4 class="tool-name">模糊昵称</h4>
+            </div>
+            <p class="tool-desc">给名字加特殊符号，生成看不出原名的昵称</p>
+            <span class="tool-tag">趣味玩法</span>
+          </div>
+        </article>
+        <article class="tool" data-category="趣味玩法" data-keywords="抽奖转盘 自定义奖项的随机转盘，聚会抽奖用 趣味玩法" data-slug="lucky-wheel" data-name="抽奖转盘" data-desc="自定义奖项的随机转盘，聚会抽奖用">
+          <button class="tool-shot" type="button" aria-label="放大查看 抽奖转盘 截图">
+            <img src="screenshots/lucky-wheel.jpg" alt="抽奖转盘 界面截图" loading="lazy" width="390" height="844" />
+            <span class="shot-flag">点击放大</span>
+          </button>
+          <div class="tool-body">
+            <div class="tool-head">
+              <span class="tool-icon">🎰</span>
+              <h4 class="tool-name">抽奖转盘</h4>
+            </div>
+            <p class="tool-desc">自定义奖项的随机转盘，聚会抽奖用</p>
+            <span class="tool-tag">趣味玩法</span>
+          </div>
+        </article>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <section class="section" id="platforms">
+    <header class="section-head">
+      <h2>支持平台</h2>
+      <p>同一套代码编译到 7 个小程序平台、H5 与 Android App（React Native）。</p>
+    </header>
+    <div class="platform-grid">
+      <div class="platform-card"><span class="platform-icon">💬</span><h3>微信小程序</h3><p>主推渠道，project.config.json 直接导入</p></div>
+      <div class="platform-card"><span class="platform-icon">🛒</span><h3>京东小程序</h3><p>同一套代码编译</p></div>
+      <div class="platform-card"><span class="platform-icon">🐾</span><h3>百度智能小程序</h3><p>产物 dist/swan</p></div>
+      <div class="platform-card"><span class="platform-icon">🐜</span><h3>支付宝小程序</h3><p>产物 dist/alipay</p></div>
+      <div class="platform-card"><span class="platform-icon">🎵</span><h3>抖音小程序</h3><p>字节跳动小程序平台</p></div>
+      <div class="platform-card"><span class="platform-icon">🐧</span><h3>QQ 小程序</h3><p>产物 dist/qq</p></div>
+      <div class="platform-card"><span class="platform-icon">🦉</span><h3>飞书小程序</h3><p>社区插件注册 lark 平台</p></div>
+      <div class="platform-card"><span class="platform-icon">🌐</span><h3>H5 网页版</h3><p>手机浏览器直接打开</p></div>
+      <div class="platform-card"><span class="platform-icon">🤖</span><h3>Android App</h3><p>React Native 0.73 原生打包</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <header class="section-head">
+      <h2>技术特性</h2>
+      <p>从 uni-app x 版 magic-tools-lite 迁移重构而来，业务逻辑与交互保持一致。</p>
+    </header>
+    <div class="feature-grid">
+      <div class="feature-card"><span class="feature-icon">🔒</span><h3>纯本地计算</h3><p>所有工具都在设备上算，不请求接口、不上传输入内容，号码类数据也只在本机解析。</p></div>
+      <div class="feature-card"><span class="feature-icon">📴</span><h3>断网可用</h3><p>没有网络依赖，小程序 / App 离线打开即可用；偏好设置与置顶存在本地存储里。</p></div>
+      <div class="feature-card"><span class="feature-icon">🧩</span><h3>一套代码多端</h3><p>Taro 4 + React 18 + TypeScript，编译到 7 个小程序平台、H5 与 Android。</p></div>
+      <div class="feature-card"><span class="feature-icon">⚡</span><h3>打开就能算</h3><p>每个工具一屏完成输入与结果，不做多级跳转；换算结果点击即复制。</p></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-brand">
+    <img src="assets/logo.png" alt="" width="28" height="28" />
+    <span>Magic 工具箱</span>
+  </div>
+  <p>开源项目，MIT License · 截图由无头 Chrome 渲染 H5 产物自动生成</p>
+  <p><a href="https://github.com/freewu/magic-tools-taro" target="_blank" rel="noopener">github.com/freewu/magic-tools-taro</a></p>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lightbox-inner" role="dialog" aria-modal="true" aria-labelledby="lightbox-name">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="关闭">×</button>
+    <button class="lightbox-nav prev" id="lightbox-prev" type="button" aria-label="上一张">‹</button>
+    <figure>
+      <img id="lightbox-img" alt="" width="390" height="844" />
+      <figcaption>
+        <strong id="lightbox-name"></strong>
+        <span id="lightbox-desc"></span>
+      </figcaption>
+    </figure>
+    <button class="lightbox-nav next" id="lightbox-next" type="button" aria-label="下一张">›</button>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

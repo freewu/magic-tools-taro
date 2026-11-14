@@ -204,10 +204,32 @@ typecheck:
 
 # ---------------------------------------------------------------- 维护
 
-# 结构自检（页面路由 / tabBar 图标 / 依赖的静态资源）
+# 结构自检（页面路由 / tabBar 图标 / 依赖的静态资源 / 官网截图）
 [group('维护')]
 check:
 	npm run check
+
+# ---------------------------------------------------------------- 官网（docs/）
+# 官网是纯静态页面，直接托管 docs/ 目录即可（GitHub Pages 选 docs/）
+# 工具列表来自 src/pages/app/index.ts；截图由无头 Chrome 渲染 H5 产物自动生成。
+
+# 重新抓取官网截图（33 张，产物 docs/screenshots/*.jpg；需先 just build-h5）
+# 需要本机有 Chrome / Edge；WSL 里会自动转交给 Windows 侧 node 执行
+[group('维护')]
+shots:
+	node scripts/website-shots.mjs
+
+# 生成官网 docs/index.html（读 appList + 现有截图，不重新截图）
+[group('维护')]
+website:
+	node scripts/website.mjs
+
+# 一条命令刷新官网：构建 H5 → 重新截图 → 生成 docs/index.html
+[group('维护')]
+website-refresh:
+	npm run build:h5
+	node scripts/website-shots.mjs
+	node scripts/website.mjs
 
 # 清理构建产物
 [group('维护')]

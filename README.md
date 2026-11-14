@@ -32,12 +32,34 @@
 
 > 迁移进度：uni-app x 版的 22 个工具页与 4 个 tab 页已全部迁移完成，登记列表见 `src/pages/app/index.ts`。
 
+## 官方网站（docs/）
+
+`docs/` 是一个纯静态官网（无需构建、无依赖、无框架），直接托管这个目录就能访问（GitHub Pages → Branch: main / Folder: `/docs`）。内容包括 Hero、主要页面（应用商店 / 设置 / 关于）、全部工具（分类筛选 + 搜索 + 截图灯箱）、支持平台与技术特性。
+
+- 页面由 `scripts/website.mjs` 生成：工具清单读取 `src/pages/app/index.ts` 的 `appList`，新增工具后重跑即可，不要直接改 `docs/index.html`；
+- 截图由 `scripts/website-shots.mjs` 用无头 Chrome 渲染 `dist/h5` 生成（CDP 截图，JPEG q82，390×844@2x），新增工具后执行 `just website-refresh` 重新构建 + 截图 + 生成页面；
+- 截图脚本需要本机有 Chrome / Edge（或用 `CHROME_PATH` 指定）；在 WSL 里执行会自动转交给 Windows 侧 node（WSL 起的服务 Windows 的浏览器访问不到）；
+- `docs/style.css` 与 `docs/main.js` 手写维护（样式 / 搜索 / 灯箱），生成脚本不会覆盖。
+
+本地预览官网：
+
+```shell
+just website-refresh           # 构建 H5 → 截图 → 生成 docs/index.html
+npx serve docs                 # 或任意静态服务器，直接打开 docs/index.html 也行
+```
+
 ## 项目结构
 
 ```
 ├── config/                 # Taro 构建配置（index / dev / prod / postcss-rpx：RN 端 rpx → px 插件）
 ├── assets/logo.jpg         # 应用图标源图（1280×1280），图标由 scripts/android-icon.py 生成
-├── scripts/check.mjs       # 结构自检（路由 / 图标 / 静态资源）
+├── scripts/check.mjs       # 结构自检（路由 / 图标 / 静态资源 / 官网截图）
+├── scripts/website.mjs     # 生成官网 docs/index.html（读 appList + 截图）
+├── scripts/website-shots.mjs # 官网截图：无头 Chrome 渲染 H5 产物（WSL 下转交 Windows 侧 node）
+├── docs/                   # 官方网站（纯静态，GitHub Pages 可直接托管这个目录）
+│   ├── index.html          #   由 scripts/website.mjs 生成，不要手改
+│   ├── style.css / main.js #   官网样式与交互（手写维护）
+│   └── screenshots/        #   33 张界面截图（3 个 tab 页 + 30 个工具），由 just shots 生成
 ├── scripts/android.mjs     # Android 打包 / 安装（定位 JDK+SDK、同步 bundle、Gradle、adb 装到真机或模拟器）
 ├── scripts/android-icon.py # 从 assets/logo.jpg 生成 mipmap-* 下的 ic_launcher（含圆形图标）
 ├── android/                # Android（RN）原生宿主工程（移植自 taro-native-shell 0.73），由 just android 驱动
@@ -105,7 +127,10 @@ just build-mini      # 构建全部 7 个小程序平台
 just build           # 构建 H5 + 全部小程序平台 + Android（RN）
 
 just typecheck       # TypeScript 类型检查
-just check           # 结构自检（页面路由 / tabBar 图标 / 静态资源引用）
+just check           # 结构自检（页面路由 / tabBar 图标 / 静态资源引用 / 官网截图）
+just shots           # 重新抓官网截图（docs/screenshots/*.jpg，需先 just build-h5）
+just website         # 重新生成官网 docs/index.html
+just website-refresh # 一条命令刷新官网：构建 H5 → 截图 → 生成页面
 just clean           # 清理构建产物
 just commit "提交信息"  # git add -A + commit + push
 ```
