@@ -35,11 +35,17 @@
 ## 官方网站（docs/）
 
 `docs/` 是一个纯静态官网（无需构建、无依赖、无框架），直接托管这个目录就能访问（GitHub Pages → Branch: main / Folder: `/docs`）。内容包括 Hero、主要页面（应用商店 / 设置 / 关于）、全部工具（分类筛选 + 搜索 + 截图灯箱）、支持平台与技术特性。
-
 - 页面由 `scripts/website.mjs` 生成：工具清单读取 `src/pages/app/index.ts` 的 `appList`，新增工具后重跑即可，不要直接改 `docs/index.html`；
 - 截图由 `scripts/website-shots.mjs` 用无头 Chrome 渲染 `dist/h5` 生成（CDP 截图，JPEG q82，390×844@2x），新增工具后执行 `just website-refresh` 重新构建 + 截图 + 生成页面；
 - 截图脚本需要本机有 Chrome / Edge（或用 `CHROME_PATH` 指定）；在 WSL 里执行会自动转交给 Windows 侧 node（WSL 起的服务 Windows 的浏览器访问不到）；
 - `docs/style.css` 与 `docs/main.js` 手写维护（样式 / 搜索 / 灯箱），生成脚本不会覆盖。
+
+### 主题（深色 / 浅色）
+
+- 全部颜色走 `docs/style.css` 里的 CSS 变量（`:root` 浅色 / `:root[data-theme='dark']` 深色），新增样式请用变量，不要在组件里写死颜色；
+- `docs/index.html` 头部的一段内联脚本在首帧前就把 `data-theme` 写到 `<html>` 上，避免闪烁：有手动选择用 localStorage 里的，没有就跟随系统 `prefers-color-scheme`；
+- 右上角按钮切换后写回 localStorage（key：`magic-tools-docs-theme`）；没手动选过时，系统主题变了会实时跟随（`docs/main.js` 里监听 `matchMedia`）；
+- 官网截图仍是浅色界面的真实截图，深色模式下不需要重新生成。
 
 本地预览官网：
 

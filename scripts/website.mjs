@@ -257,13 +257,31 @@ function buildHtml() {
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>${SITE.name} · ${SITE.tagline}</title>
 <meta name="description" content="${SITE.description}" />
-<meta name="theme-color" content="#0a7cff" />
+<meta name="theme-color" content="#0a7cff" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#0a1120" media="(prefers-color-scheme: dark)" />
 <meta property="og:title" content="${SITE.name} · ${SITE.tagline}" />
 <meta property="og:description" content="${SITE.description}" />
 <meta property="og:image" content="screenshots/appstore.jpg" />
 <link rel="icon" type="image/png" href="assets/logo.png" />
 <link rel="apple-touch-icon" href="assets/logo.png" />
 <link rel="stylesheet" href="style.css" />
+<script>
+  /* 主题必须在首帧前决定，否则会先白闪一下；存过就用手选的，没存过跟随系统 */
+  (function () {
+    var saved = ''
+    try {
+      saved = localStorage.getItem('magic-tools-docs-theme') || ''
+    } catch (error) {
+      /* 隐私模式 / 内嵌 iframe 下 localStorage 可能被禁，忽略即可 */
+    }
+    var dark =
+      saved === 'dark' || saved === 'light'
+        ? saved === 'dark'
+        : !!(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+    document.documentElement.style.colorScheme = dark ? 'dark' : 'light'
+  })()
+</script>
 </head>
 <body>
 <!-- 本文件由 scripts/website.mjs 生成，请改脚本或 src 里的数据，不要直接改这里 -->
@@ -278,7 +296,18 @@ function buildHtml() {
     <a href="#platforms">支持平台</a>
     <a href="#features">技术特性</a>
   </nav>
-  <a class="ghost-btn" href="${SITE.repo}" target="_blank" rel="noopener">GitHub</a>
+  <div class="header-tools">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="切换深色 / 浅色模式" title="切换深色 / 浅色模式">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.6 6.6 0 0 0 9.8 9.8Z" />
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2" />
+        <path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6" />
+      </svg>
+    </button>
+    <a class="ghost-btn" href="${SITE.repo}" target="_blank" rel="noopener">GitHub</a>
+  </div>
 </header>
 
 <main id="top">

@@ -1,18 +1,81 @@
-/* Magic 工具箱官网样式（配合 scripts/website.mjs 生成的 docs/index.html） */
+/* Magic 工具箱官网样式（配合 scripts/website.mjs 生成的 docs/index.html）
+ *
+ * 主题：浅色 / 深色两套，全部走 CSS 变量。
+ * <html data-theme="light|dark"> 由 index.html 里的一段内联脚本在首帧前写好
+ * （读 localStorage，没存过就跟随系统 prefers-color-scheme），
+ * 右上角按钮切换后写回 localStorage，见 docs/main.js。
+ */
 
 :root {
   --accent: #0a7cff;
   --accent-deep: #0057d9;
+  --accent-soft: #e8f1ff;
+  --accent-line: #cfe0ff;
   --ink: #0f172a;
   --ink-soft: #334155;
   --muted: #64748b;
   --line: #e5eaf2;
   --bg: #f5f8fd;
   --card: #ffffff;
-  --radius: 20px;
+  --card-soft: #f7fafe;
+  --header-bg: rgba(245, 248, 253, 0.86);
+  --tag-bg: #f1f6ff;
+  --tag-ink: #0057d9;
+  --shot-bg: #eef3fb;
+  --strip-a: #eef3fb;
+  --strip-b: #e4ecf9;
+  --hero-grad-1: #0b3b8c;
+  --hero-grad-2: #0a7cff;
+  --hero-grad-3: #37c2c8;
+  --btn-grad-1: #0a7cff;
+  --btn-grad-2: #0057d9;
+  --btn-ink: #ffffff;
+  --btn-glow: rgba(10, 124, 255, 0.32);
+  --btn-glow-hover: rgba(10, 124, 255, 0.4);
+  --chip-active-bg: #0a7cff;
+  --chip-active-ink: #ffffff;
+  --chip-active-glow: rgba(10, 124, 255, 0.28);
   --shadow-sm: 0 2px 10px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 12px 32px rgba(15, 23, 42, 0.1);
   --shadow-lg: 0 30px 70px rgba(10, 60, 130, 0.22);
+  --radius: 20px;
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --accent: #4c9bff;
+  --accent-deep: #8fc0ff;
+  --accent-soft: rgba(76, 155, 255, 0.16);
+  --accent-line: #2a4a78;
+  --ink: #e9eefb;
+  --ink-soft: #c3cfe4;
+  --muted: #93a2bd;
+  --line: #223049;
+  --bg: #0a1120;
+  --card: #111b2d;
+  --card-soft: #16223a;
+  --header-bg: rgba(10, 17, 32, 0.82);
+  --tag-bg: rgba(76, 155, 255, 0.16);
+  --tag-ink: #9cc6ff;
+  --shot-bg: #16223a;
+  --strip-a: #16223a;
+  --strip-b: #1b2a46;
+  --hero-grad-1: #cfe3ff;
+  --hero-grad-2: #6fb3ff;
+  --hero-grad-3: #5ad0d6;
+  /* 深色下按钮 / 激活态不用浅蓝，否则白字对比度不够 */
+  --btn-grad-1: #2472dd;
+  --btn-grad-2: #12489f;
+  --btn-ink: #ffffff;
+  --btn-glow: rgba(36, 114, 221, 0.35);
+  --btn-glow-hover: rgba(36, 114, 221, 0.45);
+  --chip-active-bg: #1e63c8;
+  --chip-active-ink: #ffffff;
+  --chip-active-glow: rgba(30, 99, 200, 0.35);
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 30px 70px rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
 }
 
 * {
@@ -31,6 +94,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', sans-serif;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img {
@@ -62,9 +126,10 @@ h4 {
   align-items: center;
   gap: 20px;
   padding: 12px clamp(16px, 4vw, 48px);
-  background: rgba(245, 248, 253, 0.86);
+  background: var(--header-bg);
   backdrop-filter: saturate(180%) blur(14px);
   border-bottom: 1px solid var(--line);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .brand {
@@ -95,6 +160,52 @@ h4 {
   color: var(--accent);
 }
 
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  /* 桌面端 nav 已经把左边占满（nav 有 margin-left: auto），这里不需要再撑开；
+     窄屏 nav 被隐藏，媒体查询里再把 .header-tools 顶到右边 */
+  margin-left: 0;
+}
+
+/* 主题切换按钮：浅色显示月亮（切到深色），深色显示太阳（切回浅色） */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--ink-soft);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: color 0.15s ease, border-color 0.15s ease, transform 0.15s ease, background-color 0.25s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  transform: translateY(-1px);
+}
+
+.theme-toggle svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.theme-toggle .icon-sun,
+:root[data-theme='dark'] .theme-toggle .icon-moon {
+  display: none;
+}
+
+:root[data-theme='dark'] .theme-toggle .icon-sun {
+  display: block;
+}
+
 /* ---------------------------------------------------------------- 按钮 */
 
 .primary-btn,
@@ -108,30 +219,30 @@ h4 {
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .primary-btn {
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent), var(--accent-deep));
-  box-shadow: 0 10px 24px rgba(10, 124, 255, 0.32);
+  color: var(--btn-ink);
+  background: linear-gradient(135deg, var(--btn-grad-1), var(--btn-grad-2));
+  box-shadow: 0 10px 24px var(--btn-glow);
 }
 
 .primary-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 14px 30px rgba(10, 124, 255, 0.4);
+  box-shadow: 0 14px 30px var(--btn-glow-hover);
 }
 
 .ghost-btn {
   color: var(--ink-soft);
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
 }
 
 .ghost-btn:hover {
   color: var(--accent);
-  border-color: #cfe0ff;
+  border-color: var(--accent-line);
   transform: translateY(-1px);
 }
 
@@ -156,7 +267,7 @@ main {
   margin: 0 0 14px;
   padding: 5px 12px;
   border-radius: 999px;
-  background: #e8f1ff;
+  background: var(--accent-soft);
   color: var(--accent-deep);
   font-size: 12px;
   font-weight: 600;
@@ -166,7 +277,7 @@ main {
 .hero h1 {
   font-size: clamp(34px, 5.6vw, 60px);
   font-weight: 800;
-  background: linear-gradient(120deg, #0b3b8c, var(--accent) 60%, #37c2c8);
+  background: linear-gradient(120deg, var(--hero-grad-1), var(--hero-grad-2) 60%, var(--hero-grad-3));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -207,7 +318,7 @@ main {
 .platform-badges li {
   padding: 5px 11px;
   border-radius: 999px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   box-shadow: var(--shadow-sm);
 }
@@ -264,10 +375,11 @@ main {
   max-width: 1160px;
   margin: 0 auto clamp(24px, 4vw, 48px);
   padding: 22px clamp(12px, 2vw, 24px);
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .stats div {
@@ -326,11 +438,11 @@ main {
   gap: 16px;
   margin: 0;
   padding: 26px 18px 22px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .page-card:hover {
@@ -373,7 +485,7 @@ main {
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--card);
   color: var(--ink-soft);
   font-size: 13px;
   font-family: inherit;
@@ -382,15 +494,15 @@ main {
 }
 
 .chip:hover {
-  border-color: #cfe0ff;
+  border-color: var(--accent-line);
   color: var(--accent);
 }
 
 .chip.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-  box-shadow: 0 8px 18px rgba(10, 124, 255, 0.28);
+  background: var(--chip-active-bg);
+  border-color: var(--chip-active-bg);
+  color: var(--chip-active-ink);
+  box-shadow: 0 8px 18px var(--chip-active-glow);
 }
 
 .search {
@@ -400,16 +512,20 @@ main {
   padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--line);
-  background: #fff;
+  background: var(--card);
   color: var(--ink);
   font-size: 13.5px;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.25s ease;
+}
+
+.search::placeholder {
+  color: var(--muted);
 }
 
 .search:focus {
-  border-color: #b9d5ff;
+  border-color: var(--accent-line);
   box-shadow: 0 0 0 4px rgba(10, 124, 255, 0.12);
 }
 
@@ -454,11 +570,11 @@ main {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .tool:hover {
@@ -472,7 +588,7 @@ main {
   width: 100%;
   padding: 0;
   border: 0;
-  background: #eef3fb;
+  background: var(--shot-bg);
   cursor: zoom-in;
   overflow: hidden;
   aspect-ratio: 3 / 4;
@@ -516,7 +632,7 @@ main {
   height: 100%;
   min-height: 120px;
   font-size: 34px;
-  background: repeating-linear-gradient(135deg, #eef3fb, #eef3fb 12px, #e4ecf9 12px, #e4ecf9 24px);
+  background: repeating-linear-gradient(135deg, var(--strip-a), var(--strip-a) 12px, var(--strip-b) 12px, var(--strip-b) 24px);
 }
 
 .tool-shot.is-missing {
@@ -558,8 +674,8 @@ main {
   margin-top: 2px;
   padding: 2px 8px;
   border-radius: 999px;
-  background: #f1f6ff;
-  color: var(--accent-deep);
+  background: var(--tag-bg);
+  color: var(--tag-ink);
   font-size: 11px;
 }
 
@@ -575,10 +691,11 @@ main {
 .platform-card,
 .feature-card {
   padding: 20px;
-  background: #fff;
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow-sm);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .platform-icon,
@@ -606,10 +723,11 @@ main {
   margin-top: clamp(24px, 4vw, 48px);
   padding: clamp(28px, 4vw, 44px) clamp(16px, 4vw, 48px) 40px;
   border-top: 1px solid var(--line);
-  background: #fff;
+  background: var(--card);
   text-align: center;
   color: var(--muted);
   font-size: 13px;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .site-footer p {
@@ -755,6 +873,10 @@ body.is-lightbox-open {
 
   .site-nav {
     display: none;
+  }
+
+  .header-tools {
+    margin-left: auto;
   }
 
   .stats {

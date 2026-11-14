@@ -1,7 +1,64 @@
-// Magic 工具箱官网交互：工具搜索 / 分类筛选 / 截图灯箱
+// Magic 工具箱官网交互：主题切换 / 工具搜索 / 分类筛选 / 截图灯箱
 // （docs/index.html 由 scripts/website.mjs 生成，本文件手写维护）
 
 (function () {
+  // ---------------------------------------------------------------- 主题
+
+  // 首帧的主题已在 index.html 的内联脚本里定好（此处只负责切换与跟随系统）
+  const THEME_KEY = 'magic-tools-docs-theme'
+  const root = document.documentElement
+  const themeToggle = document.getElementById('theme-toggle')
+  const media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null
+
+  function applyTheme(theme) {
+    root.dataset.theme = theme
+    root.style.colorScheme = theme
+    if (themeToggle) {
+      themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false')
+    }
+  }
+
+  function currentTheme() {
+    return root.dataset.theme === 'dark' ? 'dark' : 'light'
+  }
+
+  function savedTheme() {
+    try {
+      const value = localStorage.getItem(THEME_KEY)
+      return value === 'dark' || value === 'light' ? value : ''
+    } catch (error) {
+      return ''
+    }
+  }
+
+  if (themeToggle) {
+    applyTheme(currentTheme())
+    themeToggle.addEventListener('click', () => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark'
+      applyTheme(next)
+      try {
+        localStorage.setItem(THEME_KEY, next)
+      } catch (error) {
+        // 隐私模式下写入失败也不影响本次切换
+      }
+    })
+  }
+
+  // 没有手动选过时，系统主题变了就跟着变
+  if (media) {
+    const onSystemChange = (event) => {
+      if (savedTheme() === '') {
+        applyTheme(event.matches ? 'dark' : 'light')
+      }
+    }
+    if (media.addEventListener) {
+      media.addEventListener('change', onSystemChange)
+    } else if (media.addListener) {
+      media.addListener(onSystemChange)
+    }
+  }
+
+  // ---------------------------------------------------------------- 筛选
   const chips = Array.from(document.querySelectorAll('#chips .chip'))
   const search = document.getElementById('search')
   const empty = document.getElementById('empty')
