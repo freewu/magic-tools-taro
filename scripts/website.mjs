@@ -126,6 +126,21 @@ const PLATFORMS = [
   { icon: '🤖', name: 'Android App', note: 'React Native 0.73 原生打包' }
 ]
 
+// 首屏手机截图上的「热点」：点应用商店里的某个图标，手机画面就切到那个工具的截图。
+// 几何值是在 390×844 视口下实测 H5 产物得到的（卡片 30.8% × 9.29%，横向 3 列、行距 10.2357%），
+// 卡片顺序就是 appList 顺序（应用商店没有置顶时的排列）。首屏只完整露出 8 行（24 个），
+// 再往下的行被底部 tabBar 盖住，就不放热点了。
+// 注意：改了 appList（新增 / 调整顺序）后要跑 `just website-refresh` 重新截图 + 重新生成，
+// 否则热点会和截图里的图标错位。
+const HERO_GRID = {
+  lefts: [1.2, 34.39, 67.58],
+  top: 11.56,
+  stepTop: 10.2357,
+  width: 30.8,
+  height: 9.29,
+  rows: 8
+}
+
 const FEATURES = [
   { icon: '🔒', title: '纯本地计算', text: '所有工具都在设备上算，不请求接口、不上传输入内容，号码类数据也只在本机解析。' },
   { icon: '📴', title: '断网可用', text: '没有网络依赖，小程序 / App 离线打开即可用；偏好设置与置顶存在本地存储里。' },
@@ -215,6 +230,34 @@ const MAIN_PAGES = [
     text: '应用说明与更新记录，每个版本新增、修复了什么一目了然。'
   }
 ]
+
+/** 首屏热点按钮：把应用商店首屏露出的工具图标做成可点区域，点了换手机里的截图 */
+function heroHotspots(apps) {
+  if (!shotExists('appstore')) {
+    return ''
+  }
+  const columns = HERO_GRID.lefts.length
+  const limit = Math.min(apps.length, columns * HERO_GRID.rows)
+  const buttons = []
+  for (let i = 0; i < limit; i++) {
+    const app = apps[i]
+    const slug = shotSlug(app.path, app.query)
+    if (!shotExists(slug)) {
+      continue
+    }
+    const left = HERO_GRID.lefts[i % columns]
+    const top = HERO_GRID.top + Math.floor(i / columns) * HERO_GRID.stepTop
+    buttons.push(
+      `<button class="hotspot" type="button" style="left: ${left}%; top: ${top.toFixed(2)}%; width: ${HERO_GRID.width}%; height: ${HERO_GRID.height}%" data-shot="screenshots/${slug}.jpg" data-name="${escapeHtml(app.name)}" data-desc="${escapeHtml(app.desc)}" data-icon="${app.icon}" aria-label="预览 ${escapeHtml(app.name)} 的界面"><span class="hotspot-dot"></span></button>`
+    )
+  }
+  if (buttons.length === 0) {
+    return ''
+  }
+  return `
+          <div class="hero-hotspots" id="hero-hotspots">${buttons.join('\n            ')}
+          </div>`
+}
 
 function buildHtml() {
   const { apps, groups } = buildTools()
@@ -328,11 +371,19 @@ function buildHtml() {
       </ul>
     </div>
     <div class="hero-visual">
-      <div class="phone phone-lg">
+      <div class="phone phone-lg" id="hero-phone">
         <div class="phone-notch"></div>
         <div class="phone-screen">
-          ${shotExists('appstore') ? '<img src="screenshots/appstore.jpg" alt="应用商店首页截图" width="390" height="844" />' : '<div class="shot-missing">应用商店</div>'}
+          ${
+            shotExists('appstore')
+              ? `<img id="hero-shot" src="screenshots/appstore.jpg" alt="应用商店首页截图" width="390" height="844" />${heroHotspots(apps)}`
+              : '<div class="shot-missing">应用商店</div>'
+          }
         </div>
+      </div>
+      <div class="hero-caption" id="hero-caption">
+        <p class="hero-caption-line"><span class="hero-caption-icon" id="hero-caption-icon">👆</span><span class="hero-caption-text" id="hero-caption-text">点图标，直接看对应工具的界面</span></p>
+        <button class="hero-caption-back" id="hero-caption-back" type="button" hidden>回到应用首页</button>
       </div>
     </div>
   </section>

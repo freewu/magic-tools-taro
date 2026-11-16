@@ -325,7 +325,9 @@ main {
 
 .hero-visual {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
 /* ---------------------------------------------------------------- 手机外壳 */
@@ -356,6 +358,8 @@ main {
 }
 
 .phone-screen {
+  /* 热点的定位基准：必须是这一层，否则百分比会按 .phone 的宽度算（多出 9px 内边距 + 边框） */
+  position: relative;
   overflow: hidden;
   border-radius: 26px;
   background: #f8f8f8;
@@ -364,6 +368,119 @@ main {
 .phone-screen img {
   width: 100%;
   height: auto;
+}
+
+/* ---------------------------------------------------------------- 首屏热点
+ *
+ * 首屏手机里是应用商店首页的截图，每个工具图标上面盖了一个透明按钮（热点）：
+ * 点了换图，见 docs/main.js。位置百分比由 scripts/website.mjs 按实测几何写死，
+ * 所以这里的样式只负责「点得到、看得见」。
+ * 小圆点默认不显示，鼠标悬停 / 键盘聚焦时才浮出来，避免截图被 24 个点弄得像麻子。
+ */
+
+.hero-hotspots {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.2s ease;
+}
+
+/* 已切到某个工具的截图：热点位置对不上新图，收起
+   （is-preview 加在 #hero-phone 上，见 docs/main.js） */
+.is-preview .hero-hotspots {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.hotspot {
+  position: absolute;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.hotspot:hover {
+  border-color: rgba(10, 124, 255, 0.55);
+  background: rgba(10, 124, 255, 0.1);
+}
+
+/* 小圆点对准卡片里的图标（图标在卡片上部约 45% 处） */
+.hotspot-dot {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: rgba(10, 124, 255, 0.75);
+  box-shadow: 0 0 0 5px rgba(10, 124, 255, 0.18);
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.hero-visual:hover .hotspot-dot,
+.hotspot:hover .hotspot-dot,
+.hotspot:focus-visible .hotspot-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.hotspot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: rgba(10, 124, 255, 0.55);
+}
+
+/* 手机下方一行小字：未预览时是操作提示，预览时显示工具名称与简介 + 返回按钮 */
+.hero-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(300px, 76vw);
+  text-align: center;
+}
+
+.hero-caption-line {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.hero-caption-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.hero-caption-text {
+  min-width: 0;
+}
+
+.hero-caption-back {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--accent-line);
+  background: var(--card);
+  color: var(--accent-deep);
+  font-size: 12.5px;
+  font-family: inherit;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.hero-caption-back:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 /* ---------------------------------------------------------------- 数据条 */

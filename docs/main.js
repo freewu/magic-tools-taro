@@ -1,4 +1,4 @@
-// Magic 工具箱官网交互：主题切换 / 工具搜索 / 分类筛选 / 截图灯箱
+// Magic 工具箱官网交互：主题切换 / 首屏截图热点 / 工具搜索 / 分类筛选 / 截图灯箱
 // （docs/index.html 由 scripts/website.mjs 生成，本文件手写维护）
 
 (function () {
@@ -55,6 +55,65 @@
       media.addEventListener('change', onSystemChange)
     } else if (media.addListener) {
       media.addListener(onSystemChange)
+    }
+  }
+
+  // ---------------------------------------------------------------- 首屏热点
+
+  // 首屏手机里是应用商店首页的截图，每个工具图标都是一个热点：
+  // 点了把手机画面切成那个工具的截图，底部小字同步显示名称与简介。
+  const heroShot = document.getElementById('hero-shot')
+  const heroPhone = document.getElementById('hero-phone')
+  const heroHotspots = Array.from(document.querySelectorAll('#hero-hotspots .hotspot'))
+  const captionIcon = document.getElementById('hero-caption-icon')
+  const captionText = document.getElementById('hero-caption-text')
+  const captionBack = document.getElementById('hero-caption-back')
+
+  // 默认画面（应用商店首页）与提示文案
+  const HOME_SHOT = { src: 'screenshots/appstore.jpg', alt: '应用商店首页截图' }
+  const HINT_ICON = '👆'
+  const HINT_TEXT = '点图标，直接看对应工具的界面'
+
+  /** 预览某个工具：换图 + 收起热点（此时热点位置已经对不上新图了） */
+  function previewTool(hotspot) {
+    heroShot.src = hotspot.dataset.shot
+    heroShot.alt = `${hotspot.dataset.name} 界面截图`
+    captionIcon.textContent = hotspot.dataset.icon || '📱'
+    captionText.textContent = `${hotspot.dataset.name} · ${hotspot.dataset.desc}`
+    captionBack.hidden = false
+    heroPhone.classList.add('is-preview')
+  }
+
+  /** 回到应用商店首页 */
+  function previewHome() {
+    heroShot.src = HOME_SHOT.src
+    heroShot.alt = HOME_SHOT.alt
+    captionIcon.textContent = HINT_ICON
+    captionText.textContent = HINT_TEXT
+    captionBack.hidden = true
+    heroPhone.classList.remove('is-preview')
+  }
+
+  // 悬停 / 聚焦就预取，点下去立刻出图
+  const preloaded = new Set()
+  function preload(hotspot) {
+    const src = hotspot.dataset.shot
+    if (!src || preloaded.has(src)) {
+      return
+    }
+    preloaded.add(src)
+    const img = new Image()
+    img.src = src
+  }
+
+  if (heroShot && heroHotspots.length > 0) {
+    for (const hotspot of heroHotspots) {
+      hotspot.addEventListener('click', () => previewTool(hotspot))
+      hotspot.addEventListener('pointerenter', () => preload(hotspot))
+      hotspot.addEventListener('focus', () => preload(hotspot))
+    }
+    if (captionBack) {
+      captionBack.addEventListener('click', previewHome)
     }
   }
 
