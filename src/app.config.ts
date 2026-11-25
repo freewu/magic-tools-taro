@@ -26,7 +26,17 @@ export default defineAppConfig({
     'pages/app/bmr/index',
     'pages/app/hourly/index',
     'pages/app/qrcode/index',
-    'pages/app/convert/index'
+    'pages/app/convert/index',
+    'pages/app/roman-numeral/index',
+    'pages/app/zodiac-age/index',
+    'pages/app/shelf-life/index',
+    'pages/app/codec/index',
+    'pages/app/morse/index',
+    'pages/app/image-split/index',
+    'pages/app/vram/index',
+    'pages/app/moon-phase/index',
+    'pages/app/relationship/index',
+    'pages/app/timer/index'
   ],
   window: {
     backgroundTextStyle: 'light',

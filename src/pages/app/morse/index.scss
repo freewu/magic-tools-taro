@@ -1,0 +1,233 @@
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-action {
+  font-size: 24rpx;
+  color: #007aff;
+}
+
+/* 模式切换 */
+.seg-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+}
+
+.seg {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 70rpx;
+  margin-right: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 12rpx;
+  background-color: #f7f8fa;
+}
+
+.seg-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.seg-hover {
+  opacity: 0.7;
+}
+
+.seg-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.seg-text-active {
+  color: #007aff;
+}
+
+.input-area {
+  display: block;
+  width: 100%;
+  height: 200rpx;
+  margin-top: 16rpx;
+  padding: 16rpx;
+  box-sizing: border-box;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #1f2933;
+}
+
+/* 写法 chip */
+.chip-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 22rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 24rpx;
+  background-color: #f7f8fa;
+}
+
+.chip-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.chip-hover {
+  opacity: 0.7;
+}
+
+.chip-text {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.chip-text-active {
+  color: #007aff;
+}
+
+/* 操作按钮 */
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 74rpx;
+  margin-right: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 12rpx;
+  background-color: #f7f8fa;
+}
+
+.btn-hover {
+  opacity: 0.7;
+}
+
+.btn-text {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 22rpx;
+  color: #999;
+  line-height: 32rpx;
+}
+
+/* 结果 */
+.result-label {
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.output-box {
+  margin-top: 10rpx;
+  padding: 18rpx;
+  background-color: #f7f8fa;
+  border-radius: 12rpx;
+}
+
+.output-text {
+  font-size: 30rpx;
+  color: #007aff;
+  line-height: 44rpx;
+  word-break: break-all;
+}
+
+.stat-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.warn-text {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #e54d42;
+  line-height: 32rpx;
+}
+
+.sub-label {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+/* 速查表 */
+.grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 8rpx;
+}
+
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 120rpx;
+  height: 72rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border-radius: 10rpx;
+  background-color: #f7f8fa;
+}
+
+.grid-hover {
+  opacity: 0.7;
+}
+
+.grid-char {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.grid-code {
+  font-size: 20rpx;
+  color: #8a94a6;
+}
+
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.empty-icon {
+  font-size: 56rpx;
+}
+
+.empty-text {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #999;
+}

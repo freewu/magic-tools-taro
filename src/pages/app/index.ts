@@ -42,5 +42,15 @@ export const appList: AppItem[] = [
   { name: '热量换算', icon: '🔥', desc: '千焦、千卡（大卡、卡路里）与食物热量换算', path: 'convert/index', query: 'id=energy' },
   { name: '压力换算', icon: '⚙️', desc: '帕、千帕、巴、大气压、psi 换算', path: 'convert/index', query: 'id=pressure' },
   { name: '速度换算', icon: '🏎️', desc: '米每秒、千米每小时、英里每小时、节', path: 'convert/index', query: 'id=speed' },
-  { name: '世界时间', icon: '🌍', desc: '多城市时区对照，看各地当前时间', path: 'world-time/index', query: '' }
+  { name: '世界时间', icon: '🌍', desc: '多城市时区对照，看各地当前时间', path: 'world-time/index', query: '' },
+  { name: '罗马数字', icon: '🔢', desc: '1-3999 与 I-MMMCMXCIX 双向转换，附速查表', path: 'roman-numeral/index', query: '' },
+  { name: '生肖年龄', icon: '🎋', desc: '年份查生肖、干支与虚岁周岁，近百年生肖年份列表', path: 'zodiac-age/index', query: '' },
+  { name: '保质期计算', icon: '🥫', desc: '生产日期加保质期算到期日、剩余天数与已过进度', path: 'shelf-life/index', query: '' },
+  { name: '常用编码', icon: '🔐', desc: 'Base64、URL、Unicode、十六进制、二进制互相转换', path: 'codec/index', query: '' },
+  { name: '摩斯码', icon: '📡', desc: '文字与摩斯码双向转换，按时序播放，附速查表', path: 'morse/index', query: '' },
+  { name: '图片分割', icon: '✂️', desc: '把一张图切成 2 / 3 / 4 / 6 / 9 块九宫格小图', path: 'image-split/index', query: '' },
+  { name: '大模型显存', icon: '🧠', desc: '按参数量、精度与上下文估算推理 / 训练显存占用', path: 'vram/index', query: '' },
+  { name: '月相日历', icon: '🌙', desc: '查每月新月、满月日期与当天月相盈亏', path: 'moon-phase/index', query: '' },
+  { name: '亲戚称呼', icon: '👪', desc: '一步步选关系查称谓，也能输入称谓反查关系链', path: 'relationship/index', query: '' },
+  { name: '计时器', icon: '⏲️', desc: '正计时秒表，可暂停、分段记时并保存历史', path: 'timer/index', query: '' }
 ]

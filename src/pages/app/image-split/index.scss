@@ -1,0 +1,285 @@
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.card-sub {
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.head-action {
+  font-size: 24rpx;
+  color: #007aff;
+}
+
+/* 选图占位 */
+.picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+  border: 2rpx dashed #c7d0db;
+  border-radius: 12rpx;
+  background-color: #fbfcfe;
+}
+
+.picker-icon {
+  font-size: 56rpx;
+  color: #8a94a6;
+}
+
+.picker-title {
+  margin-top: 12rpx;
+  font-size: 28rpx;
+  color: #1f2933;
+}
+
+.picker-hint {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+/* 预览 + 分割线叠层 */
+.preview-wrap {
+  position: relative;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #f2f4f7;
+}
+
+.preview-img {
+  display: block;
+  width: 100%;
+}
+
+.grid-line-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: #fff;
+  opacity: 0.9;
+}
+
+.grid-line-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  opacity: 0.9;
+}
+
+.grid-index-box {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 48rpx;
+  height: 32rpx;
+  margin-left: -24rpx;
+  margin-top: -16rpx;
+  border-radius: 6rpx;
+  background-color: rgba(31, 41, 51, 0.55);
+}
+
+.grid-index {
+  font-size: 20rpx;
+  color: #fff;
+}
+
+.stat-text {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.error-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #d93025;
+}
+
+.label {
+  display: block;
+  margin-top: 20rpx;
+  margin-bottom: 12rpx;
+  font-size: 26rpx;
+  color: #5c6673;
+}
+
+.hint {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+/* chips */
+.chip-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 22rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border: 2rpx solid #e3e8ef;
+  border-radius: 10rpx;
+  background-color: #fff;
+}
+
+.chip-on {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.chip-hover {
+  opacity: 0.75;
+}
+
+.chip-text {
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.chip-text-on {
+  color: #007aff;
+  font-weight: bold;
+}
+
+/* 输入行 */
+.input-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  flex: 1;
+  height: 72rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  background-color: #f5f7fa;
+  font-size: 26rpx;
+  color: #1f2933;
+}
+
+.input-unit {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+/* 按钮 */
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 24rpx;
+}
+
+.btn {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 84rpx;
+  margin-right: 12rpx;
+  border: 2rpx solid #e3e8ef;
+  border-radius: 12rpx;
+  background-color: #fff;
+}
+
+.btn-primary {
+  border-color: #007aff;
+  background-color: #007aff;
+}
+
+.btn-text {
+  font-size: 28rpx;
+  color: #5c6673;
+}
+
+.btn-text-primary {
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 切片结果 */
+.piece {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #eef1f5;
+}
+
+.piece-img {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  background-color: #f2f4f7;
+}
+
+.piece-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 16rpx;
+}
+
+.piece-name {
+  font-size: 26rpx;
+  color: #1f2933;
+}
+
+.piece-size {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.piece-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 24rpx;
+  border: 2rpx solid #007aff;
+  border-radius: 10rpx;
+}
+
+.piece-btn-text {
+  font-size: 24rpx;
+  color: #007aff;
+}
+
+.note {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 23rpx;
+  color: #5c6673;
+  line-height: 38rpx;
+}
+
+.hidden-canvas {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 10px;
+  height: 10px;
+}

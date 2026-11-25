@@ -1,0 +1,233 @@
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.head-action {
+  font-size: 24rpx;
+  color: #007aff;
+}
+
+/* 生产日期选择器 */
+.field-gap {
+  margin-top: 16rpx;
+}
+
+.pick-note {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.value-input {
+  flex: 1;
+  height: 72rpx;
+  padding-left: 18rpx;
+  border-radius: 12rpx;
+  background-color: #f7f8fa;
+  font-size: 32rpx;
+  color: #1f2933;
+}
+
+.unit-wrap {
+  display: flex;
+  flex-direction: row;
+  margin-left: 12rpx;
+}
+
+.unit-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 64rpx;
+  height: 62rpx;
+  margin-left: 10rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 12rpx;
+  background-color: #f7f8fa;
+}
+
+.unit-chip-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.chip-hover {
+  opacity: 0.7;
+}
+
+.unit-text {
+  font-size: 26rpx;
+  color: #5c6673;
+}
+
+.unit-text-active {
+  color: #007aff;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 18rpx;
+  font-size: 22rpx;
+  color: #999;
+  line-height: 32rpx;
+}
+
+/* 常用档位 chip */
+.chip-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+
+.preset-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 58rpx;
+  padding: 0 20rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 29rpx;
+  background-color: #f7f8fa;
+}
+
+.preset-chip-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.preset-text {
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.preset-text-active {
+  color: #007aff;
+}
+
+/* 结果 */
+.result-head {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.result-left {
+  flex: 1;
+}
+
+.result-label {
+  display: block;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.result-date {
+  display: block;
+  margin-top: 6rpx;
+  font-size: 44rpx;
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.result-weekday {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.status-box {
+  padding: 10rpx 18rpx;
+  border-radius: 24rpx;
+}
+
+.status-text {
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.remain-text {
+  display: block;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.bar-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+}
+
+.bar-label {
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.bar-track {
+  height: 12rpx;
+  margin-top: 8rpx;
+  border-radius: 6rpx;
+  background-color: #f0f1f3;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 12rpx;
+  border-radius: 6rpx;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14rpx 0;
+  border-bottom: 1rpx solid #f0f1f3;
+}
+
+.metric-label {
+  font-size: 26rpx;
+  color: #8a94a6;
+}
+
+.metric-value {
+  font-size: 26rpx;
+  color: #1f2933;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+  line-height: 34rpx;
+}
+
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.empty-icon {
+  font-size: 56rpx;
+}
+
+.empty-text {
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: #999;
+}

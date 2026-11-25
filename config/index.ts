@@ -53,6 +53,11 @@ const config: UserConfigExport = {
     enable: false
   },
   mini: {
+    // 音频（摩斯码的点 / 划）不能内联成 base64：小程序 InnerAudioContext 只认文件路径，
+    // limit: true 表示 maxSize = 0，即所有媒体资源一律落地成文件
+    mediaUrlLoaderOption: {
+      limit: true
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -70,6 +75,9 @@ const config: UserConfigExport = {
   h5: {
     publicPath: '/',
     staticDirectory: 'static',
+    mediaUrlLoaderOption: {
+      limit: true
+    },
     output: {
       filename: 'js/[name].[hash:8].js',
       chunkFilename: 'js/[name].[chunkhash:8].js'

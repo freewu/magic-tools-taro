@@ -1,0 +1,242 @@
+.card-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.head-action {
+  font-size: 26rpx;
+  color: #e54d42;
+}
+
+/* ---------------------------------------------------------------- 计时区 */
+
+.timer-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timer-status-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.status-pill {
+  padding: 6rpx 18rpx;
+  border-radius: 20rpx;
+}
+
+.status-text {
+  font-size: 22rpx;
+}
+
+.copy-text {
+  font-size: 26rpx;
+  color: #007aff;
+}
+
+/* 时钟：每段固定宽度，毫秒跳动不会把整行推来推去 */
+.clock-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 28rpx;
+}
+
+.clock-seg {
+  width: 88rpx;
+  text-align: center;
+  font-size: 62rpx;
+  font-weight: bold;
+  line-height: 76rpx;
+  color: #1f2933;
+}
+
+.clock-sep {
+  width: 26rpx;
+  text-align: center;
+  font-size: 52rpx;
+  font-weight: bold;
+  line-height: 70rpx;
+  color: #1f2933;
+}
+
+.clock-ms {
+  width: 138rpx;
+  text-align: center;
+  font-size: 62rpx;
+  font-weight: bold;
+  line-height: 76rpx;
+  color: #1f2933;
+}
+
+.duration-text {
+  margin-top: 8rpx;
+  font-size: 26rpx;
+  color: #8a94a6;
+}
+
+.btn-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 32rpx;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-width: 220rpx;
+  height: 88rpx;
+  margin: 0 12rpx;
+  padding: 0 32rpx;
+  border-radius: 44rpx;
+}
+
+.btn-primary {
+  background-color: #007aff;
+}
+
+.btn-primary-hover {
+  background-color: #0062cc;
+}
+
+.btn-danger {
+  background-color: #e54d42;
+}
+
+.btn-danger-hover {
+  background-color: #c33a31;
+}
+
+.btn-ghost {
+  background-color: #f2f5fa;
+}
+
+.btn-ghost-hover {
+  background-color: #e6ecf6;
+}
+
+.btn-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #fff;
+}
+
+.btn-ghost-text {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #4a5568;
+}
+
+.lap-btn {
+  margin-top: 24rpx;
+  padding: 12rpx 24rpx;
+  border-radius: 28rpx;
+  background-color: #eff6f0;
+}
+
+.lap-btn-hover {
+  background-color: #dfeedf;
+}
+
+.lap-btn-text {
+  font-size: 24rpx;
+  color: #2f7d46;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 28rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+}
+
+/* ---------------------------------------------------------------- 历史记录 */
+
+.summary-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #8a94a6;
+}
+
+.record-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 16rpx;
+  padding: 12rpx 8rpx 12rpx 16rpx;
+  border-radius: 12rpx;
+  background-color: #fafbfc;
+}
+
+.record-main {
+  flex: 1;
+}
+
+.record-main-hover {
+  background-color: #f2f5fa;
+}
+
+.record-elapsed {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.record-meta {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.record-del {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 28rpx;
+}
+
+.record-del-hover {
+  background-color: #fdecec;
+}
+
+.record-del-text {
+  font-size: 32rpx;
+  line-height: 36rpx;
+  color: #b0b6be;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  line-height: 34rpx;
+  color: #999;
+}

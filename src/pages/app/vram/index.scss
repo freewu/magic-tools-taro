@@ -1,0 +1,235 @@
+.field-label {
+  display: block;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.field-gap {
+  margin-top: 20rpx;
+}
+
+/* 场景切换 */
+.seg-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+}
+
+.seg-chip {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16rpx 0;
+  margin-right: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 12rpx;
+  background-color: #f7f8fa;
+}
+
+.seg-chip-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.seg-text {
+  font-size: 26rpx;
+  color: #5c6673;
+}
+
+.seg-text-active {
+  color: #007aff;
+}
+
+.chip-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10rpx;
+}
+
+.preset-chip {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10rpx 20rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border: 1rpx solid #e5e5e5;
+  border-radius: 24rpx;
+  background-color: #f7f8fa;
+}
+
+.preset-chip-active {
+  border-color: #007aff;
+  background-color: #eaf2ff;
+}
+
+.preset-text {
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.preset-text-active {
+  color: #007aff;
+}
+
+.chip-hover {
+  opacity: 0.7;
+}
+
+/* 输入网格 */
+.input-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 12rpx;
+}
+
+.input-cell {
+  width: 50%;
+  margin-top: 12rpx;
+  padding-right: 8rpx;
+  box-sizing: border-box;
+}
+
+.input-label {
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.num-input {
+  height: 68rpx;
+  margin-top: 6rpx;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  color: #1f2933;
+  background-color: #f7f8fa;
+  border-radius: 10rpx;
+}
+
+/* 结果 */
+.result-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.result-left {
+  flex: 1;
+}
+
+.result-label {
+  display: block;
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.result-total {
+  display: block;
+  margin-top: 4rpx;
+  font-size: 52rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+
+.result-sub {
+  display: block;
+  margin-top: 2rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.status-box {
+  padding: 10rpx 18rpx;
+  margin-left: 16rpx;
+  border-radius: 10rpx;
+}
+
+.status-text {
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f1f3;
+}
+
+.metric-label {
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.metric-value {
+  font-size: 24rpx;
+  color: #1f2933;
+}
+
+.card-chip {
+  padding: 10rpx 18rpx;
+  margin-right: 12rpx;
+  margin-bottom: 12rpx;
+  border-radius: 10rpx;
+  background-color: #f7f8fa;
+}
+
+.card-chip-text {
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.card-chip-ok {
+  color: #1f9d55;
+}
+
+.hint-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+  line-height: 32rpx;
+}
+
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40rpx 0;
+}
+
+.empty-icon {
+  font-size: 64rpx;
+}
+
+.empty-text {
+  margin-top: 16rpx;
+  font-size: 26rpx;
+  color: #8a94a6;
+  text-align: center;
+}
+
+.formula-line {
+  display: block;
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  color: #1f2933;
+  line-height: 36rpx;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+  line-height: 36rpx;
+}

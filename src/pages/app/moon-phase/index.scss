@@ -1,0 +1,215 @@
+.cal-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cal-nav {
+  width: 72rpx;
+  font-size: 44rpx;
+  color: #007aff;
+  text-align: center;
+}
+
+.cal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.head-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 4rpx;
+}
+
+.head-action {
+  font-size: 24rpx;
+  color: #007aff;
+}
+
+.card-note {
+  display: block;
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+  line-height: 32rpx;
+}
+
+/* 星期行 */
+.week-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 16rpx;
+  padding-bottom: 8rpx;
+  border-bottom: 1rpx solid #f0f1f3;
+}
+
+.week-text {
+  flex: 1;
+  font-size: 24rpx;
+  color: #8a94a6;
+  text-align: center;
+}
+
+.week-text-weekend {
+  color: #d93025;
+}
+
+/* 日期格 */
+.day-row {
+  display: flex;
+  flex-direction: row;
+  margin-top: 6rpx;
+}
+
+.day-cell {
+  flex: 1;
+  padding: 3rpx;
+}
+
+.day-box {
+  height: 96rpx;
+  border-radius: 12rpx;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-box-today {
+  background-color: #007aff;
+}
+
+.day-box-selected {
+  border: 1rpx solid #007aff;
+  background-color: #eaf2ff;
+}
+
+.day-emoji {
+  font-size: 30rpx;
+  color: #1f2933;
+}
+
+.day-num {
+  margin-top: 2rpx;
+  font-size: 22rpx;
+  color: #1f2933;
+}
+
+.day-num-weekend {
+  color: #d93025;
+}
+
+.day-num-today {
+  color: #fff;
+}
+
+/* 选中日详情 */
+.detail-head {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-emoji {
+  font-size: 64rpx;
+}
+
+.detail-main {
+  margin-left: 20rpx;
+}
+
+.detail-phase {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #1f2933;
+}
+
+.detail-en {
+  display: block;
+  margin-top: 2rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.detail-date {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #5c6673;
+}
+
+.metric-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f0f1f3;
+}
+
+.metric-label {
+  font-size: 26rpx;
+  color: #8a94a6;
+}
+
+.metric-value {
+  font-size: 26rpx;
+  color: #1f2933;
+}
+
+/* 图例 */
+.legend-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 18rpx;
+}
+
+.legend-hover {
+  opacity: 0.7;
+}
+
+.legend-emoji {
+  width: 56rpx;
+  font-size: 34rpx;
+  color: #1f2933;
+}
+
+.legend-main {
+  flex: 1;
+}
+
+.legend-name {
+  font-size: 26rpx;
+  color: #1f2933;
+}
+
+.legend-name-active {
+  color: #007aff;
+}
+
+.legend-en {
+  display: block;
+  margin-top: 2rpx;
+  font-size: 20rpx;
+  color: #a0a8b4;
+}
+
+.legend-range {
+  font-size: 22rpx;
+  color: #8a94a6;
+}
+
+.tip-text {
+  display: block;
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  color: #8a94a6;
+  line-height: 36rpx;
+}
