@@ -16,7 +16,7 @@
   <tr><td align="center" width="33%"><img src="docs/screenshots/appstore.jpg" width="168" alt="应用商店" /><br /><sub>应用商店</sub></td><td align="center" width="33%"><img src="docs/screenshots/settings.jpg" width="168" alt="设置" /><br /><sub>设置</sub></td><td align="center" width="33%"><img src="docs/screenshots/about.jpg" width="168" alt="关于" /><br /><sub>关于</sub></td></tr>
 </table>
 
-**全部工具（30 个，按分类）**
+**全部工具（40 个，按分类）**
 
 <sub><strong>财务计算</strong> · 工资、房贷、存款、退休金，输入数字直接出结果</sub>
 
@@ -61,6 +61,14 @@
 
 <table>
   <tr><td align="center" width="25%"><img src="docs/screenshots/fuzzy-nickname.jpg" width="128" alt="模糊昵称" /><br /><sub>模糊昵称</sub></td><td align="center" width="25%"><img src="docs/screenshots/lucky-wheel.jpg" width="128" alt="抽奖转盘" /><br /><sub>抽奖转盘</sub></td><td width="25%"></td><td width="25%"></td></tr>
+</table>
+
+<sub><strong>其他</strong> · 还没归类的工具</sub>
+
+<table>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/roman-numeral.jpg" width="128" alt="罗马数字" /><br /><sub>罗马数字</sub></td><td align="center" width="25%"><img src="docs/screenshots/zodiac-age.jpg" width="128" alt="生肖年龄" /><br /><sub>生肖年龄</sub></td><td align="center" width="25%"><img src="docs/screenshots/shelf-life.jpg" width="128" alt="保质期计算" /><br /><sub>保质期计算</sub></td><td align="center" width="25%"><img src="docs/screenshots/codec.jpg" width="128" alt="常用编码" /><br /><sub>常用编码</sub></td></tr>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/morse.jpg" width="128" alt="摩斯码" /><br /><sub>摩斯码</sub></td><td align="center" width="25%"><img src="docs/screenshots/image-split.jpg" width="128" alt="图片分割" /><br /><sub>图片分割</sub></td><td align="center" width="25%"><img src="docs/screenshots/vram.jpg" width="128" alt="大模型显存" /><br /><sub>大模型显存</sub></td><td align="center" width="25%"><img src="docs/screenshots/moon-phase.jpg" width="128" alt="月相日历" /><br /><sub>月相日历</sub></td></tr>
+  <tr><td align="center" width="25%"><img src="docs/screenshots/relationship.jpg" width="128" alt="亲戚称呼" /><br /><sub>亲戚称呼</sub></td><td align="center" width="25%"><img src="docs/screenshots/timer.jpg" width="128" alt="计时器" /><br /><sub>计时器</sub></td><td width="25%"></td><td width="25%"></td></tr>
 </table>
 
 <!-- screenshots:end -->
