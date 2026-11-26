@@ -23,7 +23,7 @@ import {
   styleOfCode
 } from './lib'
 import type { MorseRow, MorseTone } from './lib'
-import { playMorseTones, stopMorseAudio } from './audio'
+import { MORSE_AUDIO_SUPPORTED, playMorseTones, stopMorseAudio } from './audio'
 
 import './index.scss'
 
@@ -140,6 +140,10 @@ export default function Morse() {
 
   // 播放 / 停止；过长时只播开头一段
   const onTogglePlay = () => {
+    if (!MORSE_AUDIO_SUPPORTED) {
+      Taro.showToast({ title: 'Android 端暂不支持播放，可用小程序或网页版试听', icon: 'none' })
+      return
+    }
     if (playing) {
       stopPlay()
       return
@@ -240,15 +244,17 @@ export default function Morse() {
             <View className='btn' hoverClass='btn-hover' onClick={onCopy}>
               <Text className='btn-text'>复制结果</Text>
             </View>
-            <View className='btn' hoverClass='btn-hover' onClick={onTogglePlay}>
-              <Text className={playing ? 'btn-text' : 'btn-text'}>{playing ? '停止' : '播放'}</Text>
+            <View className={MORSE_AUDIO_SUPPORTED ? 'btn' : 'btn btn-disabled'} hoverClass='btn-hover' onClick={onTogglePlay}>
+              <Text className={MORSE_AUDIO_SUPPORTED ? 'btn-text' : 'btn-text btn-text-disabled'}>
+                {playing ? '停止' : '播放'}
+              </Text>
             </View>
             <View className='btn' hoverClass='btn-hover' onClick={onSwap}>
               <Text className='btn-text'>反向</Text>
             </View>
           </View>
           <Text className='hint-text'>
-            「反向」把结果填回输入框并切换编码 / 解码方向。播放按 20 WPM（1 个单位 = 60ms）。切换「输出编码写法」只改结果的显示方式：标准「. -」、短长「· −」、数字「1 0」；解码时三种写法都能自动识别。
+            「反向」把结果填回输入框并切换编码 / 解码方向。播放按 20 WPM（1 个单位 = 60ms）。{MORSE_AUDIO_SUPPORTED ? '' : 'Android（RN）端暂不支持播放，可用小程序或网页版试听。'}切换「输出编码写法」只改结果的显示方式：标准「. -」、短长「· −」、数字「1 0」；解码时三种写法都能自动识别。
           </Text>
         </View>
 

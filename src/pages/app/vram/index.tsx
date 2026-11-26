@@ -427,8 +427,8 @@ export default function Vram() {
                 <Text className='result-total'>{view.totalText}</Text>
                 <Text className='result-sub'>{view.perCardText}</Text>
               </View>
-              <View className='status-box' style={`background-color:${view.fitBg}`}>
-                <Text className='status-text' style={`color:${view.fitColor}`}>
+              <View className='status-box' style={{ backgroundColor: view.fitBg }}>
+                <Text className='status-text' style={{ color: view.fitColor }}>
                   {view.fitText}
                 </Text>
               </View>

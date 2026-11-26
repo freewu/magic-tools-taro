@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react'
 import Taro from '@tarojs/taro'
-import { Canvas, Image, Input, Text, View } from '@tarojs/components'
+import { Image, Input, Text, View } from '@tarojs/components'
 
 import PageWithMenu from '../../../components/page-with-menu'
 import NavBar from '../../../components/nav-bar'
@@ -26,6 +26,7 @@ import {
   splitRects
 } from './lib'
 import type { Piece, SplitLayout } from './lib'
+import HiddenCanvas from './hidden-canvas'
 import { imageSizeOf, pickImagePath, savePieceImage, sliceImage } from './slice'
 
 import sampleSource from '../../../static/sample-split.png'
@@ -134,7 +135,7 @@ export default function ImageSplit() {
       if (token !== loadToken.current) {
         return
       }
-      setErrorText('图片读取失败，换一张试试')
+      setErrorText(e instanceof Error ? e.message : '图片读取失败，换一张试试')
     }
   }
 
@@ -147,7 +148,9 @@ export default function ImageSplit() {
         }
         applyImage(path)
       })
-      .catch(() => setErrorText('没有选中图片'))
+      .catch((error: unknown) =>
+        setErrorText(error instanceof Error ? error.message : '没有选中图片')
+      )
   }
 
   const onUseSample = () => {
@@ -454,9 +457,7 @@ export default function ImageSplit() {
         </View>
 
         {/* 切图用的隐藏画布（小程序 / App 需要，H5 走 DOM canvas） */}
-        {!isRN && (
-          <Canvas className='hidden-canvas' id={CANVAS_ID} canvasId={CANVAS_ID} type='2d' />
-        )}
+        <HiddenCanvas canvasId={CANVAS_ID} />
       </View>
     </PageWithMenu>
   )

@@ -196,8 +196,8 @@ export default function Timer() {
       <View className='container'>
         <View className='card timer-card'>
           <View className='timer-status-row'>
-            <View className='status-pill' style={`background-color:${status.bg}`}>
-              <Text className='status-text' style={`color:${status.color}`}>
+            <View className='status-pill' style={{ backgroundColor: status.bg }}>
+              <Text className='status-text' style={{ color: status.color }}>
                 {status.text}
               </Text>
             </View>

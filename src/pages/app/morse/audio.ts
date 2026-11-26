@@ -11,6 +11,9 @@ import type { MorseTone } from './lib'
 import dotSource from '../../../static/audio/morse-dot.wav'
 import dahSource from '../../../static/audio/morse-dah.wav'
 
+/** 当前平台能否出声（RN 端走 audio.rn.ts，返回 false） */
+export const MORSE_AUDIO_SUPPORTED = true
+
 let dotAudio: Taro.InnerAudioContext | null = null
 let dahAudio: Taro.InnerAudioContext | null = null
 let audioReady = false

@@ -172,8 +172,8 @@ export default function ShelfLife() {
                 <Text className='result-date'>{result.endText}</Text>
                 <Text className='result-weekday'>{result.endWeekday}</Text>
               </View>
-              <View className='status-box' style={`background-color:${colors.bg}`}>
-                <Text className='status-text' style={`color:${colors.color}`}>
+              <View className='status-box' style={{ backgroundColor: colors.bg }}>
+                <Text className='status-text' style={{ color: colors.color }}>
                   {result.statusText}
                 </Text>
               </View>
@@ -190,7 +190,7 @@ export default function ShelfLife() {
             <View className='bar-track'>
               <View
                 className='bar-fill'
-                style={`width:${result.progressText};background-color:${colors.color}`}
+                style={{ width: result.progressText, backgroundColor: colors.color }}
               />
             </View>
 

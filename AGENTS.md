@@ -30,4 +30,6 @@
   - 在 WSL 里跑 `just` 时，Gradle / adb / emulator 走 Windows 侧工具链（JDK、Android SDK、`adb.exe` 都是 Windows 版），路径换算与环境变量覆盖都在 `scripts/android.mjs` 里处理，不要在 justfile 里写死 Windows 路径。
   - 原生侧改动（`android/`）后先验证 `just android`，别只验证 `just build-rn`（后者只打 JS）。
   - RN 端不支持 `calc()` / `gap` / `display: block` 这类 Web 专有写法（Yoga 会丢掉整条声明或忽略取值），涉及列宽、间距的样式用 `%` + flex 表达：应用商店的 3 列网格就是 `width: 30.8%; margin: 10rpx 1.2%`。
+  - 平台差异代码一律用 `.rn.ts` / `.rn.tsx` 文件分开，不要靠 `process.env.TARO_ENV === 'rn'` 在运行时判断——`@tarojs/components-rn` 里没有 `Canvas`，`@tarojs/taro-rn` 的 `chooseImage` / `canvasToTempFilePath` / `createInnerAudioContext` / `getImageInfo` 又依赖 expo-image-picker、expo-camera、expo-av 等未安装的原生模块，只要 import 进来 Metro 就直接解析失败。示例：`image-split/hidden-canvas.rn.tsx`、`image-split/slice.rn.ts`、`morse/audio.rn.ts`。
+  - 动态内联样式统一写对象（`style={{ color: x }}`），不要拼样式字符串：RN 端 style 只认对象 / 数组，字符串写法在 Android 上会失效。
 - 本机 git 身份：bluefrog &lt;bluefrog.wu@gmail.com&gt;（已在仓库内配置）。

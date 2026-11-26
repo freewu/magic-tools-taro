@@ -129,6 +129,15 @@
   color: #007aff;
 }
 
+/* RN 端没有音频模块：播放按钮置灰但仍可点（点了给提示） */
+.btn-disabled {
+  opacity: 0.45;
+}
+
+.btn-text-disabled {
+  color: #999;
+}
+
 .hint-text {
   display: block;
   margin-top: 14rpx;
